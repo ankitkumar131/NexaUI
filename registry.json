@@ -1,0 +1,1069 @@
+{
+  "$schema": "https://nexa-ui.dev/schema/registry.json",
+  "name": "nexa-ui",
+  "version": "0.0.1",
+  "angular": ">=22.0.0",
+  "totalComponents": 64,
+  "components": [
+    {
+      "name": "accordion",
+      "selectors": [
+        "nexa-accordion-item",
+        "nexa-accordion"
+      ],
+      "classes": [
+        "NexaAccordionItemComponent",
+        "NexaAccordionComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/accordion/accordion-item.component.html",
+        "projects/nexa-ui/src/lib/accordion/accordion-item.component.scss",
+        "projects/nexa-ui/src/lib/accordion/accordion-item.component.ts",
+        "projects/nexa-ui/src/lib/accordion/accordion.component.html",
+        "projects/nexa-ui/src/lib/accordion/accordion.component.scss",
+        "projects/nexa-ui/src/lib/accordion/accordion.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/accordion/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "alert",
+      "selectors": [
+        "nexa-alert"
+      ],
+      "classes": [
+        "NexaAlertComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/alert/alert.component.html",
+        "projects/nexa-ui/src/lib/alert/alert.component.scss",
+        "projects/nexa-ui/src/lib/alert/alert.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/alert/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "alert-dialog",
+      "selectors": [
+        "nexa-alert-dialog"
+      ],
+      "classes": [
+        "NexaAlertDialogComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/alert-dialog/alert-dialog.component.html",
+        "projects/nexa-ui/src/lib/alert-dialog/alert-dialog.component.scss",
+        "projects/nexa-ui/src/lib/alert-dialog/alert-dialog.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/alert-dialog/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "aspect-ratio",
+      "selectors": [
+        "nexa-aspect-ratio"
+      ],
+      "classes": [
+        "NexaAspectRatioComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/aspect-ratio/aspect-ratio.component.html",
+        "projects/nexa-ui/src/lib/aspect-ratio/aspect-ratio.component.scss",
+        "projects/nexa-ui/src/lib/aspect-ratio/aspect-ratio.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/aspect-ratio/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "attachment",
+      "selectors": [
+        "nexa-attachment"
+      ],
+      "classes": [
+        "NexaAttachmentComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/attachment/attachment.component.html",
+        "projects/nexa-ui/src/lib/attachment/attachment.component.scss",
+        "projects/nexa-ui/src/lib/attachment/attachment.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/attachment/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "avatar",
+      "selectors": [
+        "nexa-avatar"
+      ],
+      "classes": [
+        "NexaAvatarComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/avatar/avatar.component.html",
+        "projects/nexa-ui/src/lib/avatar/avatar.component.scss",
+        "projects/nexa-ui/src/lib/avatar/avatar.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/avatar/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "badge",
+      "selectors": [
+        "nexa-badge"
+      ],
+      "classes": [
+        "NexaBadgeComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/badge/badge.component.html",
+        "projects/nexa-ui/src/lib/badge/badge.component.scss",
+        "projects/nexa-ui/src/lib/badge/badge.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/badge/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "breadcrumb",
+      "selectors": [
+        "nexa-breadcrumb"
+      ],
+      "classes": [
+        "NexaBreadcrumbComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/breadcrumb/breadcrumb.component.html",
+        "projects/nexa-ui/src/lib/breadcrumb/breadcrumb.component.scss",
+        "projects/nexa-ui/src/lib/breadcrumb/breadcrumb.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/breadcrumb/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "bubble",
+      "selectors": [
+        "nexa-bubble"
+      ],
+      "classes": [
+        "NexaBubbleComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/bubble/bubble.component.html",
+        "projects/nexa-ui/src/lib/bubble/bubble.component.scss",
+        "projects/nexa-ui/src/lib/bubble/bubble.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/bubble/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "button",
+      "selectors": [
+        "nexa-button"
+      ],
+      "classes": [
+        "NexaButtonComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/button/button.component.html",
+        "projects/nexa-ui/src/lib/button/button.component.scss",
+        "projects/nexa-ui/src/lib/button/button.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/button/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "button-group",
+      "selectors": [
+        "nexa-button-group"
+      ],
+      "classes": [
+        "NexaButtonGroupComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/button-group/button-group.component.html",
+        "projects/nexa-ui/src/lib/button-group/button-group.component.scss",
+        "projects/nexa-ui/src/lib/button-group/button-group.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/button-group/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "calendar",
+      "selectors": [
+        "nexa-calendar"
+      ],
+      "classes": [
+        "NexaCalendarComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/calendar/calendar.component.html",
+        "projects/nexa-ui/src/lib/calendar/calendar.component.scss",
+        "projects/nexa-ui/src/lib/calendar/calendar.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/calendar/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "card",
+      "selectors": [
+        "nexa-card",
+        "nexa-card-header",
+        "nexa-card-title",
+        "nexa-card-description",
+        "nexa-card-action",
+        "nexa-card-content",
+        "nexa-card-footer"
+      ],
+      "classes": [
+        "NexaCardComponent",
+        "NexaCardHeaderComponent",
+        "NexaCardTitleComponent",
+        "NexaCardDescriptionComponent",
+        "NexaCardActionComponent",
+        "NexaCardContentComponent",
+        "NexaCardFooterComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/card/card.component.html",
+        "projects/nexa-ui/src/lib/card/card.component.scss",
+        "projects/nexa-ui/src/lib/card/card.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/card/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "carousel",
+      "selectors": [
+        "nexa-carousel",
+        "nexa-carousel-slide"
+      ],
+      "classes": [
+        "NexaCarouselComponent",
+        "NexaCarouselSlideComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/carousel/carousel.component.html",
+        "projects/nexa-ui/src/lib/carousel/carousel.component.scss",
+        "projects/nexa-ui/src/lib/carousel/carousel.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/carousel/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "chart",
+      "selectors": [
+        "nexa-chart"
+      ],
+      "classes": [
+        "NexaChartComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/chart/chart.component.html",
+        "projects/nexa-ui/src/lib/chart/chart.component.scss",
+        "projects/nexa-ui/src/lib/chart/chart.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/chart/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "checkbox",
+      "selectors": [
+        "nexa-checkbox"
+      ],
+      "classes": [
+        "NexaCheckboxComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/checkbox/checkbox.component.html",
+        "projects/nexa-ui/src/lib/checkbox/checkbox.component.scss",
+        "projects/nexa-ui/src/lib/checkbox/checkbox.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/checkbox/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "collapsible",
+      "selectors": [
+        "nexa-collapsible"
+      ],
+      "classes": [
+        "NexaCollapsibleComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/collapsible/collapsible.component.html",
+        "projects/nexa-ui/src/lib/collapsible/collapsible.component.scss",
+        "projects/nexa-ui/src/lib/collapsible/collapsible.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/collapsible/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "combobox",
+      "selectors": [
+        "nexa-combobox"
+      ],
+      "classes": [
+        "NexaComboboxComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/combobox/combobox.component.html",
+        "projects/nexa-ui/src/lib/combobox/combobox.component.scss",
+        "projects/nexa-ui/src/lib/combobox/combobox.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/combobox/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "command",
+      "selectors": [
+        "nexa-command"
+      ],
+      "classes": [
+        "NexaCommandComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/command/command.component.html",
+        "projects/nexa-ui/src/lib/command/command.component.scss",
+        "projects/nexa-ui/src/lib/command/command.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/command/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "context-menu",
+      "selectors": [
+        "nexa-context-menu"
+      ],
+      "classes": [
+        "NexaContextMenuComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/context-menu/context-menu.component.html",
+        "projects/nexa-ui/src/lib/context-menu/context-menu.component.scss",
+        "projects/nexa-ui/src/lib/context-menu/context-menu.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/context-menu/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "data-table",
+      "selectors": [
+        "nexa-data-table"
+      ],
+      "classes": [
+        "NexaDataTableComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/data-table/data-table.component.html",
+        "projects/nexa-ui/src/lib/data-table/data-table.component.scss",
+        "projects/nexa-ui/src/lib/data-table/data-table.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/data-table/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "date-picker",
+      "selectors": [
+        "nexa-date-picker"
+      ],
+      "classes": [
+        "NexaDatePickerComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/date-picker/date-picker.component.html",
+        "projects/nexa-ui/src/lib/date-picker/date-picker.component.scss",
+        "projects/nexa-ui/src/lib/date-picker/date-picker.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/date-picker/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "dialog",
+      "selectors": [
+        "nexa-dialog"
+      ],
+      "classes": [
+        "NexaDialogComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/dialog/dialog.component.html",
+        "projects/nexa-ui/src/lib/dialog/dialog.component.scss",
+        "projects/nexa-ui/src/lib/dialog/dialog.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/dialog/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "direction",
+      "selectors": [
+        "[nexaDir]"
+      ],
+      "classes": [
+        "NexaDirDirective",
+        "NexaDirectionService"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/direction/dir.directive.ts",
+        "projects/nexa-ui/src/lib/direction/direction.service.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/direction/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "drawer",
+      "selectors": [
+        "nexa-drawer"
+      ],
+      "classes": [
+        "NexaDrawerComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/drawer/drawer.component.html",
+        "projects/nexa-ui/src/lib/drawer/drawer.component.scss",
+        "projects/nexa-ui/src/lib/drawer/drawer.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/drawer/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "dropdown-menu",
+      "selectors": [
+        "nexa-dropdown-menu"
+      ],
+      "classes": [
+        "NexaDropdownMenuComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/dropdown-menu/dropdown-menu.component.html",
+        "projects/nexa-ui/src/lib/dropdown-menu/dropdown-menu.component.scss",
+        "projects/nexa-ui/src/lib/dropdown-menu/dropdown-menu.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/dropdown-menu/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "empty",
+      "selectors": [
+        "nexa-empty"
+      ],
+      "classes": [
+        "NexaEmptyComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/empty/empty.component.html",
+        "projects/nexa-ui/src/lib/empty/empty.component.scss",
+        "projects/nexa-ui/src/lib/empty/empty.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/empty/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "field",
+      "selectors": [
+        "nexa-field"
+      ],
+      "classes": [
+        "NexaFieldComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/field/field.component.html",
+        "projects/nexa-ui/src/lib/field/field.component.scss",
+        "projects/nexa-ui/src/lib/field/field.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/field/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "hover-card",
+      "selectors": [
+        "nexa-hover-card"
+      ],
+      "classes": [
+        "NexaHoverCardComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/hover-card/hover-card.component.html",
+        "projects/nexa-ui/src/lib/hover-card/hover-card.component.scss",
+        "projects/nexa-ui/src/lib/hover-card/hover-card.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/hover-card/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "input",
+      "selectors": [
+        "nexa-input"
+      ],
+      "classes": [
+        "NexaInputComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/input/input.component.html",
+        "projects/nexa-ui/src/lib/input/input.component.scss",
+        "projects/nexa-ui/src/lib/input/input.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/input/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "input-group",
+      "selectors": [
+        "nexa-input-group"
+      ],
+      "classes": [
+        "NexaInputGroupComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/input-group/input-group.component.html",
+        "projects/nexa-ui/src/lib/input-group/input-group.component.scss",
+        "projects/nexa-ui/src/lib/input-group/input-group.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/input-group/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "input-otp",
+      "selectors": [
+        "nexa-input-otp"
+      ],
+      "classes": [
+        "NexaInputOtpComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/input-otp/input-otp.component.html",
+        "projects/nexa-ui/src/lib/input-otp/input-otp.component.scss",
+        "projects/nexa-ui/src/lib/input-otp/input-otp.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/input-otp/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "item",
+      "selectors": [
+        "nexa-item"
+      ],
+      "classes": [
+        "NexaItemComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/item/item.component.html",
+        "projects/nexa-ui/src/lib/item/item.component.scss",
+        "projects/nexa-ui/src/lib/item/item.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/item/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "kbd",
+      "selectors": [
+        "nexa-kbd"
+      ],
+      "classes": [
+        "NexaKbdComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/kbd/kbd.component.html",
+        "projects/nexa-ui/src/lib/kbd/kbd.component.scss",
+        "projects/nexa-ui/src/lib/kbd/kbd.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/kbd/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "label",
+      "selectors": [
+        "nexa-label"
+      ],
+      "classes": [
+        "NexaLabelComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/label/label.component.html",
+        "projects/nexa-ui/src/lib/label/label.component.scss",
+        "projects/nexa-ui/src/lib/label/label.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/label/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "marker",
+      "selectors": [
+        "nexa-marker"
+      ],
+      "classes": [
+        "NexaMarkerComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/marker/marker.component.html",
+        "projects/nexa-ui/src/lib/marker/marker.component.scss",
+        "projects/nexa-ui/src/lib/marker/marker.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/marker/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "menubar",
+      "selectors": [
+        "nexa-menubar"
+      ],
+      "classes": [
+        "NexaMenubarComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/menubar/menubar.component.html",
+        "projects/nexa-ui/src/lib/menubar/menubar.component.scss",
+        "projects/nexa-ui/src/lib/menubar/menubar.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/menubar/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "message",
+      "selectors": [
+        "nexa-message"
+      ],
+      "classes": [
+        "NexaMessageComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/message/message.component.html",
+        "projects/nexa-ui/src/lib/message/message.component.scss",
+        "projects/nexa-ui/src/lib/message/message.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/message/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "message-scroller",
+      "selectors": [
+        "nexa-message-scroller"
+      ],
+      "classes": [
+        "NexaMessageScrollerComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/message-scroller/message-scroller.component.html",
+        "projects/nexa-ui/src/lib/message-scroller/message-scroller.component.scss",
+        "projects/nexa-ui/src/lib/message-scroller/message-scroller.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/message-scroller/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "native-select",
+      "selectors": [
+        "nexa-native-select"
+      ],
+      "classes": [
+        "NexaNativeSelectComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/native-select/native-select.component.html",
+        "projects/nexa-ui/src/lib/native-select/native-select.component.scss",
+        "projects/nexa-ui/src/lib/native-select/native-select.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/native-select/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "navigation-menu",
+      "selectors": [
+        "nexa-navigation-menu"
+      ],
+      "classes": [
+        "NexaNavigationMenuComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/navigation-menu/navigation-menu.component.html",
+        "projects/nexa-ui/src/lib/navigation-menu/navigation-menu.component.scss",
+        "projects/nexa-ui/src/lib/navigation-menu/navigation-menu.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/navigation-menu/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "pagination",
+      "selectors": [
+        "nexa-pagination"
+      ],
+      "classes": [
+        "NexaPaginationComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/pagination/pagination.component.html",
+        "projects/nexa-ui/src/lib/pagination/pagination.component.scss",
+        "projects/nexa-ui/src/lib/pagination/pagination.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/pagination/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "popover",
+      "selectors": [
+        "nexa-popover"
+      ],
+      "classes": [
+        "NexaPopoverComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/popover/popover.component.html",
+        "projects/nexa-ui/src/lib/popover/popover.component.scss",
+        "projects/nexa-ui/src/lib/popover/popover.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/popover/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "progress",
+      "selectors": [
+        "nexa-progress"
+      ],
+      "classes": [
+        "NexaProgressComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/progress/progress.component.html",
+        "projects/nexa-ui/src/lib/progress/progress.component.scss",
+        "projects/nexa-ui/src/lib/progress/progress.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/progress/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "questionnaire",
+      "selectors": [
+        "nexa-questionnaire"
+      ],
+      "classes": [
+        "NexaQuestionnaireComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/questionnaire/questionnaire.component.html",
+        "projects/nexa-ui/src/lib/questionnaire/questionnaire.component.scss",
+        "projects/nexa-ui/src/lib/questionnaire/questionnaire.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/questionnaire/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "radio-group",
+      "selectors": [
+        "nexa-radio-group"
+      ],
+      "classes": [
+        "NexaRadioGroupComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/radio-group/radio-group.component.html",
+        "projects/nexa-ui/src/lib/radio-group/radio-group.component.scss",
+        "projects/nexa-ui/src/lib/radio-group/radio-group.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/radio-group/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "resizable",
+      "selectors": [
+        "nexa-resizable"
+      ],
+      "classes": [
+        "NexaResizableComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/resizable/resizable.component.html",
+        "projects/nexa-ui/src/lib/resizable/resizable.component.scss",
+        "projects/nexa-ui/src/lib/resizable/resizable.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/resizable/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "scroll-area",
+      "selectors": [
+        "nexa-scroll-area"
+      ],
+      "classes": [
+        "NexaScrollAreaComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/scroll-area/scroll-area.component.html",
+        "projects/nexa-ui/src/lib/scroll-area/scroll-area.component.scss",
+        "projects/nexa-ui/src/lib/scroll-area/scroll-area.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/scroll-area/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "select",
+      "selectors": [
+        "nexa-select"
+      ],
+      "classes": [
+        "NexaSelectComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/select/select.component.html",
+        "projects/nexa-ui/src/lib/select/select.component.scss",
+        "projects/nexa-ui/src/lib/select/select.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/select/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "separator",
+      "selectors": [
+        "nexa-separator"
+      ],
+      "classes": [
+        "NexaSeparatorComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/separator/separator.component.html",
+        "projects/nexa-ui/src/lib/separator/separator.component.scss",
+        "projects/nexa-ui/src/lib/separator/separator.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/separator/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "sheet",
+      "selectors": [
+        "nexa-sheet"
+      ],
+      "classes": [
+        "NexaSheetComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/sheet/sheet.component.html",
+        "projects/nexa-ui/src/lib/sheet/sheet.component.scss",
+        "projects/nexa-ui/src/lib/sheet/sheet.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/sheet/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "sidebar",
+      "selectors": [
+        "nexa-sidebar"
+      ],
+      "classes": [
+        "NexaSidebarComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/sidebar/sidebar.component.html",
+        "projects/nexa-ui/src/lib/sidebar/sidebar.component.scss",
+        "projects/nexa-ui/src/lib/sidebar/sidebar.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/sidebar/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "skeleton",
+      "selectors": [
+        "nexa-skeleton"
+      ],
+      "classes": [
+        "NexaSkeletonComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/skeleton/skeleton.component.html",
+        "projects/nexa-ui/src/lib/skeleton/skeleton.component.scss",
+        "projects/nexa-ui/src/lib/skeleton/skeleton.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/skeleton/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "slider",
+      "selectors": [
+        "nexa-slider"
+      ],
+      "classes": [
+        "NexaSliderComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/slider/slider.component.html",
+        "projects/nexa-ui/src/lib/slider/slider.component.scss",
+        "projects/nexa-ui/src/lib/slider/slider.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/slider/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "spinner",
+      "selectors": [
+        "nexa-spinner"
+      ],
+      "classes": [
+        "NexaSpinnerComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/spinner/spinner.component.html",
+        "projects/nexa-ui/src/lib/spinner/spinner.component.scss",
+        "projects/nexa-ui/src/lib/spinner/spinner.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/spinner/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "switch",
+      "selectors": [
+        "nexa-switch"
+      ],
+      "classes": [
+        "NexaSwitchComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/switch/switch.component.html",
+        "projects/nexa-ui/src/lib/switch/switch.component.scss",
+        "projects/nexa-ui/src/lib/switch/switch.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/switch/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "table",
+      "selectors": [
+        "table[nexa-table]",
+        "thead[nexa-table-header]",
+        "tbody[nexa-table-body]",
+        "tfoot[nexa-table-footer]",
+        "tr[nexa-table-row]",
+        "th[nexa-table-head]",
+        "td[nexa-table-cell]"
+      ],
+      "classes": [
+        "NexaTableComponent",
+        "NexaTableHeaderComponent",
+        "NexaTableBodyComponent",
+        "NexaTableFooterComponent",
+        "NexaTableRowComponent",
+        "NexaTableHeadComponent",
+        "NexaTableCellComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/table/table.component.html",
+        "projects/nexa-ui/src/lib/table/table.component.scss",
+        "projects/nexa-ui/src/lib/table/table.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/table/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "tabs",
+      "selectors": [
+        "[nexaTabPanel]",
+        "nexa-tabs"
+      ],
+      "classes": [
+        "NexaTabPanelDirective",
+        "NexaTabsComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/tabs/tab-panel.directive.ts",
+        "projects/nexa-ui/src/lib/tabs/tabs.component.html",
+        "projects/nexa-ui/src/lib/tabs/tabs.component.scss",
+        "projects/nexa-ui/src/lib/tabs/tabs.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/tabs/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "textarea",
+      "selectors": [
+        "nexa-textarea"
+      ],
+      "classes": [
+        "NexaTextareaComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/textarea/textarea.component.html",
+        "projects/nexa-ui/src/lib/textarea/textarea.component.scss",
+        "projects/nexa-ui/src/lib/textarea/textarea.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/textarea/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "toast",
+      "selectors": [
+        "nexa-toaster"
+      ],
+      "classes": [
+        "NexaToastService",
+        "NexaToasterComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/toast/toast.service.ts",
+        "projects/nexa-ui/src/lib/toast/toaster.component.html",
+        "projects/nexa-ui/src/lib/toast/toaster.component.scss",
+        "projects/nexa-ui/src/lib/toast/toaster.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/toast/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "toggle",
+      "selectors": [
+        "nexa-toggle"
+      ],
+      "classes": [
+        "NexaToggleComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/toggle/toggle.component.html",
+        "projects/nexa-ui/src/lib/toggle/toggle.component.scss",
+        "projects/nexa-ui/src/lib/toggle/toggle.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/toggle/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "toggle-group",
+      "selectors": [
+        "nexa-toggle-group"
+      ],
+      "classes": [
+        "NexaToggleGroupComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/toggle-group/toggle-group.component.html",
+        "projects/nexa-ui/src/lib/toggle-group/toggle-group.component.scss",
+        "projects/nexa-ui/src/lib/toggle-group/toggle-group.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/toggle-group/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "tooltip",
+      "selectors": [
+        "nexa-tooltip"
+      ],
+      "classes": [
+        "NexaTooltipComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/tooltip/tooltip.component.html",
+        "projects/nexa-ui/src/lib/tooltip/tooltip.component.scss",
+        "projects/nexa-ui/src/lib/tooltip/tooltip.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/tooltip/README.md",
+      "hasReadme": true
+    },
+    {
+      "name": "typography",
+      "selectors": [
+        "nexa-typography"
+      ],
+      "classes": [
+        "NexaTypographyComponent"
+      ],
+      "files": [
+        "projects/nexa-ui/src/lib/typography/typography.component.html",
+        "projects/nexa-ui/src/lib/typography/typography.component.scss",
+        "projects/nexa-ui/src/lib/typography/typography.component.ts"
+      ],
+      "readme": "projects/nexa-ui/src/lib/typography/README.md",
+      "hasReadme": true
+    }
+  ]
+}

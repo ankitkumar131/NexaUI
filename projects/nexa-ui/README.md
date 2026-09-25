@@ -1,64 +1,62 @@
-# NexaUi
+# nexa-ui
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.0.
+Nexa UI — a shadcn-inspired, standalone component library for Angular v22.
+64 components, directives and services. Signal-based, OnPush, SSR-safe, RTL-aware.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Install
 
 ```bash
-ng generate --help
+npm install nexa-ui
 ```
 
-## Building
+Import the design tokens once, globally (e.g. in `src/styles.scss`):
 
-To build the library, run:
-
-```bash
-ng build nexa-ui
+```scss
+@use 'nexa-ui/tokens'; // exposes --nexa-* CSS variables + dark theme
 ```
 
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
+## Use
 
-### Publishing the Library
+Everything is standalone — import components directly:
 
-Once the project is built, you can publish your library by following these steps:
+```ts
+import { NexaButtonComponent, NexaDialogComponent, NexaToasterComponent } from 'nexa-ui';
 
-1. Navigate to the `dist` directory:
-
-   ```bash
-   cd dist/nexa-ui
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
+@Component({
+  imports: [NexaButtonComponent, NexaDialogComponent, NexaToasterComponent],
+  template: `
+    <nexa-button variant="primary" (click)="dialog.open()">Open</nexa-button>
+    <nexa-dialog #dialog title="Hello">…</nexa-dialog>
+    <nexa-toaster />
+  `,
+})
+export class Demo {}
 ```
 
-## Running end-to-end tests
+## Services
 
-For end-to-end (e2e) testing, run:
+```ts
+// Toasts
+private readonly toast = inject(NexaToastService);
+this.toast.success('Saved', 'Your changes are live.');
 
-```bash
-ng e2e
+// Theming (light/dark, persisted)
+private readonly theme = inject(NexaThemeService);
+this.theme.toggle();
+
+// Direction (RTL/LTR, persisted, SSR-safe)
+private readonly dir = inject(NexaDirectionService);
+this.dir.setDir('rtl');
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Customizing
 
-## Additional Resources
+- **Inputs**: `variant`, `tone`, `size`, `extraClass`, … (see each component's README)
+- **CSS variables**: override `--nexa-*` tokens globally or per subtree
+- **Composition**: projection slots + `extraClass` passthrough
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Docs
+
+- Full catalog: `registry.json` at the repo root (or `node tools/nexa.mjs list`)
+- Per-component guides: `src/lib/<name>/README.md`
+- Interactive showcase: `npx ng serve nexa-showcase`
