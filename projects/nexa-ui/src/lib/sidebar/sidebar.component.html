@@ -1,0 +1,17 @@
+<div class="nexa-sidebar__backdrop" (click)="close()"></div>
+<aside
+  class="nexa-sidebar"
+  [style.width]="width()"
+  [attr.aria-label]="ariaLabel()"
+  (keydown.escape)="close()"
+>
+  <div class="nexa-sidebar__header">
+    @if (title()) {
+      <strong class="nexa-sidebar__title">{{ title() }}</strong>
+    }
+    <button type="button" class="nexa-sidebar__close nexa-focus-ring" aria-label="Close sidebar" (click)="close()">✕</button>
+  </div>
+  <nav class="nexa-sidebar__nav" aria-label="Sections">
+    <ng-content />
+  </nav>
+</aside>

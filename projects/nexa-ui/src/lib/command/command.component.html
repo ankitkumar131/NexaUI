@@ -1,0 +1,50 @@
+@if (open()) {
+  <div class="nexa-command">
+    <div class="nexa-command__backdrop" (click)="close()"></div>
+    <div class="nexa-command__panel" role="dialog" aria-modal="true" [attr.aria-label]="ariaLabel()" (click)="$event.stopPropagation()">
+      <div class="nexa-command__search">
+        <span class="nexa-command__icon" aria-hidden="true">⌕</span>
+        <input
+          class="nexa-command__input"
+          type="text"
+          role="combobox"
+          aria-expanded="true"
+          aria-autocomplete="list"
+          aria-controls="nexa-command-list"
+          [attr.placeholder]="placeholder()"
+          [value]="query()"
+          autofocus
+          (input)="onQuery($event)"
+          (keydown)="onKeydown($event)"
+        />
+        <kbd class="nexa-command__esc">esc</kbd>
+      </div>
+      <ul id="nexa-command-list" class="nexa-command__list" role="listbox" [attr.aria-label]="ariaLabel()">
+        @for (group of groups(); track group.name) {
+          @if (group.name) {
+            <li class="nexa-command__group" role="presentation">{{ group.name }}</li>
+          }
+          @for (entry of group.entries; track entry.item.label) {
+            <li
+              role="option"
+              class="nexa-command__item"
+              [class.nexa-command__item--active]="entry.flatIndex === activeIndex()"
+              [class.nexa-command__item--disabled]="entry.item.disabled"
+              [attr.aria-selected]="entry.flatIndex === activeIndex()"
+              [attr.aria-disabled]="entry.item.disabled ? 'true' : null"
+              (click)="choose(entry.item)"
+              (mouseenter)="activeIndex.set(entry.flatIndex)"
+            >
+              <span>{{ entry.item.label }}</span>
+              @if (entry.item.hint) {
+                <span class="nexa-command__hint">{{ entry.item.hint }}</span>
+              }
+            </li>
+          }
+        } @empty {
+          <li class="nexa-command__empty">{{ emptyText() }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+}

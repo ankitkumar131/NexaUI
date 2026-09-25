@@ -1,0 +1,81 @@
+:host.nexa-resizable-host {
+  display: block;
+  width: 100%;
+
+  &--dragging {
+    user-select: none;
+  }
+}
+
+.nexa-resizable {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 8rem;
+  border: 1px solid var(--nexa-border);
+  border-radius: var(--nexa-radius-lg);
+  overflow: hidden;
+  font-family: var(--nexa-font-sans);
+
+  :host(.nexa-resizable-host--vertical) & {
+    flex-direction: column;
+  }
+
+  &__pane {
+    min-width: 0;
+    min-height: 0;
+    overflow: auto;
+    padding: 1rem;
+    background: var(--nexa-card);
+
+    &--first {
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+
+    &--second {
+      flex: 1;
+      background: color-mix(in srgb, var(--nexa-muted) 45%, var(--nexa-card));
+    }
+  }
+
+  &__handle {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--nexa-border);
+    cursor: col-resize;
+    touch-action: none;
+
+    :host(.nexa-resizable-host--horizontal) & {
+      width: 0.5rem;
+    }
+
+    :host(.nexa-resizable-host--vertical) & {
+      height: 0.5rem;
+      cursor: row-resize;
+    }
+
+    &:hover,
+    :host(.nexa-resizable-host--dragging) & {
+      background: var(--nexa-primary);
+    }
+  }
+
+  &__grip {
+    background: var(--nexa-muted-foreground);
+    border-radius: var(--nexa-radius-full);
+    opacity: 0.6;
+
+    :host(.nexa-resizable-host--horizontal) & {
+      width: 3px;
+      height: 2rem;
+    }
+
+    :host(.nexa-resizable-host--vertical) & {
+      width: 2rem;
+      height: 3px;
+    }
+  }
+}

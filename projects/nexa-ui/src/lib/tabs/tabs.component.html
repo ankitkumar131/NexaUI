@@ -1,0 +1,24 @@
+<div
+  class="nexa-tabs"
+  role="tablist"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-orientation]="orientation()"
+  (keydown)="onKeydown($event)"
+>
+  @for (tab of tabs(); track tab.value) {
+    <button
+      type="button"
+      role="tab"
+      class="nexa-tabs__trigger nexa-focus-ring"
+      [class.nexa-tabs__trigger--selected]="isSelected(tab)"
+      [id]="triggerId(tab.value)"
+      [attr.aria-selected]="isSelected(tab)"
+      [attr.aria-controls]="panelId(tab.value)"
+      [attr.tabindex]="tabIndex(tab)"
+      [disabled]="tab.disabled"
+      (click)="select(tab)"
+    >
+      {{ tab.label }}
+    </button>
+  }
+</div>

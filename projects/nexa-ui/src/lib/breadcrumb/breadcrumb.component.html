@@ -1,0 +1,18 @@
+<nav class="nexa-breadcrumb" [attr.aria-label]="ariaLabel()">
+  <ol class="nexa-breadcrumb__list">
+    @for (crumb of visible(); track crumb.label + $index; let i = $index; let last = $last) {
+      <li class="nexa-breadcrumb__item">
+        @if (crumb.ellipsis) {
+          <span class="nexa-breadcrumb__ellipsis" aria-hidden="true">…</span>
+        } @else if (last || !crumb.href) {
+          <span class="nexa-breadcrumb__current" [attr.aria-current]="last ? 'page' : null">{{ crumb.label }}</span>
+        } @else {
+          <a class="nexa-breadcrumb__link nexa-focus-ring" [href]="crumb.href">{{ crumb.label }}</a>
+        }
+        @if (!last) {
+          <span class="nexa-breadcrumb__sep" aria-hidden="true">{{ separator() }}</span>
+        }
+      </li>
+    }
+  </ol>
+</nav>

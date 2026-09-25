@@ -1,0 +1,22 @@
+<div class="nexa-collapsible">
+  <div
+    class="nexa-collapsible__trigger"
+    role="button"
+    tabindex="0"
+    [attr.aria-expanded]="open()"
+    [attr.aria-controls]="panelId()"
+    [attr.aria-disabled]="disabled() ? 'true' : null"
+    (click)="toggle()"
+    (keydown.enter)="toggle()"
+    (keydown.space)="toggle(); $event.preventDefault()"
+  >
+    <ng-content select="[slot=trigger]" />
+  </div>
+  <div
+    class="nexa-collapsible__panel"
+    [id]="panelId()"
+    [attr.inert]="!open() ? true : null"
+  >
+    <div class="nexa-collapsible__content"><ng-content /></div>
+  </div>
+</div>

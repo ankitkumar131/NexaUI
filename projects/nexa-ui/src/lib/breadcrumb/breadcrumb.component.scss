@@ -1,0 +1,61 @@
+:host.nexa-breadcrumb-host {
+  display: block;
+  min-width: 0;
+}
+
+.nexa-breadcrumb {
+  font-family: var(--nexa-font-sans);
+  font-size: 0.85rem;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+
+  &__link {
+    color: var(--nexa-muted-foreground);
+    text-decoration: none;
+    border-radius: var(--nexa-radius-xs);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 12rem;
+
+    &:hover {
+      color: var(--nexa-foreground);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+
+  &__current {
+    color: var(--nexa-foreground);
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 16rem;
+  }
+
+  &__sep {
+    color: var(--nexa-muted-foreground);
+    user-select: none;
+  }
+
+  &__ellipsis {
+    color: var(--nexa-muted-foreground);
+    padding: 0 0.2rem;
+  }
+}

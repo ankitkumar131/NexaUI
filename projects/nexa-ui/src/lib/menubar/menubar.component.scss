@@ -1,0 +1,89 @@
+:host.nexa-menubar-host {
+  display: block;
+}
+
+.nexa-menubar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.3rem;
+  font-family: var(--nexa-font-sans);
+  background: var(--nexa-card);
+  border: 1px solid var(--nexa-border);
+  border-radius: var(--nexa-radius-md);
+
+  &__menu {
+    position: relative;
+  }
+
+  &__trigger {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.87rem;
+    font-weight: 500;
+    color: var(--nexa-foreground);
+    background: transparent;
+    border: none;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &:hover,
+    &--open {
+      background: var(--nexa-accent);
+      color: var(--nexa-accent-foreground);
+    }
+  }
+
+  &__list {
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    inset-inline-start: 0;
+    z-index: var(--nexa-z-dropdown);
+    min-width: 13rem;
+    margin: 0;
+    padding: 0.3rem;
+    list-style: none;
+    background: var(--nexa-popover);
+    border: 1px solid var(--nexa-border);
+    border-radius: var(--nexa-radius-md);
+    box-shadow: var(--nexa-shadow-lg);
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.87rem;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &--active {
+      background: var(--nexa-accent);
+      color: var(--nexa-accent-foreground);
+    }
+
+    &--disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    &--destructive {
+      color: var(--nexa-destructive);
+    }
+  }
+
+  &__hint {
+    font-size: 0.72rem;
+    font-family: var(--nexa-font-mono);
+    color: var(--nexa-muted-foreground);
+  }
+
+  &__separator {
+    height: 1px;
+    margin: 0.3rem 0.4rem;
+    background: var(--nexa-border);
+    list-style: none;
+  }
+}

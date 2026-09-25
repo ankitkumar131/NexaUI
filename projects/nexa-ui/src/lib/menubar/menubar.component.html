@@ -1,0 +1,43 @@
+<div class="nexa-menubar" role="menubar" [attr.aria-label]="ariaLabel()">
+  @for (menu of menus(); track menu.label; let mi = $index) {
+    <div class="nexa-menubar__menu">
+      <button
+        type="button"
+        role="menuitem"
+        class="nexa-menubar__trigger nexa-focus-ring"
+        [class.nexa-menubar__trigger--open]="isOpen(mi)"
+        aria-haspopup="true"
+        [attr.aria-expanded]="isOpen(mi)"
+        (click)="onTriggerClick(mi)"
+        (mouseenter)="onTriggerEnter(mi)"
+        (keydown)="onTriggerKeydown(mi, $event)"
+      >
+        {{ menu.label }}
+      </button>
+      @if (isOpen(mi)) {
+        <ul class="nexa-menubar__list" role="menu" [attr.aria-label]="menu.label" (keydown)="onMenuKeydown(mi, $event)">
+          @for (item of menu.items; track item.label; let ii = $index) {
+            @if (item.separatorBefore) {
+              <li class="nexa-menubar__separator" role="separator" aria-hidden="true"></li>
+            }
+            <li
+              role="menuitem"
+              class="nexa-menubar__item"
+              [class.nexa-menubar__item--active]="ii === activeItem()"
+              [class.nexa-menubar__item--disabled]="item.disabled"
+              [class.nexa-menubar__item--destructive]="item.destructive"
+              [attr.aria-disabled]="item.disabled ? 'true' : null"
+              (click)="choose(mi, item)"
+              (mouseenter)="setActive(ii, mi)"
+            >
+              <span>{{ item.label }}</span>
+              @if (item.hint) {
+                <span class="nexa-menubar__hint">{{ item.hint }}</span>
+              }
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  }
+</div>

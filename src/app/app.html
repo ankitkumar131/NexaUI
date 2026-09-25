@@ -13,7 +13,7 @@
 
 <div class="showcase-layout">
   <nav class="showcase-toc" aria-label="Components table of contents">
-    <h2>Table of Contents <span class="showcase-toc__count">(28)</span></h2>
+    <h2>Table of Contents <span class="showcase-toc__count">(40)</span></h2>
     <ol>
       <li><a href="#button">Button</a></li>
       <li><a href="#typography">Typography</a></li>
@@ -43,6 +43,18 @@
       <li><a href="#context-menu">Context Menu</a></li>
       <li><a href="#drawer">Drawer</a></li>
       <li><a href="#sheet">Sheet</a></li>
+      <li><a href="#breadcrumb">Breadcrumb</a></li>
+      <li><a href="#pagination">Pagination</a></li>
+      <li><a href="#navigation-menu">Navigation Menu</a></li>
+      <li><a href="#menubar">Menubar</a></li>
+      <li><a href="#tabs">Tabs</a></li>
+      <li><a href="#command">Command</a></li>
+      <li><a href="#card">Card</a></li>
+      <li><a href="#accordion">Accordion</a></li>
+      <li><a href="#collapsible">Collapsible</a></li>
+      <li><a href="#resizable">Resizable</a></li>
+      <li><a href="#scroll-area">Scroll Area</a></li>
+      <li><a href="#sidebar">Sidebar</a></li>
       <!-- TOC:APPEND -->
     </ol>
   </nav>
@@ -578,6 +590,221 @@
           <nexa-button size="sm" variant="outline">Embed</nexa-button>
         </div>
       </nexa-sheet>
+    </section>
+
+    <!-- BREADCRUMB -->
+    <section class="showcase-section" id="breadcrumb" aria-labelledby="breadcrumb-h">
+      <div class="showcase-section__header">
+        <h2 id="breadcrumb-h">Breadcrumb</h2>
+        <p><code>&lt;nexa-breadcrumb&gt;</code> — full trail and collapsed middle.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-breadcrumb [items]="crumbs" />
+        <nexa-breadcrumb [items]="crumbs" [maxItems]="3" separator="›" />
+      </div>
+    </section>
+
+    <!-- PAGINATION -->
+    <section class="showcase-section" id="pagination" aria-labelledby="pagination-h">
+      <div class="showcase-section__header">
+        <h2 id="pagination-h">Pagination</h2>
+        <p><code>&lt;nexa-pagination&gt;</code> — page: <code>{{ page() }}</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-pagination [(page)]="page" [totalPages]="20" />
+        <nexa-pagination [page]="3" [totalPages]="7" [showFirstLast]="true" />
+      </div>
+    </section>
+
+    <!-- NAVIGATION MENU -->
+    <section class="showcase-section" id="navigation-menu" aria-labelledby="navigation-menu-h">
+      <div class="showcase-section__header">
+        <h2 id="navigation-menu-h">Navigation Menu</h2>
+        <p><code>&lt;nexa-navigation-menu&gt;</code> — resize under 768px for the mobile menu.</p>
+      </div>
+      <div class="showcase-section__demo">
+        <nexa-navigation-menu [items]="navItems" activeHref="#card" />
+      </div>
+    </section>
+
+    <!-- MENUBAR -->
+    <section class="showcase-section" id="menubar" aria-labelledby="menubar-h">
+      <div class="showcase-section__header">
+        <h2 id="menubar-h">Menubar</h2>
+        <p><code>&lt;nexa-menubar&gt;</code> — last command: <code>{{ menubarChoice() }}</code></p>
+      </div>
+      <div class="showcase-section__demo">
+        <nexa-menubar [menus]="menubarMenus" (selected)="onMenubar($event)" />
+      </div>
+    </section>
+
+    <!-- TABS -->
+    <section class="showcase-section" id="tabs" aria-labelledby="tabs-h">
+      <div class="showcase-section__header">
+        <h2 id="tabs-h">Tabs</h2>
+        <p><code>&lt;nexa-tabs&gt;</code> — active: <code>{{ tab() }}</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-tabs [tabs]="tabDefs" [(value)]="tab" />
+        @if (tab() === 'account') {
+          <div nexaTabPanel role="tabpanel" style="padding:1rem; border:1px dashed var(--nexa-border); border-radius:var(--nexa-radius-md)">Account settings panel.</div>
+        }
+        @if (tab() === 'password') {
+          <div nexaTabPanel role="tabpanel" style="padding:1rem; border:1px dashed var(--nexa-border); border-radius:var(--nexa-radius-md)">Password settings panel.</div>
+        }
+        <nexa-separator />
+        <nexa-tabs [tabs]="tabDefs" variant="pills" ariaLabel="Pills demo" />
+        <nexa-tabs [tabs]="tabDefs" variant="boxed" ariaLabel="Boxed demo" />
+      </div>
+    </section>
+
+    <!-- COMMAND -->
+    <section class="showcase-section" id="command" aria-labelledby="command-h">
+      <div class="showcase-section__header">
+        <h2 id="command-h">Command</h2>
+        <p><code>&lt;nexa-command&gt;</code> — last run: <code>{{ cmdChoice() }}</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid">
+        <nexa-button variant="outline" (pressed)="cmdOpen.set(true)">Open commands <nexa-kbd>⌘K</nexa-kbd></nexa-button>
+      </div>
+      <nexa-command [(open)]="cmdOpen" [items]="commands" (selected)="onCommand($event)" />
+    </section>
+
+    <!-- CARD -->
+    <section class="showcase-section" id="card" aria-labelledby="card-h">
+      <div class="showcase-section__header">
+        <h2 id="card-h">Card</h2>
+        <p><code>&lt;nexa-card&gt;</code> + header / title / description / action / content / footer.</p>
+      </div>
+      <div class="showcase-section__demo">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:1rem">
+          <nexa-card>
+            <nexa-card-header>
+              <nexa-card-title>Project Alpha</nexa-card-title>
+              <nexa-card-description>Q3 roadmap and milestones.</nexa-card-description>
+              <nexa-card-action><nexa-badge variant="success">On track</nexa-badge></nexa-card-action>
+            </nexa-card-header>
+            <nexa-card-content>Velocity is up 18% this sprint. Two milestones remain before launch.</nexa-card-content>
+            <nexa-card-footer>
+              <nexa-button size="sm">Open board</nexa-button>
+              <nexa-button size="sm" variant="ghost">Dismiss</nexa-button>
+            </nexa-card-footer>
+          </nexa-card>
+          <nexa-card>
+            <nexa-card-content>
+              <strong>Minimal card</strong>
+              <p style="margin:.4rem 0 0; color:var(--nexa-muted-foreground)">Compose only the parts you need.</p>
+            </nexa-card-content>
+          </nexa-card>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCORDION -->
+    <section class="showcase-section" id="accordion" aria-labelledby="accordion-h">
+      <div class="showcase-section__header">
+        <h2 id="accordion-h">Accordion</h2>
+        <p><code>&lt;nexa-accordion&gt;</code> — single and multiple modes.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-typography variant="small"><strong>Single:</strong></nexa-typography>
+        <nexa-accordion type="single">
+          <nexa-accordion-item value="a" title="What is Nexa UI?">
+            <p>An Angular-native UI ecosystem with standalone, tree-shakable components.</p>
+          </nexa-accordion-item>
+          <nexa-accordion-item value="b" title="Is it free?">
+            <p>Yes — MIT licensed.</p>
+          </nexa-accordion-item>
+          <nexa-accordion-item value="c" title="Disabled item" [disabled]="true">
+            <p>You cannot open this.</p>
+          </nexa-accordion-item>
+        </nexa-accordion>
+        <nexa-typography variant="small"><strong>Multiple:</strong></nexa-typography>
+        <nexa-accordion type="multiple">
+          <nexa-accordion-item value="x" title="First" [open]="true"><p>Open by default.</p></nexa-accordion-item>
+          <nexa-accordion-item value="y" title="Second"><p>Several can stay open.</p></nexa-accordion-item>
+        </nexa-accordion>
+      </div>
+    </section>
+
+    <!-- COLLAPSIBLE -->
+    <section class="showcase-section" id="collapsible" aria-labelledby="collapsible-h">
+      <div class="showcase-section__header">
+        <h2 id="collapsible-h">Collapsible</h2>
+        <p><code>&lt;nexa-collapsible&gt;</code> — generic show/hide.</p>
+      </div>
+      <div class="showcase-section__demo">
+        <nexa-collapsible [(open)]="moreOpen">
+          <nexa-button slot="trigger" variant="link">{{ moreOpen() ? 'Show less ▲' : 'Read more ▼' }}</nexa-button>
+          <p>The full story: Nexa UI components are standalone, signal-driven and styled with CSS-variable design tokens. No Tailwind required.</p>
+        </nexa-collapsible>
+      </div>
+    </section>
+
+    <!-- RESIZABLE -->
+    <section class="showcase-section" id="resizable" aria-labelledby="resizable-h">
+      <div class="showcase-section__header">
+        <h2 id="resizable-h">Resizable</h2>
+        <p><code>&lt;nexa-resizable&gt;</code> — drag the handle (or focus it + arrows). Split: <code>{{ split() }}%</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-resizable [(size)]="split" style="height: 12rem">
+          <div slot="first">🖊 Editor pane</div>
+          <div slot="second">👁 Preview pane</div>
+        </nexa-resizable>
+        <nexa-resizable direction="vertical" [size]="35" style="height: 16rem">
+          <div slot="first">⬆ Top pane</div>
+          <div slot="second">⬇ Bottom pane</div>
+        </nexa-resizable>
+      </div>
+    </section>
+
+    <!-- SCROLL AREA -->
+    <section class="showcase-section" id="scroll-area" aria-labelledby="scroll-area-h">
+      <div class="showcase-section__header">
+        <h2 id="scroll-area-h">Scroll Area</h2>
+        <p><code>&lt;nexa-scroll-area&gt;</code> — slim themed scrollbars.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-scroll-area maxHeight="10rem" ariaLabel="Changelog">
+          <p><strong>v0.4</strong> — Navigation + layout batch.</p>
+          <p><strong>v0.3</strong> — Overlays batch.</p>
+          <p><strong>v0.2</strong> — Forms batch.</p>
+          <p><strong>v0.1</strong> — Foundations batch.</p>
+          <p><strong>v0.0</strong> — Workspace scaffold.</p>
+        </nexa-scroll-area>
+        <nexa-scroll-area orientation="horizontal" ariaLabel="Thumbnails">
+          <div style="display:flex; gap:.5rem">
+            <nexa-badge>Item 1</nexa-badge><nexa-badge>Item 2</nexa-badge><nexa-badge>Item 3</nexa-badge>
+            <nexa-badge>Item 4</nexa-badge><nexa-badge>Item 5</nexa-badge><nexa-badge>Item 6</nexa-badge>
+            <nexa-badge>Item 7</nexa-badge><nexa-badge>Item 8</nexa-badge>
+          </div>
+        </nexa-scroll-area>
+      </div>
+    </section>
+
+    <!-- SIDEBAR -->
+    <section class="showcase-section" id="sidebar" aria-labelledby="sidebar-h">
+      <div class="showcase-section__header">
+        <h2 id="sidebar-h">Sidebar</h2>
+        <p><code>&lt;nexa-sidebar&gt;</code> — persistent on desktop, drawer on mobile.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <div>
+          <nexa-button size="sm" variant="outline" (pressed)="sideOpen.set(true)">Open sidebar (mobile drawer)</nexa-button>
+        </div>
+        <div style="display:grid; grid-template-columns: auto 1fr; gap:1rem; min-height:16rem">
+          <nexa-sidebar [(open)]="sideOpen" title="Acme Inc">
+            <a href="#sidebar">🏠 Dashboard</a>
+            <a href="#sidebar">📁 Projects</a>
+            <a href="#sidebar">👥 Team</a>
+            <a href="#sidebar">⚙ Settings</a>
+          </nexa-sidebar>
+          <div style="padding:1rem; border:1px dashed var(--nexa-border); border-radius:var(--nexa-radius-lg); color:var(--nexa-muted-foreground)">
+            Page content — shrink below 1024px and the sidebar becomes a slide-in drawer.
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- SECTIONS:APPEND -->

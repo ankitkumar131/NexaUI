@@ -1,0 +1,40 @@
+<nav class="nexa-pagination" [attr.aria-label]="ariaLabel()">
+  <ul class="nexa-pagination__list">
+    @if (showFirstLast()) {
+      <li>
+        <nexa-button variant="outline" size="icon" ariaLabel="First page" [disabled]="current() === 1" (pressed)="go(1)">«</nexa-button>
+      </li>
+    }
+    @if (showPrevNext()) {
+      <li>
+        <nexa-button variant="outline" size="icon" ariaLabel="Previous page" [disabled]="current() === 1" (pressed)="go(current() - 1)">‹</nexa-button>
+      </li>
+    }
+    @for (p of pageList(); track $index) {
+      <li>
+        @if (p === 'ellipsis') {
+          <span class="nexa-pagination__ellipsis" aria-hidden="true">…</span>
+        } @else {
+          <nexa-button
+            [variant]="p === current() ? 'default' : 'outline'"
+            size="icon"
+            [ariaLabel]="'Page ' + p"
+            (pressed)="go(p)"
+          >
+            <span [attr.aria-current]="p === current() ? 'page' : null">{{ p }}</span>
+          </nexa-button>
+        }
+      </li>
+    }
+    @if (showPrevNext()) {
+      <li>
+        <nexa-button variant="outline" size="icon" ariaLabel="Next page" [disabled]="current() === safeTotal()" (pressed)="go(current() + 1)">›</nexa-button>
+      </li>
+    }
+    @if (showFirstLast()) {
+      <li>
+        <nexa-button variant="outline" size="icon" ariaLabel="Last page" [disabled]="current() === safeTotal()" (pressed)="go(safeTotal())">»</nexa-button>
+      </li>
+    }
+  </ul>
+</nav>

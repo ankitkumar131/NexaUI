@@ -1,0 +1,136 @@
+:host.nexa-command-host {
+  display: contents;
+}
+
+.nexa-command {
+  position: fixed;
+  inset: 0;
+  z-index: var(--nexa-z-modal);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 12vh 1rem 1rem;
+  font-family: var(--nexa-font-sans);
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 0.55);
+    animation: nexa-command-fade 0.15s ease;
+  }
+
+  &__panel {
+    position: relative;
+    width: 100%;
+    max-width: 38rem;
+    overflow: hidden;
+    background: var(--nexa-popover);
+    color: var(--nexa-popover-foreground);
+    border: 1px solid var(--nexa-border);
+    border-radius: var(--nexa-radius-xl);
+    box-shadow: var(--nexa-shadow-xl);
+    animation: nexa-command-in 0.18s ease;
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--nexa-border);
+  }
+
+  &__icon {
+    color: var(--nexa-muted-foreground);
+    font-size: 1rem;
+  }
+
+  &__input {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.95rem;
+    color: inherit;
+    background: transparent;
+    border: none;
+    outline: none;
+
+    &::placeholder {
+      color: var(--nexa-muted-foreground);
+    }
+  }
+
+  &__esc {
+    font-family: var(--nexa-font-mono);
+    font-size: 0.65rem;
+    color: var(--nexa-muted-foreground);
+    background: var(--nexa-muted);
+    border: 1px solid var(--nexa-border);
+    border-radius: var(--nexa-radius-xs);
+    padding: 0.1rem 0.35rem;
+  }
+
+  &__list {
+    max-height: 20rem;
+    overflow: auto;
+    margin: 0;
+    padding: 0.4rem;
+    list-style: none;
+  }
+
+  &__group {
+    padding: 0.5rem 0.6rem 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--nexa-muted-foreground);
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.55rem 0.7rem;
+    font-size: 0.89rem;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &--active {
+      background: var(--nexa-accent);
+      color: var(--nexa-accent-foreground);
+    }
+
+    &--disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  }
+
+  &__hint {
+    font-size: 0.72rem;
+    font-family: var(--nexa-font-mono);
+    color: var(--nexa-muted-foreground);
+  }
+
+  &__empty {
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 0.87rem;
+    color: var(--nexa-muted-foreground);
+  }
+}
+
+@keyframes nexa-command-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.99);
+  }
+}
+
+@keyframes nexa-command-fade {
+  from {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,11 @@
+:host.nexa-accordion-host {
+  display: block;
+}
+
+.nexa-accordion {
+  background: var(--nexa-card);
+  border: 1px solid var(--nexa-border);
+  border-radius: var(--nexa-radius-lg);
+  overflow: hidden;
+  font-family: var(--nexa-font-sans);
+}

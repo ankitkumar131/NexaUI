@@ -1,0 +1,121 @@
+:host.nexa-sidebar-host {
+  display: block;
+}
+
+.nexa-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: var(--nexa-font-sans);
+  background: var(--nexa-sidebar-background);
+  color: var(--nexa-sidebar-foreground);
+  border: 1px solid var(--nexa-sidebar-border);
+  border-radius: var(--nexa-radius-lg);
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1rem 1rem 0.75rem;
+    border-bottom: 1px solid var(--nexa-sidebar-border);
+  }
+
+  &__title {
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+  }
+
+  &__close {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    color: var(--nexa-muted-foreground);
+    background: transparent;
+    border: none;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--nexa-accent);
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.75rem;
+    overflow-y: auto;
+
+    ::ng-deep a {
+      padding: 0.55rem 0.75rem;
+      font-size: 0.88rem;
+      color: var(--nexa-sidebar-foreground);
+      text-decoration: none;
+      border-radius: var(--nexa-radius-sm);
+
+      &:hover {
+        background: var(--nexa-accent);
+      }
+    }
+  }
+
+  &__backdrop {
+    display: none;
+  }
+
+  @media (max-width: 1023px) {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: var(--nexa-z-modal);
+    width: min(19rem, 85vw) !important;
+    border-radius: 0;
+    box-shadow: var(--nexa-shadow-xl);
+    transition: transform var(--nexa-transition-normal);
+
+    :host(.nexa-sidebar-host--left) & {
+      left: 0;
+      transform: translateX(-105%);
+      border-inline-end: 1px solid var(--nexa-border);
+    }
+
+    :host(.nexa-sidebar-host--right) & {
+      right: 0;
+      transform: translateX(105%);
+      border-inline-start: 1px solid var(--nexa-border);
+    }
+
+    :host(.nexa-sidebar-host--open) & {
+      transform: none;
+    }
+
+    &__close {
+      display: inline-flex;
+    }
+
+    &__backdrop {
+      :host(.nexa-sidebar-host--open) + &,
+      :host(.nexa-sidebar-host--open) & {
+        display: block;
+      }
+    }
+  }
+}
+
+// Mobile backdrop (sibling of aside, inside host).
+.nexa-sidebar__backdrop {
+  @media (max-width: 1023px) {
+    :host(.nexa-sidebar-host--open) & {
+      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: calc(var(--nexa-z-modal) - 1);
+      background: rgb(0 0 0 / 0.5);
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<div #container class="nexa-resizable">
+  <div class="nexa-resizable__pane nexa-resizable__pane--first" [style.flex-basis]="clamped() + '%'">
+    <ng-content select="[slot=first]" />
+  </div>
+  <div
+    class="nexa-resizable__handle nexa-focus-ring"
+    role="separator"
+    tabindex="0"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-orientation]="direction() === 'horizontal' ? 'vertical' : 'horizontal'"
+    [attr.aria-valuenow]="clamped()"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    (pointerdown)="start($event)"
+    (pointermove)="move($event)"
+    (pointerup)="end()"
+    (pointercancel)="end()"
+    (keydown)="onHandleKeydown($event)"
+  >
+    <span class="nexa-resizable__grip" aria-hidden="true"></span>
+  </div>
+  <div class="nexa-resizable__pane nexa-resizable__pane--second">
+    <ng-content select="[slot=second]" />
+  </div>
+</div>

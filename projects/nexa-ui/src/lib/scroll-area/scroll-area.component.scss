@@ -1,0 +1,49 @@
+:host.nexa-scroll-host {
+  display: block;
+  width: 100%;
+}
+
+.nexa-scroll {
+  padding: 0.75rem;
+  font-family: var(--nexa-font-sans);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  background: var(--nexa-card);
+  border: 1px solid var(--nexa-border);
+  border-radius: var(--nexa-radius-md);
+  scrollbar-width: thin;
+  scrollbar-color: var(--nexa-border) transparent;
+
+  :host(.nexa-scroll-host--vertical) & {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  :host(.nexa-scroll-host--horizontal) & {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+
+  :host(.nexa-scroll-host--both) & {
+    overflow: auto;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--nexa-border);
+    border-radius: var(--nexa-radius-full);
+
+    &:hover {
+      background: var(--nexa-muted-foreground);
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}

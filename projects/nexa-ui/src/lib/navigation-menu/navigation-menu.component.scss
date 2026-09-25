@@ -1,0 +1,147 @@
+:host.nexa-nav-host {
+  display: block;
+}
+
+.nexa-nav {
+  position: relative;
+  font-family: var(--nexa-font-sans);
+  font-size: 0.9rem;
+
+  &__toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.1rem;
+    color: var(--nexa-foreground);
+    background: transparent;
+    border: 1px solid var(--nexa-border);
+    border-radius: var(--nexa-radius-md);
+    cursor: pointer;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.55rem 0.8rem;
+    color: var(--nexa-muted-foreground);
+    text-decoration: none;
+    border-radius: var(--nexa-radius-sm);
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--nexa-foreground);
+      background: var(--nexa-accent);
+    }
+  }
+
+  &__item--active &__link {
+    color: var(--nexa-foreground);
+    font-weight: 600;
+  }
+
+  &__caret {
+    font-size: 0.7rem;
+  }
+
+  &__drop {
+    position: absolute;
+    top: calc(100% + 0.4rem);
+    inset-inline-start: 0;
+    z-index: var(--nexa-z-dropdown);
+    min-width: 15rem;
+    margin: 0;
+    padding: 0.35rem;
+    list-style: none;
+    background: var(--nexa-popover);
+    border: 1px solid var(--nexa-border);
+    border-radius: var(--nexa-radius-md);
+    box-shadow: var(--nexa-shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity var(--nexa-transition-fast), transform var(--nexa-transition-fast), visibility var(--nexa-transition-fast);
+  }
+
+  &__item:hover &__drop,
+  &__item:focus-within &__drop {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  &__drop-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding: 0.55rem 0.7rem;
+    color: var(--nexa-popover-foreground);
+    text-decoration: none;
+    border-radius: var(--nexa-radius-sm);
+
+    &:hover {
+      background: var(--nexa-accent);
+    }
+  }
+
+  &__drop-label {
+    font-weight: 500;
+  }
+
+  &__drop-desc {
+    font-size: 0.76rem;
+    color: var(--nexa-muted-foreground);
+  }
+
+  @media (max-width: 767px) {
+    &__toggle {
+      display: inline-flex;
+    }
+
+    &__list {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      inset-inline: 0;
+      z-index: var(--nexa-z-dropdown);
+      flex-direction: column;
+      align-items: stretch;
+      padding: 0.5rem;
+      background: var(--nexa-popover);
+      border: 1px solid var(--nexa-border);
+      border-radius: var(--nexa-radius-md);
+      box-shadow: var(--nexa-shadow-lg);
+    }
+
+    :host(.nexa-nav-host--open) &__list {
+      display: flex;
+    }
+
+    &__drop {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      border: none;
+      border-inline-start: 2px solid var(--nexa-border);
+      border-radius: 0;
+      margin-inline-start: 0.8rem;
+    }
+  }
+}

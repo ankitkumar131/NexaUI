@@ -1,0 +1,25 @@
+<div class="nexa-accordion-item">
+  <h3 class="nexa-accordion-item__heading">
+    <button
+      type="button"
+      class="nexa-accordion-item__trigger nexa-focus-ring"
+      [id]="triggerId()"
+      [attr.aria-expanded]="open()"
+      [attr.aria-controls]="panelId()"
+      [disabled]="disabled()"
+      (click)="toggle()"
+    >
+      <span class="nexa-accordion-item__title">{{ title() }}</span>
+      <span class="nexa-accordion-item__chevron" aria-hidden="true">▾</span>
+    </button>
+  </h3>
+  <div
+    class="nexa-accordion-item__panel"
+    role="region"
+    [id]="panelId()"
+    [attr.aria-labelledby]="triggerId()"
+    [attr.inert]="!open() ? true : null"
+  >
+    <div class="nexa-accordion-item__content"><ng-content /></div>
+  </div>
+</div>

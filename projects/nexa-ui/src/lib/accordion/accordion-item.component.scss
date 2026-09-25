@@ -1,0 +1,83 @@
+:host.nexa-accordion-item-host {
+  display: block;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--nexa-border);
+  }
+
+  &--disabled {
+    opacity: 0.55;
+  }
+}
+
+.nexa-accordion-item {
+  &__heading {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 550;
+    text-align: start;
+    color: var(--nexa-card-foreground);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background: color-mix(in srgb, var(--nexa-muted) 55%, transparent);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &__chevron {
+    flex-shrink: 0;
+    color: var(--nexa-muted-foreground);
+    transition: transform var(--nexa-transition-normal);
+  }
+
+  :host(.nexa-accordion-item-host--open) &__chevron {
+    transform: rotate(180deg);
+  }
+
+  // Animated expand without JS measurements (grid-rows trick).
+  &__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition: grid-template-rows var(--nexa-transition-normal), visibility var(--nexa-transition-normal);
+  }
+
+  :host(.nexa-accordion-item-host--open) &__panel {
+    grid-template-rows: 1fr;
+    visibility: visible;
+  }
+
+  &__content {
+    overflow: hidden;
+    min-height: 0;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--nexa-muted-foreground);
+
+    // Inner padding only affects open height via content box.
+    > :first-child {
+      margin-top: 0;
+    }
+  }
+
+  :host(.nexa-accordion-item-host--open) &__content {
+    padding: 0 1.2rem 1.1rem;
+  }
+}

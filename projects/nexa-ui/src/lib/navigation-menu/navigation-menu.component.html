@@ -1,0 +1,43 @@
+<nav class="nexa-nav" [attr.aria-label]="ariaLabel()">
+  <button
+    type="button"
+    class="nexa-nav__toggle nexa-focus-ring"
+    [attr.aria-expanded]="mobileOpen()"
+    aria-label="Toggle navigation menu"
+    (click)="toggleMobile()"
+  >
+    {{ mobileOpen() ? '✕' : '☰' }}
+  </button>
+  <ul class="nexa-nav__list">
+    @for (item of items(); track item.label) {
+      <li class="nexa-nav__item" [class.nexa-nav__item--active]="isActive(item.href)">
+        <a
+          class="nexa-nav__link nexa-focus-ring"
+          [href]="item.href"
+          [attr.aria-current]="isActive(item.href) ? 'page' : null"
+          [attr.aria-haspopup]="item.children?.length ? 'true' : null"
+          (click)="closeMobile()"
+        >
+          {{ item.label }}
+          @if (item.children?.length) {
+            <span class="nexa-nav__caret" aria-hidden="true">▾</span>
+          }
+        </a>
+        @if (item.children?.length) {
+          <ul class="nexa-nav__drop" [attr.aria-label]="item.label + ' submenu'">
+            @for (child of item.children; track child.label) {
+              <li>
+                <a class="nexa-nav__drop-link nexa-focus-ring" [href]="child.href" (click)="closeMobile()">
+                  <span class="nexa-nav__drop-label">{{ child.label }}</span>
+                  @if (child.description) {
+                    <span class="nexa-nav__drop-desc">{{ child.description }}</span>
+                  }
+                </a>
+              </li>
+            }
+          </ul>
+        }
+      </li>
+    }
+  </ul>
+</nav>

@@ -1,0 +1,89 @@
+:host.nexa-tabs-host {
+  display: block;
+}
+
+.nexa-tabs {
+  display: flex;
+  gap: 0.25rem;
+  font-family: var(--nexa-font-sans);
+
+  :host(.nexa-tabs-host--vertical) & {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &__trigger {
+    padding: 0.55rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--nexa-muted-foreground);
+    background: transparent;
+    border: none;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:hover:not(:disabled) {
+      color: var(--nexa-foreground);
+      background: var(--nexa-accent);
+    }
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    &--selected {
+      color: var(--nexa-foreground);
+    }
+  }
+
+  :host(.nexa-tabs-host--line) & {
+    border-bottom: 1px solid var(--nexa-border);
+  }
+
+  :host(.nexa-tabs-host--line) &__trigger {
+    border-radius: var(--nexa-radius-sm) var(--nexa-radius-sm) 0 0;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+
+    &--selected {
+      border-bottom-color: var(--nexa-primary);
+    }
+  }
+
+  :host(.nexa-tabs-host--pills) &__trigger--selected {
+    background: var(--nexa-primary);
+    color: var(--nexa-primary-foreground);
+  }
+
+  :host(.nexa-tabs-host--boxed) & {
+    background: var(--nexa-muted);
+    border-radius: var(--nexa-radius-md);
+    padding: 0.25rem;
+  }
+
+  :host(.nexa-tabs-host--boxed) &__trigger--selected {
+    background: var(--nexa-background);
+    color: var(--nexa-foreground);
+    box-shadow: var(--nexa-shadow-sm);
+  }
+
+  :host(.nexa-tabs-host--vertical.nexa-tabs-host--line) & {
+    border-bottom: none;
+    border-inline-end: 1px solid var(--nexa-border);
+  }
+
+  :host(.nexa-tabs-host--vertical.nexa-tabs-host--line) &__trigger {
+    border-bottom: none;
+    border-inline-end: 2px solid transparent;
+    margin-bottom: 0;
+    margin-inline-end: -1px;
+    border-radius: var(--nexa-radius-sm) 0 0 var(--nexa-radius-sm);
+    text-align: start;
+
+    &--selected {
+      border-inline-end-color: var(--nexa-primary);
+    }
+  }
+}

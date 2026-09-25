@@ -1,0 +1,13 @@
+:host.nexa-card-host {
+  --nexa-card-padding: 1.4rem;
+
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--nexa-card);
+  color: var(--nexa-card-foreground);
+  border: 1px solid var(--nexa-border);
+  border-radius: var(--nexa-radius-xl);
+  box-shadow: var(--nexa-shadow-xs);
+  overflow: hidden;
+}

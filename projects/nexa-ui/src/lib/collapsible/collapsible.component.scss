@@ -1,0 +1,39 @@
+:host.nexa-collapsible-host {
+  display: block;
+}
+
+.nexa-collapsible {
+  font-family: var(--nexa-font-sans);
+
+  &__trigger {
+    display: inline-block;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: var(--nexa-focus-ring-width) solid var(--nexa-focus-ring-color);
+      outline-offset: var(--nexa-focus-ring-offset);
+    }
+  }
+
+  &__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition: grid-template-rows var(--nexa-transition-normal), visibility var(--nexa-transition-normal);
+  }
+
+  :host(.nexa-collapsible-host--open) &__panel {
+    grid-template-rows: 1fr;
+    visibility: visible;
+  }
+
+  &__content {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  :host(.nexa-collapsible-host--open) &__content {
+    padding-top: 0.75rem;
+  }
+}

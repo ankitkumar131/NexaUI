@@ -1,6 +1,28 @@
 import { Component, inject, signal } from '@angular/core';
 import {
   NexaAlertDialogComponent,
+  NexaAccordionComponent,
+  NexaAccordionItemComponent,
+  NexaBreadcrumbComponent,
+  NexaCardActionComponent,
+  NexaCardComponent,
+  NexaCardContentComponent,
+  NexaCardDescriptionComponent,
+  NexaCardFooterComponent,
+  NexaCardHeaderComponent,
+  NexaCardTitleComponent,
+  NexaCollapsibleComponent,
+  NexaCommandComponent,
+  NexaCommandItem,
+  NexaMenubarComponent,
+  NexaMenubarSelection,
+  NexaNavigationMenuComponent,
+  NexaPaginationComponent,
+  NexaResizableComponent,
+  NexaScrollAreaComponent,
+  NexaSidebarComponent,
+  NexaTabPanelDirective,
+  NexaTabsComponent,
   NexaAspectRatioComponent,
   NexaAvatarComponent,
   NexaBadgeComponent,
@@ -62,6 +84,26 @@ import {
     NexaContextMenuComponent,
     NexaDrawerComponent,
     NexaSheetComponent,
+    NexaBreadcrumbComponent,
+    NexaPaginationComponent,
+    NexaNavigationMenuComponent,
+    NexaMenubarComponent,
+    NexaTabsComponent,
+    NexaTabPanelDirective,
+    NexaCommandComponent,
+    NexaCardComponent,
+    NexaCardHeaderComponent,
+    NexaCardTitleComponent,
+    NexaCardDescriptionComponent,
+    NexaCardActionComponent,
+    NexaCardContentComponent,
+    NexaCardFooterComponent,
+    NexaAccordionComponent,
+    NexaAccordionItemComponent,
+    NexaCollapsibleComponent,
+    NexaResizableComponent,
+    NexaScrollAreaComponent,
+    NexaSidebarComponent,
   ],
   selector: 'app-root',
   styleUrl: './app.scss',
@@ -120,6 +162,69 @@ export class App {
     { label: 'Archive', value: 'archive' },
     { label: 'Delete', value: 'delete', destructive: true, separatorBefore: true },
   ];
+
+  // ---- navigation + layout demos ----
+  protected readonly crumbs = [
+    { label: 'Home', href: '#breadcrumb' },
+    { label: 'Library', href: '#breadcrumb' },
+    { label: 'Components', href: '#breadcrumb' },
+    { label: 'Navigation', href: '#breadcrumb' },
+    { label: 'Breadcrumb' },
+  ];
+  protected readonly page = signal(1);
+  protected readonly navItems = [
+    { label: 'Home', href: '#navigation-menu' },
+    { label: 'Components', href: '#card', children: [
+      { label: 'Card', href: '#card', description: 'Content containers' },
+      { label: 'Tabs', href: '#tabs', description: 'Tabbed interfaces' },
+      { label: 'Accordion', href: '#accordion' },
+    ]},
+    { label: 'Showcase', href: '#command' },
+  ];
+  protected readonly menubarMenus = [
+    { label: 'File', items: [
+      { label: 'New file', hint: '\u2318N' },
+      { label: 'Open\u2026', hint: '\u2318O' },
+      { label: 'Delete', destructive: true, separatorBefore: true },
+    ]},
+    { label: 'Edit', items: [
+      { label: 'Undo', hint: '\u2318Z' },
+      { label: 'Redo', hint: '\u21e7\u2318Z' },
+      { label: 'Find', hint: '\u2318F', separatorBefore: true },
+    ]},
+    { label: 'View', items: [
+      { label: 'Zoom in', hint: '\u2318+' },
+      { label: 'Zoom out', hint: '\u2318\u2212' },
+    ]},
+  ];
+  protected readonly menubarChoice = signal('\u2014');
+  protected readonly tabDefs = [
+    { value: 'account', label: 'Account' },
+    { value: 'password', label: 'Password' },
+    { value: 'team', label: 'Team', disabled: true },
+  ];
+  protected readonly tab = signal('account');
+  protected readonly cmdOpen = signal(false);
+  protected readonly cmdChoice = signal('\u2014');
+  protected readonly commands = [
+    { label: 'Go to Dashboard', hint: '\u2318D', group: 'Navigate' },
+    { label: 'Go to Settings', group: 'Navigate' },
+    { label: 'Create project', hint: '\u2318N', group: 'Actions' },
+    { label: 'Invite member', group: 'Actions' },
+    { label: 'Toggle theme', hint: '\u2318T', group: 'Actions' },
+    { label: 'Sign out', group: 'Account' },
+  ];
+  protected readonly moreOpen = signal(false);
+  protected readonly split = signal(40);
+  protected readonly sideOpen = signal(false);
+
+  protected onMenubar(sel: NexaMenubarSelection): void {
+    this.menubarChoice.set(sel.menu + ' \u2192 ' + sel.item.label);
+  }
+
+  protected onCommand(item: NexaCommandItem): void {
+    this.cmdChoice.set(item.label);
+  }
 
   protected toggleTheme(): void {
     this.theme.toggle();
