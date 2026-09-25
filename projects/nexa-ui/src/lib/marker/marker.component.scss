@@ -1,0 +1,106 @@
+:host.nexa-marker-host {
+  --nexa-marker-color: var(--nexa-muted-foreground);
+  --nexa-marker-size: 1.75rem;
+
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--nexa-marker-color);
+
+  &--primary {
+    --nexa-marker-color: var(--nexa-primary);
+  }
+
+  &--success {
+    --nexa-marker-color: var(--nexa-success);
+  }
+
+  &--warning {
+    --nexa-marker-color: var(--nexa-warning);
+  }
+
+  &--destructive {
+    --nexa-marker-color: var(--nexa-destructive);
+  }
+
+  &--info {
+    --nexa-marker-color: var(--nexa-info);
+  }
+
+  &--sm {
+    --nexa-marker-size: 1.15rem;
+  }
+
+  &--lg {
+    --nexa-marker-size: 2.5rem;
+  }
+}
+
+.nexa-marker {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--nexa-font-sans);
+
+  svg {
+    width: var(--nexa-marker-size);
+    height: var(--nexa-marker-size);
+  }
+
+  &__dot {
+    position: relative;
+    width: calc(var(--nexa-marker-size) / 2.2);
+    height: calc(var(--nexa-marker-size) / 2.2);
+    background: currentColor;
+    border-radius: var(--nexa-radius-full);
+  }
+
+  :host(.nexa-marker-host--pulse) &__dot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px solid currentColor;
+    border-radius: var(--nexa-radius-full);
+    opacity: 0.6;
+    animation: nexa-marker-ping 1.6s ease-out infinite;
+  }
+
+  :host(.nexa-marker-host--pulse.nexa-marker-host--pin) & svg {
+    animation: nexa-marker-bounce 1.6s ease-in-out infinite;
+  }
+
+  &__tag {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.72rem;
+    font-weight: 650;
+    color: var(--nexa-background);
+    background: currentColor;
+    border-radius: var(--nexa-radius-full);
+
+    // Keep text readable on colored bg.
+    :host(.nexa-marker-host--default) & {
+      color: var(--nexa-foreground);
+      background: var(--nexa-muted);
+    }
+  }
+}
+
+@keyframes nexa-marker-ping {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes nexa-marker-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}

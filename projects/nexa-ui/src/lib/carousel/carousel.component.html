@@ -1,0 +1,41 @@
+<div
+  class="nexa-carousel"
+  role="region"
+  [attr.aria-roledescription]="ariaRoledescription()"
+  [attr.aria-label]="ariaLabel()"
+  (keydown)="onKeydown($event)"
+  (mouseenter)="setPaused(true)"
+  (mouseleave)="setPaused(false)"
+  (focusin)="setPaused(true)"
+  (focusout)="setPaused(false)"
+>
+  <div class="nexa-carousel__viewport">
+    <div
+      class="nexa-carousel__track"
+      [style.transform]="'translateX(-' + safeIndex() * 100 + '%)'"
+      [attr.aria-live]="autoplay() ? 'off' : 'polite'"
+    >
+      <ng-content select="nexa-carousel-slide" />
+    </div>
+  </div>
+  @if (showArrows() && count() > 1) {
+    <button type="button" class="nexa-carousel__arrow nexa-carousel__arrow--prev nexa-focus-ring" aria-label="Previous slide" (click)="prev()">‹</button>
+    <button type="button" class="nexa-carousel__arrow nexa-carousel__arrow--next nexa-focus-ring" aria-label="Next slide" (click)="next()">›</button>
+  }
+  @if (showDots() && count() > 1) {
+    <div class="nexa-carousel__dots" role="tablist" aria-label="Slides">
+      @for (d of dots(); track d) {
+        <button
+          type="button"
+          role="tab"
+          class="nexa-carousel__dot nexa-focus-ring"
+          [class.nexa-carousel__dot--active]="d === safeIndex()"
+          [attr.aria-selected]="d === safeIndex()"
+          [attr.aria-label]="'Go to slide ' + (d + 1)"
+          (click)="go(d)"
+        ></button>
+      }
+    </div>
+  }
+  <span class="nexa-carousel__sr" role="status">Slide {{ safeIndex() + 1 }} of {{ count() }}</span>
+</div>

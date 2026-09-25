@@ -1,0 +1,52 @@
+<div class="nexa-combobox">
+  <div class="nexa-combobox__field">
+    <input
+      class="nexa-combobox__input nexa-focus-ring"
+      type="text"
+      role="combobox"
+      aria-autocomplete="list"
+      [attr.aria-expanded]="open()"
+      aria-controls="nexa-combobox-list"
+      [attr.id]="id()"
+      [attr.placeholder]="selectedLabel() || placeholder()"
+      [value]="open() ? query() : selectedLabel()"
+      [disabled]="isDisabled()"
+      [attr.aria-label]="ariaLabel()"
+      [attr.aria-invalid]="invalid() ? 'true' : null"
+      autocomplete="off"
+      (focus)="onFocus()"
+      (input)="onQuery($event)"
+      (blur)="onBlur()"
+      (keydown)="onKeydown($event)"
+    />
+    @if (value() && !isDisabled()) {
+      <button type="button" class="nexa-combobox__clear nexa-focus-ring" aria-label="Clear selection" (click)="clear($event)">✕</button>
+    }
+    <span class="nexa-combobox__chevron" aria-hidden="true">▾</span>
+  </div>
+  @if (open()) {
+    <ul id="nexa-combobox-list" class="nexa-combobox__list" role="listbox" [attr.aria-label]="ariaLabel() || placeholder()">
+      @for (option of filtered(); track option.value; let i = $index) {
+        <li
+          role="option"
+          class="nexa-combobox__option"
+          [class.nexa-combobox__option--active]="i === activeIndex()"
+          [class.nexa-combobox__option--disabled]="option.disabled"
+          [attr.aria-selected]="option.value === value()"
+          [attr.aria-disabled]="option.disabled ? 'true' : null"
+          (click)="choose(option)"
+          (mouseenter)="activeIndex.set(i)"
+        >
+          <span>{{ option.label }}</span>
+          @if (option.value === value()) {
+            <span class="nexa-combobox__check" aria-hidden="true">✓</span>
+          } @else if (option.hint) {
+            <span class="nexa-combobox__hint">{{ option.hint }}</span>
+          }
+        </li>
+      } @empty {
+        <li class="nexa-combobox__empty">{{ emptyText() }}</li>
+      }
+    </ul>
+  }
+</div>

@@ -4,6 +4,20 @@ import {
   NexaAccordionComponent,
   NexaAlertComponent,
   NexaCalendarComponent,
+  NexaAttachmentComponent,
+  NexaBubbleComponent,
+  NexaButtonGroupComponent,
+  NexaCarouselComponent,
+  NexaCarouselSlideComponent,
+  NexaComboboxComponent,
+  NexaDirDirective,
+  NexaDirectionService,
+  NexaItemComponent,
+  NexaMarkerComponent,
+  NexaMessageScrollerComponent,
+  NexaQuestionnaireComponent,
+  NexaToggleComponent,
+  NexaToggleGroupComponent,
   NexaChartComponent,
   NexaDataTableComponent,
   NexaDatePickerComponent,
@@ -141,6 +155,19 @@ import {
     NexaCalendarComponent,
     NexaDatePickerComponent,
     NexaChartComponent,
+    NexaCarouselComponent,
+    NexaCarouselSlideComponent,
+    NexaComboboxComponent,
+    NexaToggleComponent,
+    NexaToggleGroupComponent,
+    NexaButtonGroupComponent,
+    NexaAttachmentComponent,
+    NexaBubbleComponent,
+    NexaItemComponent,
+    NexaMarkerComponent,
+    NexaMessageScrollerComponent,
+    NexaQuestionnaireComponent,
+    NexaDirDirective,
   ],
   selector: 'app-root',
   styleUrl: './app.scss',
@@ -291,6 +318,63 @@ export class App {
     { label: 'Thu', value: 24 },
     { label: 'Fri', value: 17 },
   ];
+
+  // ---- advanced demos ----
+  protected readonly slide = signal(0);
+  protected readonly frameworks = [
+    { value: 'angular', label: 'Angular', hint: 'v22' },
+    { value: 'react', label: 'React', hint: 'v19' },
+    { value: 'vue', label: 'Vue', hint: 'v3' },
+    { value: 'svelte', label: 'Svelte', disabled: true },
+  ];
+  protected readonly fw = signal<string | undefined>('angular');
+  protected readonly bold = signal(true);
+  protected readonly italic = signal(false);
+  protected readonly alignOpts = [
+    { value: 'left', label: 'Left' },
+    { value: 'center', label: 'Center' },
+    { value: 'right', label: 'Right' },
+  ];
+  protected readonly alignment = signal<string[]>(['center']);
+  protected readonly weekdays = [
+    { value: 'mon', label: 'M' },
+    { value: 'tue', label: 'T' },
+    { value: 'wed', label: 'W' },
+    { value: 'thu', label: 'T' },
+    { value: 'fri', label: 'F' },
+  ];
+  protected readonly repeat = signal<string[]>(['mon', 'wed']);
+  protected readonly push = signal(true);
+  protected readonly qSteps = [
+    { id: 'name', title: 'Your name' },
+    { id: 'plan', title: 'Plan' },
+    { id: 'done', title: 'Review' },
+  ];
+  protected readonly qStep = signal(0);
+  protected readonly qName = signal('');
+  protected readonly qPlan = signal<string[]>(['pro']);
+  protected readonly qDone = signal(false);
+  protected readonly direction = inject(NexaDirectionService);
+  protected readonly chatInput = signal('');
+  protected readonly chatMessages = signal<Array<{ id: number; from: 'user' | 'assistant'; name: string; text: string }>>([
+    { id: 1, from: 'assistant', name: 'Nexa AI', text: 'Welcome to the demo chat!' },
+    { id: 2, from: 'user', name: '', text: 'Hello! What can you do?' },
+    { id: 3, from: 'assistant', name: 'Nexa AI', text: 'I can showcase auto-scroll, unread badges and jump-to-bottom. Scroll up, then send a message!' },
+  ]);
+
+  protected sendChat(): void {
+    const text = this.chatInput().trim();
+    if (!text) return;
+    const id = this.chatMessages().length + 1;
+    this.chatMessages.update((m) => [...m, { id, from: 'user' as const, name: '', text }]);
+    this.chatInput.set('');
+    setTimeout(() => {
+      this.chatMessages.update((m) => [
+        ...m,
+        { id: id + 1, from: 'assistant' as const, name: 'Nexa AI', text: 'Got it: ' + text },
+      ]);
+    }, 600);
+  }
 
   protected toggleTheme(): void {
     this.theme.toggle();

@@ -1,0 +1,59 @@
+:host.nexa-toggle-host {
+  display: inline-block;
+}
+
+.nexa-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  padding: 0 0.7rem;
+  font-family: var(--nexa-font-sans);
+  font-size: 0.85rem;
+  font-weight: 550;
+  color: var(--nexa-muted-foreground);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--nexa-radius-md);
+  cursor: pointer;
+  transition: background var(--nexa-transition-fast), color var(--nexa-transition-fast);
+
+  &:hover:not(:disabled) {
+    background: var(--nexa-muted);
+    color: var(--nexa-foreground);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--pressed {
+    background: var(--nexa-accent);
+    color: var(--nexa-accent-foreground);
+  }
+
+  &--outline {
+    border-color: var(--nexa-border);
+  }
+
+  &--outline.nexa-toggle--pressed {
+    background: var(--nexa-primary);
+    border-color: var(--nexa-primary);
+    color: var(--nexa-primary-foreground);
+  }
+
+  &--sm {
+    min-width: 2rem;
+    min-height: 2rem;
+    font-size: 0.75rem;
+  }
+
+  &--lg {
+    min-width: 2.9rem;
+    min-height: 2.9rem;
+    font-size: 1rem;
+  }
+}

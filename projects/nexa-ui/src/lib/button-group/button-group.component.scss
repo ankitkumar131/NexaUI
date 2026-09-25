@@ -1,0 +1,56 @@
+:host.nexa-btn-group-host {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.nexa-btn-group {
+  display: inline-flex;
+  max-width: 100%;
+  font-family: var(--nexa-font-sans);
+
+  :host(.nexa-btn-group-host--vertical) & {
+    flex-direction: column;
+  }
+
+  // Join projected Nexa buttons into one segmented control. Deep styling is
+  // intentional here: the group owns the seam between its children.
+  ::ng-deep nexa-button .nexa-button {
+    border-radius: 0;
+  }
+
+  :host(.nexa-btn-group-host--horizontal) &::ng-deep nexa-button {
+    margin-inline-start: -1px;
+
+    &:first-child {
+      margin-inline-start: 0;
+    }
+
+    &:first-child .nexa-button {
+      border-start-start-radius: var(--nexa-radius-md);
+      border-end-start-radius: var(--nexa-radius-md);
+    }
+
+    &:last-child .nexa-button {
+      border-start-end-radius: var(--nexa-radius-md);
+      border-end-end-radius: var(--nexa-radius-md);
+    }
+  }
+
+  :host(.nexa-btn-group-host--vertical) &::ng-deep nexa-button {
+    margin-top: -1px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:first-child .nexa-button {
+      border-start-start-radius: var(--nexa-radius-md);
+      border-start-end-radius: var(--nexa-radius-md);
+    }
+
+    &:last-child .nexa-button {
+      border-end-start-radius: var(--nexa-radius-md);
+      border-end-end-radius: var(--nexa-radius-md);
+    }
+  }
+}

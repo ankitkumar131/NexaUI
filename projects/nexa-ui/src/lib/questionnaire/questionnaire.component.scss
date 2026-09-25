@@ -1,0 +1,94 @@
+:host.nexa-qn-host {
+  display: block;
+  width: 100%;
+}
+
+.nexa-qn {
+  font-family: var(--nexa-font-sans);
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  &__counter {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--nexa-muted-foreground);
+  }
+
+  &__steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__step {
+    &--current {
+      font-weight: 650;
+    }
+
+    &--todo {
+      opacity: 0.6;
+    }
+  }
+
+  &__step-btn,
+  &__step-static {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.7rem 0.35rem 0.4rem;
+    font-size: 0.8rem;
+    color: var(--nexa-foreground);
+    background: var(--nexa-muted);
+    border: none;
+    border-radius: var(--nexa-radius-full);
+  }
+
+  &__step-btn {
+    cursor: pointer;
+
+    &:hover {
+      background: var(--nexa-accent);
+    }
+  }
+
+  &__step--current &__step-btn,
+  &__step--current &__step-static {
+    background: var(--nexa-primary);
+    color: var(--nexa-primary-foreground);
+  }
+
+  &__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.4rem;
+    height: 1.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: color-mix(in srgb, currentColor 14%, transparent);
+    border-radius: var(--nexa-radius-full);
+  }
+
+  &__body {
+    min-height: 6rem;
+    padding: 1.2rem;
+    background: var(--nexa-card);
+    border: 1px solid var(--nexa-border);
+    border-radius: var(--nexa-radius-lg);
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+}

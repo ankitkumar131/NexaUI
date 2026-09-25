@@ -1,0 +1,72 @@
+:host.nexa-bubble-host {
+  --nexa-bubble-bg: var(--nexa-muted);
+  --nexa-bubble-fg: var(--nexa-foreground);
+
+  display: inline-block;
+  max-width: 100%;
+
+  &--primary {
+    --nexa-bubble-bg: var(--nexa-primary);
+    --nexa-bubble-fg: var(--nexa-primary-foreground);
+  }
+
+  &--success {
+    --nexa-bubble-bg: color-mix(in srgb, var(--nexa-success) 16%, var(--nexa-card));
+    --nexa-bubble-fg: var(--nexa-foreground);
+  }
+
+  &--warning {
+    --nexa-bubble-bg: color-mix(in srgb, var(--nexa-warning) 18%, var(--nexa-card));
+    --nexa-bubble-fg: var(--nexa-foreground);
+  }
+
+  &--destructive {
+    --nexa-bubble-bg: color-mix(in srgb, var(--nexa-destructive) 14%, var(--nexa-card));
+    --nexa-bubble-fg: var(--nexa-foreground);
+  }
+
+  &--info {
+    --nexa-bubble-bg: color-mix(in srgb, var(--nexa-info) 16%, var(--nexa-card));
+    --nexa-bubble-fg: var(--nexa-foreground);
+  }
+}
+
+.nexa-bubble {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  padding: 0.5rem 0.8rem;
+  font-family: var(--nexa-font-sans);
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: var(--nexa-bubble-fg);
+  background: var(--nexa-bubble-bg);
+  border-radius: var(--nexa-radius-md);
+  overflow-wrap: break-word;
+
+  :host(.nexa-bubble-host--sm) & {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  // Speech tails.
+  :host(.nexa-bubble-host--tail-left) &::before,
+  :host(.nexa-bubble-host--tail-right)::after {
+    content: '';
+    position: absolute;
+    top: 0.7rem;
+    border: 0.45rem solid transparent;
+  }
+
+  :host(.nexa-bubble-host--tail-left) &::before {
+    left: -0.8rem;
+    border-right-color: var(--nexa-bubble-bg);
+    border-left: none;
+  }
+
+  :host(.nexa-bubble-host--tail-right)::after {
+    right: -0.8rem;
+    border-left-color: var(--nexa-bubble-bg);
+    border-right: none;
+  }
+}

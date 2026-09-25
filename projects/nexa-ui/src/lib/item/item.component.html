@@ -1,0 +1,26 @@
+@if (href()) {
+  <a class="nexa-item nexa-focus-ring" [href]="disabled() ? null : href()" [attr.aria-disabled]="disabled() ? 'true' : null">
+    <span class="nexa-item__leading"><ng-content select="[slot=leading]" /></span>
+    <span class="nexa-item__main">
+      <span class="nexa-item__title">{{ title() }}</span>
+      @if (description()) {
+        <span class="nexa-item__desc">{{ description() }}</span>
+      }
+      <ng-content />
+    </span>
+    <span class="nexa-item__trailing"><ng-content select="[slot=trailing]" /></span>
+    <span class="nexa-item__chevron" aria-hidden="true">›</span>
+  </a>
+} @else {
+  <div class="nexa-item">
+    <span class="nexa-item__leading"><ng-content select="[slot=leading]" /></span>
+    <span class="nexa-item__main">
+      <span class="nexa-item__title">{{ title() }}</span>
+      @if (description()) {
+        <span class="nexa-item__desc">{{ description() }}</span>
+      }
+      <ng-content />
+    </span>
+    <span class="nexa-item__trailing"><ng-content select="[slot=trailing]" /></span>
+  </div>
+}

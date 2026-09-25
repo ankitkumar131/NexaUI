@@ -1,0 +1,85 @@
+:host.nexa-carousel-host {
+  display: block;
+  width: 100%;
+}
+
+.nexa-carousel {
+  position: relative;
+  font-family: var(--nexa-font-sans);
+
+  &__viewport {
+    overflow: hidden;
+    border: 1px solid var(--nexa-border);
+    border-radius: var(--nexa-radius-lg);
+    background: var(--nexa-muted);
+  }
+
+  &__track {
+    display: flex;
+    transition: transform var(--nexa-transition-normal);
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--nexa-foreground);
+    background: color-mix(in srgb, var(--nexa-background) 88%, transparent);
+    border: 1px solid var(--nexa-border);
+    border-radius: var(--nexa-radius-full);
+    box-shadow: var(--nexa-shadow-md);
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+
+    &:hover {
+      background: var(--nexa-background);
+    }
+
+    &--prev {
+      inset-inline-start: 0.75rem;
+    }
+
+    &--next {
+      inset-inline-end: 0.75rem;
+    }
+  }
+
+  &__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.45rem;
+    margin-top: 0.75rem;
+  }
+
+  &__dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    padding: 0;
+    background: var(--nexa-border);
+    border: none;
+    border-radius: var(--nexa-radius-full);
+    cursor: pointer;
+    transition: background var(--nexa-transition-fast), transform var(--nexa-transition-fast);
+
+    &--active {
+      background: var(--nexa-primary);
+      transform: scale(1.25);
+    }
+  }
+
+  &__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}

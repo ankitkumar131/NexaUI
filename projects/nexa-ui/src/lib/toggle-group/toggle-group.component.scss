@@ -1,0 +1,55 @@
+:host.nexa-toggle-group-host {
+  display: inline-block;
+  max-width: 100%;
+
+  &--vertical .nexa-toggle-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.nexa-toggle-group {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  font-family: var(--nexa-font-sans);
+  background: var(--nexa-muted);
+  border-radius: var(--nexa-radius-md);
+
+  &__btn {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--nexa-muted-foreground);
+    background: transparent;
+    border: none;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:hover:not(:disabled) {
+      color: var(--nexa-foreground);
+    }
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    &--pressed {
+      background: var(--nexa-background);
+      color: var(--nexa-foreground);
+      box-shadow: var(--nexa-shadow-sm);
+    }
+  }
+
+  :host(.nexa-toggle-group-host--sm) &__btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  :host(.nexa-toggle-group-host--lg) &__btn {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.95rem;
+  }
+}

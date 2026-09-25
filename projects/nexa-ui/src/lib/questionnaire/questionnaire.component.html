@@ -1,0 +1,30 @@
+<div class="nexa-qn" role="group" [attr.aria-label]="ariaLabel()">
+  <div class="nexa-qn__head">
+    <span class="nexa-qn__counter" role="status">Step {{ safeCurrent() + 1 }} of {{ total() }}</span>
+    @if (showProgress()) {
+      <nexa-progress [value]="pct()" [ariaLabel]="'Step ' + (safeCurrent() + 1) + ' of ' + total()" size="sm" />
+    }
+  </div>
+  <ol class="nexa-qn__steps" aria-label="Steps">
+    @for (step of steps(); track step.id; let i = $index) {
+      <li class="nexa-qn__step nexa-qn__step--{{ stepState(i) }}">
+        @if (allowSkip()) {
+          <button type="button" class="nexa-qn__step-btn nexa-focus-ring" (click)="goto(i)" [attr.aria-current]="stepState(i) === 'current' ? 'step' : null">
+            <span class="nexa-qn__num" aria-hidden="true">{{ stepState(i) === 'done' ? '✓' : i + 1 }}</span>
+            <span>{{ step.title }}</span>
+          </button>
+        } @else {
+          <span class="nexa-qn__step-static" [attr.aria-current]="stepState(i) === 'current' ? 'step' : null">
+            <span class="nexa-qn__num" aria-hidden="true">{{ stepState(i) === 'done' ? '✓' : i + 1 }}</span>
+            <span>{{ step.title }}</span>
+          </span>
+        }
+      </li>
+    }
+  </ol>
+  <div class="nexa-qn__body"><ng-content /></div>
+  <div class="nexa-qn__nav">
+    <nexa-button variant="outline" [disabled]="isFirst()" (pressed)="back()">{{ backText() }}</nexa-button>
+    <nexa-button [disabled]="nextDisabled()" (pressed)="next()">{{ isLast() ? finishText() : nextText() }}</nexa-button>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="nexa-msg-scroll">
+  <div
+    #viewport
+    class="nexa-msg-scroll__viewport"
+    tabindex="0"
+    role="log"
+    aria-live="polite"
+    [attr.aria-label]="ariaLabel()"
+    [style.max-height]="maxHeight()"
+    (scroll)="onScroll($event)"
+  >
+    <ng-content />
+  </div>
+  @if (showJump() && !nearBottom()) {
+    <button type="button" class="nexa-msg-scroll__jump nexa-focus-ring" (click)="jump()">
+      ↓ Newest
+      @if (unread() > 0) {
+        <span class="nexa-msg-scroll__badge">{{ unread() }}</span>
+      }
+    </button>
+  }
+</div>

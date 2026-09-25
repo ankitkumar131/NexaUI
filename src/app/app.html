@@ -13,7 +13,7 @@
 
 <div class="showcase-layout">
   <nav class="showcase-toc" aria-label="Components table of contents">
-    <h2>Table of Contents <span class="showcase-toc__count">(52)</span></h2>
+    <h2>Table of Contents <span class="showcase-toc__count">(64)</span></h2>
     <ol>
       <li><a href="#button">Button</a></li>
       <li><a href="#typography">Typography</a></li>
@@ -67,6 +67,18 @@
       <li><a href="#calendar">Calendar</a></li>
       <li><a href="#date-picker">Date Picker</a></li>
       <li><a href="#chart">Chart</a></li>
+      <li><a href="#carousel">Carousel</a></li>
+      <li><a href="#combobox">Combobox</a></li>
+      <li><a href="#toggle">Toggle</a></li>
+      <li><a href="#toggle-group">Toggle Group</a></li>
+      <li><a href="#button-group">Button Group</a></li>
+      <li><a href="#attachment">Attachment</a></li>
+      <li><a href="#bubble">Bubble</a></li>
+      <li><a href="#item">Item</a></li>
+      <li><a href="#marker">Marker</a></li>
+      <li><a href="#message-scroller">Message Scroller</a></li>
+      <li><a href="#questionnaire">Questionnaire</a></li>
+      <li><a href="#direction">Direction</a></li>
       <!-- TOC:APPEND -->
     </ol>
   </nav>
@@ -82,7 +94,7 @@
       <div class="showcase-hero__actions">
         <nexa-button>Primary action</nexa-button>
         <nexa-button variant="outline">Secondary</nexa-button>
-        <nexa-badge variant="success">v0.3 · 28 components</nexa-badge>
+        <nexa-badge variant="success">v1.0 · 64 components</nexa-badge>
       </div>
     </div>
 
@@ -1037,6 +1049,201 @@
           <nexa-chart type="line" [data]="sales" />
           <nexa-chart type="donut" [data]="sales" />
         </div>
+      </div>
+    </section>
+
+    <!-- Batch 6: advanced -->
+    <section class="showcase-section" id="carousel" aria-labelledby="carousel-h">
+      <div class="showcase-section__head">
+        <h2 id="carousel-h">Carousel</h2>
+        <p><code>&lt;nexa-carousel&gt;</code> — projected slides with arrows, dots, keyboard, swipe and autoplay.</p>
+      </div>
+      <nexa-carousel [(index)]="slide" [autoplay]="4000" ariaLabel="Featured screenshots">
+        <nexa-carousel-slide>
+          <img src="https://picsum.photos/seed/nexa1/800/300" alt="Dashboard preview" loading="lazy" />
+        </nexa-carousel-slide>
+        <nexa-carousel-slide>
+          <img src="https://picsum.photos/seed/nexa2/800/300" alt="Analytics preview" loading="lazy" />
+        </nexa-carousel-slide>
+        <nexa-carousel-slide>
+          <img src="https://picsum.photos/seed/nexa3/800/300" alt="Settings preview" loading="lazy" />
+        </nexa-carousel-slide>
+      </nexa-carousel>
+      <p class="showcase-hint">Active slide: {{ slide() + 1 }} of 3. Autoplay pauses while you hover or focus the carousel.</p>
+    </section>
+
+    <section class="showcase-section" id="combobox" aria-labelledby="combobox-h">
+      <div class="showcase-section__head">
+        <h2 id="combobox-h">Combobox</h2>
+        <p><code>&lt;nexa-combobox&gt;</code> — searchable select with keyboard navigation and template-driven-forms support.</p>
+      </div>
+      <div class="showcase-row">
+        <nexa-combobox ariaLabel="Framework" placeholder="Pick a framework…" [options]="frameworks" [(value)]="fw" />
+        <nexa-combobox ariaLabel="Disabled" placeholder="Unavailable" [options]="frameworks" [disabled]="true" />
+      </div>
+      <p class="showcase-hint">Selected: {{ fw() ?? 'none' }}</p>
+    </section>
+
+    <section class="showcase-section" id="toggle" aria-labelledby="toggle-h">
+      <div class="showcase-section__head">
+        <h2 id="toggle-h">Toggle</h2>
+        <p><code>&lt;nexa-toggle&gt;</code> — two-state formatting button with pressed styling and sizes.</p>
+      </div>
+      <div class="showcase-row">
+        <nexa-toggle [(pressed)]="bold" ariaLabel="Bold"><strong>B</strong></nexa-toggle>
+        <nexa-toggle [(pressed)]="italic" ariaLabel="Italic"><em>I</em></nexa-toggle>
+        <nexa-toggle ariaLabel="Underline" [pressed]="false" [disabled]="true"><u>U</u></nexa-toggle>
+        <nexa-toggle ariaLabel="Strikethrough" size="sm">S</nexa-toggle>
+        <nexa-toggle ariaLabel="Highlight" size="lg">H</nexa-toggle>
+      </div>
+      <p class="showcase-hint">Bold: {{ bold() ? 'on' : 'off' }} · Italic: {{ italic() ? 'on' : 'off' }}</p>
+    </section>
+
+    <section class="showcase-section" id="toggle-group" aria-labelledby="toggle-group-h">
+      <div class="showcase-section__head">
+        <h2 id="toggle-group-h">Toggle Group</h2>
+        <p><code>&lt;nexa-toggle-group&gt;</code> — exclusive or multiple selection groups, horizontal or vertical.</p>
+      </div>
+      <div class="showcase-row">
+        <nexa-toggle-group [options]="alignOpts" [(values)]="alignment" ariaLabel="Text alignment" />
+        <nexa-toggle-group [options]="weekdays" [(values)]="repeat" type="multiple" ariaLabel="Repeat days" />
+      </div>
+      <p class="showcase-hint">Alignment: {{ alignment().join(', ') || 'none' }} · Repeat: {{ repeat().join(', ') || 'never' }}</p>
+    </section>
+
+    <section class="showcase-section" id="button-group" aria-labelledby="button-group-h">
+      <div class="showcase-section__head">
+        <h2 id="button-group-h">Button Group</h2>
+        <p><code>&lt;nexa-button-group&gt;</code> — joins Nexa buttons into one segmented control.</p>
+      </div>
+      <div class="showcase-row">
+        <nexa-button-group ariaLabel="Zoom">
+          <nexa-button variant="outline">−</nexa-button>
+          <nexa-button variant="outline">100%</nexa-button>
+          <nexa-button variant="outline">+</nexa-button>
+        </nexa-button-group>
+        <nexa-button-group orientation="vertical" ariaLabel="Layout">
+          <nexa-button variant="secondary">Top</nexa-button>
+          <nexa-button variant="secondary">Middle</nexa-button>
+          <nexa-button variant="secondary">Bottom</nexa-button>
+        </nexa-button-group>
+      </div>
+    </section>
+
+    <section class="showcase-section" id="attachment" aria-labelledby="attachment-h">
+      <div class="showcase-section__head">
+        <h2 id="attachment-h">Attachment</h2>
+        <p><code>&lt;nexa-attachment&gt;</code> — file chip with kind icon, size, progress and remove action.</p>
+      </div>
+      <div class="showcase-col">
+        <nexa-attachment fileName="quarterly-report.pdf" [fileSize]="2480000" [progress]="100" />
+        <nexa-attachment fileName="hero-banner.png" [fileSize]="812000" [progress]="64" />
+        <nexa-attachment fileName="notes.txt" [fileSize]="4200" [removable]="false" />
+      </div>
+    </section>
+
+    <section class="showcase-section" id="bubble" aria-labelledby="bubble-h">
+      <div class="showcase-section__head">
+        <h2 id="bubble-h">Bubble</h2>
+        <p><code>&lt;nexa-bubble&gt;</code> — tooltip and chat-bubble callouts with directional tails.</p>
+      </div>
+      <div class="showcase-row showcase-row--spaced">
+        <nexa-bubble tail="left">Assistant message (tail left)</nexa-bubble>
+        <nexa-bubble tone="primary" tail="right">Your reply (tail right)</nexa-bubble>
+        <nexa-bubble tone="success">Saved successfully</nexa-bubble>
+        <nexa-bubble tone="destructive" tail="left">Delete failed</nexa-bubble>
+      </div>
+    </section>
+
+    <section class="showcase-section" id="item" aria-labelledby="item-h">
+      <div class="showcase-section__head">
+        <h2 id="item-h">Item</h2>
+        <p><code>&lt;nexa-item&gt;</code> — settings/menu row with leading media and trailing action slots.</p>
+      </div>
+      <div class="showcase-col">
+        <nexa-item title="Push notifications" description="Get notified about mentions and replies">
+          <span slot="leading">🔔</span>
+          <nexa-toggle slot="trailing" [(pressed)]="push" ariaLabel="Push notifications" size="sm">{{ push() ? 'On' : 'Off' }}</nexa-toggle>
+        </nexa-item>
+        <nexa-item title="Documentation" description="Guides, API reference and examples" href="https://angular.dev">
+          <span slot="leading">📚</span>
+          
+        </nexa-item>
+      </div>
+    </section>
+
+    <section class="showcase-section" id="marker" aria-labelledby="marker-h">
+      <div class="showcase-section__head">
+        <h2 id="marker-h">Marker</h2>
+        <p><code>&lt;nexa-marker&gt;</code> — map-pin, dot and tag markers with tones and pulse.</p>
+      </div>
+      <div class="showcase-row showcase-row--spaced">
+        <nexa-marker ariaLabel="Headquarters" />
+        <nexa-marker variant="dot" tone="success" ariaLabel="Online" />
+        <nexa-marker variant="tag" tone="warning">3 stops</nexa-marker>
+        <nexa-marker tone="destructive" [pulse]="true" ariaLabel="Alert" />
+      </div>
+    </section>
+
+    <section class="showcase-section" id="message-scroller" aria-labelledby="message-scroller-h">
+      <div class="showcase-section__head">
+        <h2 id="message-scroller-h">Message Scroller</h2>
+        <p><code>&lt;nexa-message-scroller&gt;</code> — chat viewport with stick-to-bottom, unread count and jump button.</p>
+      </div>
+      <nexa-message-scroller>
+        @for (m of chatMessages(); track m.id) {
+          <nexa-bubble [tone]="m.from === 'user' ? 'primary' : 'default'" [tail]="m.from === 'user' ? 'right' : 'left'">
+            @if (m.name) { <strong>{{ m.name }}:</strong> } {{ m.text }}
+          </nexa-bubble>
+        }
+      </nexa-message-scroller>
+      <div class="showcase-row">
+        <nexa-input placeholder="Type a message…" [(value)]="chatInput" (keyup.enter)="sendChat()" />
+        <nexa-button (click)="sendChat()">Send</nexa-button>
+      </div>
+      <p class="showcase-hint">Scroll up, then send a message to see the unread badge and jump-to-bottom button.</p>
+    </section>
+
+    <section class="showcase-section" id="questionnaire" aria-labelledby="questionnaire-h">
+      <div class="showcase-section__head">
+        <h2 id="questionnaire-h">Questionnaire</h2>
+        <p><code>&lt;nexa-questionnaire&gt;</code> — stepped wizard chrome with progress, validation gating and review.</p>
+      </div>
+      @if (!qDone()) {
+        <nexa-questionnaire [steps]="qSteps" [(current)]="qStep" [nextDisabled]="qStep() === 0 && !qName().trim()" finishText="Complete setup" (completed)="qDone.set(true)">
+          @if (qStep() === 0) {
+            <nexa-input placeholder="Ada Lovelace" [(value)]="qName" />
+          } @else if (qStep() === 1) {
+            <nexa-toggle-group [options]="[{ value: 'free', label: 'Free' }, { value: 'pro', label: 'Pro' }, { value: 'team', label: 'Team' }]" [(values)]="qPlan" ariaLabel="Plan" />
+          } @else {
+            <p class="showcase-hint">Name: {{ qName() || '—' }} · Plan: {{ qPlan()[0] }}</p>
+          }
+        </nexa-questionnaire>
+      } @else {
+        <nexa-alert variant="success" title="Setup complete">
+          Welcome, {{ qName() }}! You're on the {{ qPlan()[0] }} plan.
+        </nexa-alert>
+        <nexa-button variant="outline" (click)="qDone.set(false); qStep.set(0)">Restart demo</nexa-button>
+      }
+    </section>
+
+    <section class="showcase-section" id="direction" aria-labelledby="direction-h">
+      <div class="showcase-section__head">
+        <h2 id="direction-h">Direction</h2>
+        <p><code>NexaDirectionService</code> + <code>[nexaDir]</code> — global RTL/LTR switching and scoped direction regions.</p>
+      </div>
+      <div class="showcase-row">
+        <nexa-button variant="outline" (click)="direction.setDir('ltr')">LTR</nexa-button>
+        <nexa-button variant="outline" (click)="direction.setDir('rtl')">RTL</nexa-button>
+        <nexa-button variant="ghost" (click)="direction.toggle()">Toggle</nexa-button>
+      </div>
+      <p class="showcase-hint">Current document direction: <strong>{{ direction.dir() }}</strong> (persisted, SSR-safe). Try RTL — the whole showcase mirrors.</p>
+      <div class="showcase-col" nexaDir="rtl" lang="ar">
+        <nexa-bubble tail="right">مرحباً بك في Nexa UI — هذه فقاعة باتجاه RTL ضمن منطقة محددة.</nexa-bubble>
+        <nexa-button-group ariaLabel="مثال">
+          <nexa-button variant="outline">الأول</nexa-button>
+          <nexa-button variant="outline">الثاني</nexa-button>
+        </nexa-button-group>
       </div>
     </section>
 

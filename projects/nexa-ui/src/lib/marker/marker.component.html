@@ -1,0 +1,12 @@
+<span class="nexa-marker" role="img" [attr.aria-label]="ariaLabel()">
+  @if (variant() === 'pin') {
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Z" fill="currentColor" />
+      <circle cx="12" cy="9" r="2.6" fill="var(--nexa-background)" />
+    </svg>
+  } @else if (variant() === 'dot') {
+    <span class="nexa-marker__dot" aria-hidden="true"></span>
+  } @else {
+    <span class="nexa-marker__tag"><ng-content /></span>
+  }
+</span>

@@ -1,0 +1,120 @@
+:host.nexa-combobox-host {
+  display: block;
+  width: 100%;
+}
+
+.nexa-combobox {
+  position: relative;
+  font-family: var(--nexa-font-sans);
+
+  &__field {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    min-height: 2.5rem;
+    padding: 0 3.6rem 0 0.8rem;
+    font-size: 0.9rem;
+    color: var(--nexa-foreground);
+    background: var(--nexa-background);
+    border: 1px solid var(--nexa-input);
+    border-radius: var(--nexa-radius-md);
+
+    &::placeholder {
+      color: var(--nexa-muted-foreground);
+    }
+
+    &:disabled {
+      opacity: 0.55;
+      background: var(--nexa-muted);
+    }
+  }
+
+  &__clear {
+    position: absolute;
+    inset-inline-end: 1.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    font-size: 0.7rem;
+    color: var(--nexa-muted-foreground);
+    background: transparent;
+    border: none;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--nexa-accent);
+      color: var(--nexa-accent-foreground);
+    }
+  }
+
+  &__chevron {
+    position: absolute;
+    inset-inline-end: 0.7rem;
+    color: var(--nexa-muted-foreground);
+    pointer-events: none;
+  }
+
+  &__list {
+    position: absolute;
+    inset-inline: 0;
+    top: calc(100% + 0.3rem);
+    z-index: var(--nexa-z-dropdown);
+    max-height: 15rem;
+    overflow: auto;
+    margin: 0;
+    padding: 0.3rem;
+    list-style: none;
+    background: var(--nexa-popover);
+    color: var(--nexa-popover-foreground);
+    border: 1px solid var(--nexa-border);
+    border-radius: var(--nexa-radius-md);
+    box-shadow: var(--nexa-shadow-lg);
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.88rem;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &--active {
+      background: var(--nexa-accent);
+      color: var(--nexa-accent-foreground);
+    }
+
+    &--disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  }
+
+  &__check {
+    color: var(--nexa-primary);
+    font-weight: 700;
+  }
+
+  &__hint {
+    font-size: 0.72rem;
+    font-family: var(--nexa-font-mono);
+    color: var(--nexa-muted-foreground);
+  }
+
+  &__empty {
+    padding: 0.8rem;
+    font-size: 0.85rem;
+    color: var(--nexa-muted-foreground);
+    text-align: center;
+  }
+}

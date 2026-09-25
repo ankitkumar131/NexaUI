@@ -1,0 +1,83 @@
+:host.nexa-attachment-host {
+  display: block;
+  max-width: 100%;
+}
+
+.nexa-attachment {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.8rem;
+  font-family: var(--nexa-font-sans);
+  background: var(--nexa-card);
+  border: 1px solid var(--nexa-border);
+  border-radius: var(--nexa-radius-md);
+
+  &__icon {
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  &__main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  &__name {
+    font-size: 0.85rem;
+    font-weight: 550;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__meta {
+    font-size: 0.72rem;
+    color: var(--nexa-muted-foreground);
+  }
+
+  &__bar {
+    height: 0.3rem;
+    margin-top: 0.25rem;
+    background: var(--nexa-secondary);
+    border-radius: var(--nexa-radius-full);
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    background: var(--nexa-primary);
+    border-radius: var(--nexa-radius-full);
+    transition: width var(--nexa-transition-normal);
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.25rem;
+    flex-shrink: 0;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    font-size: 0.8rem;
+    color: var(--nexa-muted-foreground);
+    background: transparent;
+    border: none;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      background: var(--nexa-accent);
+      color: var(--nexa-accent-foreground);
+    }
+  }
+}

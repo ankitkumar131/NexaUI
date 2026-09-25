@@ -1,0 +1,32 @@
+<div class="nexa-attachment">
+  <span class="nexa-attachment__icon" aria-hidden="true">{{ icon() }}</span>
+  <div class="nexa-attachment__main">
+    <span class="nexa-attachment__name">{{ fileName() }}</span>
+    <span class="nexa-attachment__meta">
+      {{ sizeLabel() }}
+      @if (pct() !== null) {
+        <span>· {{ pct() }}%</span>
+      }
+    </span>
+    @if (pct() !== null) {
+      <div
+        class="nexa-attachment__bar"
+        role="progressbar"
+        [attr.aria-label]="'Uploading ' + fileName()"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [attr.aria-valuenow]="pct()"
+      >
+        <div class="nexa-attachment__fill" [style.width]="pct() + '%'"></div>
+      </div>
+    }
+  </div>
+  <div class="nexa-attachment__actions">
+    @if (downloadHref()) {
+      <a class="nexa-attachment__btn nexa-focus-ring" [href]="downloadHref()" [attr.download]="fileName()" aria-label="Download file">⬇</a>
+    }
+    @if (removable()) {
+      <button type="button" class="nexa-attachment__btn nexa-focus-ring" aria-label="Remove file" (click)="remove()">✕</button>
+    }
+  </div>
+</div>

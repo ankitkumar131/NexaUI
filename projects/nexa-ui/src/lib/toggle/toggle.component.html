@@ -1,0 +1,10 @@
+<button
+  type="button"
+  [class]="btnClasses()"
+  [attr.aria-pressed]="pressed()"
+  [attr.aria-label]="ariaLabel()"
+  [disabled]="disabled()"
+  (click)="toggle()"
+>
+  <ng-content />
+</button>
