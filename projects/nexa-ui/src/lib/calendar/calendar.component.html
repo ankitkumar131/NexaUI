@@ -1,0 +1,37 @@
+<div class="nexa-calendar" role="group" [attr.aria-label]="ariaLabel()">
+  <div class="nexa-calendar__header">
+    <button type="button" class="nexa-calendar__nav nexa-focus-ring" aria-label="Previous month" [disabled]="disabled()" (click)="prev()">‹</button>
+    <strong class="nexa-calendar__month" aria-live="polite">{{ monthLabel() }}</strong>
+    <button type="button" class="nexa-calendar__nav nexa-focus-ring" aria-label="Next month" [disabled]="disabled()" (click)="next()">›</button>
+  </div>
+  <div class="nexa-calendar__weekdays" aria-hidden="true">
+    @for (w of weekdays(); track w.long) {
+      <span>{{ w.short }}</span>
+    }
+  </div>
+  <div class="nexa-calendar__grid">
+    @for (week of weeks(); track $index) {
+      @for (day of week; track day.iso) {
+        <button
+          #day
+          type="button"
+          class="nexa-calendar__day nexa-focus-ring"
+          [class.nexa-calendar__day--outside]="day.outside"
+          [class.nexa-calendar__day--today]="day.today"
+          [class.nexa-calendar__day--selected]="day.selected"
+          [attr.data-iso]="day.iso"
+          [attr.aria-label]="fullLabel(day)"
+          [attr.aria-pressed]="day.selected"
+          [attr.aria-current]="day.today ? 'date' : null"
+          [disabled]="day.disabled"
+          [tabindex]="day.selected || (!value() && day.today) ? 0 : -1"
+          (click)="select(day)"
+          (keydown)="onDayKeydown(day, $event)"
+        >
+          {{ day.date.getDate() }}
+        </button>
+      }
+    }
+  </div>
+  <button type="button" class="nexa-calendar__today nexa-focus-ring" [disabled]="disabled()" (click)="goToday()">Today</button>
+</div>

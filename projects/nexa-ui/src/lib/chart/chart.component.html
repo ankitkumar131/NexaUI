@@ -1,0 +1,63 @@
+<figure class="nexa-chart" [style.height]="type() === 'donut' ? null : height()">
+  @if (type() === 'bar') {
+    <div class="nexa-chart__bars" role="img" [attr.aria-label]="ariaLabel() || summary()">
+      @for (point of data(); track point.label; let i = $index) {
+        <div class="nexa-chart__bar-col">
+          @if (showValues()) {
+            <span class="nexa-chart__value">{{ point.value }}</span>
+          }
+          <div class="nexa-chart__bar-track">
+            <div class="nexa-chart__bar" [style.height]="barHeight(point.value) + '%'" [style.background]="palette(i)"></div>
+          </div>
+          <span class="nexa-chart__tick">{{ point.label }}</span>
+        </div>
+      } @empty {
+        <span class="nexa-chart__empty">No data</span>
+      }
+    </div>
+  } @else if (type() === 'line') {
+    <svg class="nexa-chart__svg" viewBox="0 0 300 120" role="img" [attr.aria-label]="ariaLabel() || summary()" preserveAspectRatio="none">
+      <polygon [attr.points]="lineGeom().area" class="nexa-chart__area" />
+      <polyline [attr.points]="lineGeom().line" class="nexa-chart__line" />
+      @for (p of lineGeom().pts; track p.label) {
+        <circle [attr.cx]="p.x" [attr.cy]="p.y" r="3.5" class="nexa-chart__dot" vector-effect="non-scaling-stroke" />
+      }
+    </svg>
+    <div class="nexa-chart__ticks" aria-hidden="true">
+      @for (point of data(); track point.label) {
+        <span>{{ point.label }}</span>
+      }
+    </div>
+  } @else {
+    <div class="nexa-chart__donut-wrap">
+      <svg class="nexa-chart__donut" viewBox="0 0 120 120" role="img" [attr.aria-label]="ariaLabel() || summary()">
+        <circle cx="60" cy="60" r="45" class="nexa-chart__donut-bg" />
+        @for (seg of donutSegs(); track seg.label) {
+          <circle
+            cx="60" cy="60" r="45"
+            class="nexa-chart__donut-seg"
+            [attr.stroke-dasharray]="seg.dash"
+            [attr.transform]="'rotate(' + (seg.angle - 90) + ' 60 60)'"
+            [style.stroke]="seg.color"
+          />
+        }
+        <text x="60" y="60" text-anchor="middle" dominant-baseline="central" class="nexa-chart__donut-total">{{ total() }}</text>
+      </svg>
+    </div>
+  }
+  @if (showLegend() && data().length) {
+    <figcaption class="nexa-chart__legend">
+      @for (point of data(); track point.label; let i = $index) {
+        <span class="nexa-chart__legend-item">
+          <span class="nexa-chart__swatch" [style.background]="palette(i)" aria-hidden="true"></span>
+          {{ point.label }} <strong>{{ point.value }}</strong>
+        </span>
+      }
+    </figcaption>
+  }
+  <ul class="nexa-chart__sr">
+    @for (point of data(); track point.label) {
+      <li>{{ point.label }}: {{ point.value }}</li>
+    }
+  </ul>
+</figure>

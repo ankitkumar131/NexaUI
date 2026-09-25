@@ -1,0 +1,43 @@
+:host.nexa-skeleton-host {
+  display: block;
+  min-width: 1rem;
+
+  &--circle {
+    border-radius: var(--nexa-radius-full);
+    overflow: hidden;
+  }
+
+  &--rounded {
+    border-radius: var(--nexa-radius-sm);
+    overflow: hidden;
+  }
+}
+
+.nexa-skeleton {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  background: linear-gradient(
+    100deg,
+    var(--nexa-muted) 35%,
+    color-mix(in srgb, var(--nexa-muted) 55%, white) 50%,
+    var(--nexa-muted) 65%
+  );
+  background-size: 200% 100%;
+  animation: nexa-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+// Host carries the explicit size; inner fills it.
+:host.nexa-skeleton-host > .nexa-skeleton {
+  height: 100%;
+}
+
+@keyframes nexa-skeleton-shimmer {
+  from {
+    background-position: 180% 0;
+  }
+  to {
+    background-position: -20% 0;
+  }
+}

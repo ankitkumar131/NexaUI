@@ -1,0 +1,44 @@
+// Applied to `table[nexa-table]` host.
+:host.nexa-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--nexa-font-sans);
+  color: var(--nexa-foreground);
+  background: var(--nexa-card);
+
+  caption {
+    padding: 0.6rem;
+    font-size: 0.82rem;
+    color: var(--nexa-muted-foreground);
+    caption-side: bottom;
+  }
+}
+
+:host.nexa-table--striped tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--nexa-muted) 55%, transparent);
+}
+
+:host.nexa-table--hoverable tbody tr:hover {
+  background: var(--nexa-accent);
+}
+
+:host.nexa-table--compact th,
+:host.nexa-table--compact td {
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+}
+
+:host.nexa-table--sticky thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--nexa-muted);
+}
+
+// Scroll wrapper for small screens (apply in your markup).
+.nexa-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--nexa-border);
+  border-radius: var(--nexa-radius-lg);
+}

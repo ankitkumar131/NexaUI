@@ -1,0 +1,81 @@
+<div class="nexa-data-table">
+  @if (showSearch()) {
+    <div class="nexa-data-table__toolbar">
+      <nexa-input
+        [value]="query()"
+        [placeholder]="searchPlaceholder()"
+        ariaLabel="Search table"
+        (valueChange)="onQuery($event)"
+      />
+      <span class="nexa-data-table__count" role="status">{{ filtered().length }} of {{ data().length }}</span>
+    </div>
+  }
+  <div class="nexa-table-scroll">
+    <table nexa-table [hoverable]="true">
+      @if (caption()) {
+        <caption>{{ caption() }}</caption>
+      }
+      <thead nexa-table-header>
+        <tr nexa-table-row>
+          @if (selectable()) {
+            <th nexa-table-head scope="col">
+              <nexa-checkbox
+                [checked]="allChecked()"
+                [indeterminate]="someChecked()"
+                ariaLabel="Select all rows on this page"
+                (checkedChange)="toggleAll($event)"
+              />
+            </th>
+          }
+          @for (col of columns(); track col.key) {
+            <th nexa-table-head scope="col" [style.width]="col.width ?? null">
+              @if (col.sortable) {
+                <button type="button" class="nexa-data-table__sort nexa-focus-ring" (click)="toggleSort(col)">
+                  {{ col.header }}
+                  <span aria-hidden="true">{{ sortGlyph(col) }}</span>
+                  <span class="nexa-data-table__sr">
+                    {{ sortKey() === col.key ? (sortDir() === 'asc' ? '(sorted ascending)' : '(sorted descending)') : '(not sorted)' }}
+                  </span>
+                </button>
+              } @else {
+                {{ col.header }}
+              }
+            </th>
+          }
+        </tr>
+      </thead>
+      <tbody nexa-table-body>
+        @for (row of paged(); track keyOf(row)) {
+          <tr nexa-table-row>
+            @if (selectable()) {
+              <td nexa-table-cell>
+                <nexa-checkbox
+                  [checked]="isSelected(row)"
+                  [ariaLabel]="'Select row ' + keyOf(row)"
+                  (checkedChange)="toggleRow(row, $event)"
+                />
+              </td>
+            }
+            @for (col of columns(); track col.key) {
+              <td nexa-table-cell>{{ cell(row, col.key) }}</td>
+            }
+          </tr>
+        } @empty {
+          <tr nexa-table-row>
+            <td nexa-table-cell [attr.colspan]="columns().length + (selectable() ? 1 : 0)">
+              <span class="nexa-data-table__empty">{{ emptyText() }}</span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  @if (pageSize() > 0 && totalPages() > 1) {
+    <div class="nexa-data-table__footer">
+      @if (selectable()) {
+        <span class="nexa-data-table__count" role="status">{{ selectedKeys().length }} selected</span>
+      }
+      <nexa-pagination [(page)]="page" [totalPages]="totalPages()" ariaLabel="Table pages" />
+    </div>
+  }
+</div>

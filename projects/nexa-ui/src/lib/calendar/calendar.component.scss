@@ -1,0 +1,122 @@
+:host.nexa-calendar-host {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.nexa-calendar {
+  width: 19rem;
+  max-width: 100%;
+  padding: 0.9rem;
+  font-family: var(--nexa-font-sans);
+  background: var(--nexa-card);
+  color: var(--nexa-card-foreground);
+  border: 1px solid var(--nexa-border);
+  border-radius: var(--nexa-radius-lg);
+  box-shadow: var(--nexa-shadow-xs);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+  }
+
+  &__month {
+    font-size: 0.92rem;
+  }
+
+  &__nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--nexa-foreground);
+    background: transparent;
+    border: none;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background: var(--nexa-accent);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
+  &__weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 0.3rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--nexa-muted-foreground);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+
+  &__day {
+    aspect-ratio: 1;
+    min-width: 0;
+    font-size: 0.83rem;
+    color: var(--nexa-foreground);
+    background: transparent;
+    border: 2px solid transparent;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background: var(--nexa-accent);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    &--outside {
+      opacity: 0.4;
+    }
+
+    &--today {
+      border-color: var(--nexa-primary);
+    }
+
+    &--selected {
+      background: var(--nexa-primary);
+      color: var(--nexa-primary-foreground);
+      font-weight: 650;
+
+      &:hover:not(:disabled) {
+        background: var(--nexa-primary);
+      }
+    }
+  }
+
+  &__today {
+    width: 100%;
+    margin-top: 0.6rem;
+    padding: 0.45rem;
+    font-size: 0.82rem;
+    font-weight: 550;
+    color: var(--nexa-primary);
+    background: transparent;
+    border: 1px solid var(--nexa-border);
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background: var(--nexa-accent);
+    }
+  }
+}

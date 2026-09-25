@@ -1,0 +1,9 @@
+<div class="nexa-empty" role="status">
+  <span class="nexa-empty__icon" aria-hidden="true">{{ icon() }}</span>
+  <strong class="nexa-empty__title">{{ title() }}</strong>
+  @if (description()) {
+    <p class="nexa-empty__desc">{{ description() }}</p>
+  }
+  <div class="nexa-empty__action"><ng-content select="[slot=action]" /></div>
+  <div class="nexa-empty__extra"><ng-content /></div>
+</div>

@@ -1,0 +1,16 @@
+<div class="nexa-progress">
+  <div
+    [class]="barClasses()"
+    role="progressbar"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-valuemin]="indeterminate() ? null : 0"
+    [attr.aria-valuemax]="indeterminate() ? null : max()"
+    [attr.aria-valuenow]="indeterminate() ? null : value()"
+    [attr.aria-valuetext]="indeterminate() ? 'Loading' : pct() + '%'"
+  >
+    <div class="nexa-progress__fill" [style.width]="indeterminate() ? null : pct() + '%'"></div>
+  </div>
+  @if (showLabel() && !indeterminate()) {
+    <span class="nexa-progress__label">{{ pct() }}%</span>
+  }
+</div>

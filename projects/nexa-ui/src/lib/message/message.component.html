@@ -1,0 +1,22 @@
+@if (from() === 'system') {
+  <div class="nexa-message nexa-message--system" role="status">
+    <ng-content />
+  </div>
+} @else {
+  <div class="nexa-message">
+    <div class="nexa-message__avatar"><ng-content select="[slot=avatar]" /></div>
+    <div class="nexa-message__main">
+      @if (name() || time()) {
+        <div class="nexa-message__meta">
+          @if (name()) {
+            <strong>{{ name() }}</strong>
+          }
+          @if (time()) {
+            <time>{{ time() }}</time>
+          }
+        </div>
+      }
+      <div class="nexa-message__bubble"><ng-content /></div>
+    </div>
+  </div>
+}

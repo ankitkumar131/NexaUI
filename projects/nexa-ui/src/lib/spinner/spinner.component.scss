@@ -1,0 +1,58 @@
+:host.nexa-spinner-host {
+  display: inline-block;
+  vertical-align: middle;
+
+  --nexa-spinner-size: 1.5rem;
+
+  &--xs {
+    --nexa-spinner-size: 0.9rem;
+  }
+
+  &--sm {
+    --nexa-spinner-size: 1.15rem;
+  }
+
+  &--lg {
+    --nexa-spinner-size: 2.25rem;
+  }
+
+  &--xl {
+    --nexa-spinner-size: 3.25rem;
+  }
+}
+
+.nexa-spinner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--nexa-font-sans);
+
+  &__ring {
+    width: var(--nexa-spinner-size);
+    height: var(--nexa-spinner-size);
+    border: calc(var(--nexa-spinner-size) / 7) solid var(--nexa-secondary);
+    border-top-color: var(--nexa-primary);
+    border-radius: var(--nexa-radius-full);
+    animation: nexa-spinner-rotate 0.8s linear infinite;
+  }
+
+  &__label {
+    font-size: 0.87rem;
+    color: var(--nexa-muted-foreground);
+  }
+
+  &__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+@keyframes nexa-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

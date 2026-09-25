@@ -1,0 +1,75 @@
+:host.nexa-progress-host {
+  display: block;
+  width: 100%;
+}
+
+.nexa-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--nexa-font-sans);
+
+  &__bar {
+    --nexa-progress-fill: var(--nexa-primary);
+
+    flex: 1;
+    min-width: 0;
+    height: 0.55rem;
+    overflow: hidden;
+    background: var(--nexa-secondary);
+    border-radius: var(--nexa-radius-full);
+
+    &--sm {
+      height: 0.35rem;
+    }
+
+    &--lg {
+      height: 0.85rem;
+    }
+
+    &--success {
+      --nexa-progress-fill: var(--nexa-success);
+    }
+
+    &--warning {
+      --nexa-progress-fill: var(--nexa-warning);
+    }
+
+    &--destructive {
+      --nexa-progress-fill: var(--nexa-destructive);
+    }
+
+    &--info {
+      --nexa-progress-fill: var(--nexa-info);
+    }
+  }
+
+  &__fill {
+    height: 100%;
+    background: var(--nexa-progress-fill);
+    border-radius: var(--nexa-radius-full);
+    transition: width var(--nexa-transition-normal);
+  }
+
+  &__bar--indeterminate &__fill {
+    width: 35% !important;
+    animation: nexa-progress-slide 1.2s ease-in-out infinite;
+  }
+
+  &__label {
+    min-width: 2.75rem;
+    text-align: end;
+    font-family: var(--nexa-font-mono);
+    font-size: 0.8rem;
+    color: var(--nexa-muted-foreground);
+  }
+}
+
+@keyframes nexa-progress-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}

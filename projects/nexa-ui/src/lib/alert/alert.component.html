@@ -1,0 +1,14 @@
+<div class="nexa-alert" [attr.role]="role()">
+  @if (glyph()) {
+    <span class="nexa-alert__icon" aria-hidden="true">{{ glyph() }}</span>
+  }
+  <div class="nexa-alert__body">
+    @if (title()) {
+      <strong class="nexa-alert__title">{{ title() }}</strong>
+    }
+    <div class="nexa-alert__content"><ng-content /></div>
+  </div>
+  @if (dismissible()) {
+    <button type="button" class="nexa-alert__close nexa-focus-ring" aria-label="Dismiss" (click)="dismiss()">✕</button>
+  }
+</div>

@@ -1,0 +1,26 @@
+<div class="nexa-toaster" role="region" aria-label="Notifications">
+  @for (toast of service.toasts(); track toast.id) {
+    <div
+      class="nexa-toast nexa-toast--{{ toast.variant }}"
+      [attr.role]="toast.variant === 'destructive' ? 'alert' : 'status'"
+    >
+      <span class="nexa-toast__icon" aria-hidden="true">{{ glyph(toast.variant) }}</span>
+      <div class="nexa-toast__body">
+        @if (toast.title) {
+          <strong class="nexa-toast__title">{{ toast.title }}</strong>
+        }
+        @if (toast.description) {
+          <p class="nexa-toast__desc">{{ toast.description }}</p>
+        }
+      </div>
+      <button
+        type="button"
+        class="nexa-toast__close nexa-focus-ring"
+        aria-label="Dismiss notification"
+        (click)="service.dismiss(toast.id)"
+      >
+        ✕
+      </button>
+    </div>
+  }
+</div>

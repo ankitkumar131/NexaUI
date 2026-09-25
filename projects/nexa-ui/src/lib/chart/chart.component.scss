@@ -1,0 +1,155 @@
+:host.nexa-chart-host {
+  display: block;
+  width: 100%;
+}
+
+.nexa-chart {
+  margin: 0;
+  font-family: var(--nexa-font-sans);
+
+  &__bars {
+    display: flex;
+    align-items: stretch;
+    gap: 0.6rem;
+    height: 100%;
+    min-height: 8rem;
+  }
+
+  &__bar-col {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  &__value {
+    font-size: 0.72rem;
+    font-weight: 650;
+    font-family: var(--nexa-font-mono);
+  }
+
+  &__bar-track {
+    flex: 1;
+    width: 100%;
+    max-width: 3.5rem;
+    display: flex;
+    align-items: flex-end;
+    background: color-mix(in srgb, var(--nexa-muted) 70%, transparent);
+    border-radius: var(--nexa-radius-sm);
+    overflow: hidden;
+  }
+
+  &__bar {
+    width: 100%;
+    border-radius: var(--nexa-radius-sm);
+    transition: height var(--nexa-transition-normal);
+  }
+
+  &__tick {
+    font-size: 0.7rem;
+    color: var(--nexa-muted-foreground);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  &__empty {
+    margin: auto;
+    color: var(--nexa-muted-foreground);
+    font-size: 0.85rem;
+  }
+
+  &__svg {
+    width: 100%;
+    height: calc(100% - 1.5rem);
+    min-height: 8rem;
+  }
+
+  &__area {
+    fill: color-mix(in srgb, var(--nexa-chart-1) 18%, transparent);
+  }
+
+  &__line {
+    fill: none;
+    stroke: var(--nexa-chart-1);
+    stroke-width: 2.5;
+  }
+
+  &__dot {
+    fill: var(--nexa-chart-1);
+    stroke: var(--nexa-background);
+    stroke-width: 1.5;
+  }
+
+  &__ticks {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--nexa-muted-foreground);
+  }
+
+  &__donut-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__donut {
+    width: min(14rem, 100%);
+    height: auto;
+  }
+
+  &__donut-bg {
+    fill: none;
+    stroke: var(--nexa-muted);
+    stroke-width: 16;
+  }
+
+  &__donut-seg {
+    fill: none;
+    stroke-width: 16;
+  }
+
+  &__donut-total {
+    font-size: 1.3rem;
+    font-weight: 700;
+    fill: var(--nexa-foreground);
+  }
+
+  &__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    justify-content: center;
+    margin-top: 0.8rem;
+    font-size: 0.78rem;
+    color: var(--nexa-muted-foreground);
+  }
+
+  &__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+
+    strong {
+      color: var(--nexa-foreground);
+    }
+  }
+
+  &__swatch {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: var(--nexa-radius-xs);
+  }
+
+  &__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}

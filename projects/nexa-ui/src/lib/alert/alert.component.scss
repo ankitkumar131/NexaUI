@@ -1,0 +1,82 @@
+:host.nexa-alert-host {
+  display: block;
+
+  --nexa-alert-bg: var(--nexa-card);
+  --nexa-alert-fg: var(--nexa-card-foreground);
+  --nexa-alert-border: var(--nexa-border);
+
+  &--destructive {
+    --nexa-alert-bg: color-mix(in srgb, var(--nexa-destructive) 10%, var(--nexa-card));
+    --nexa-alert-border: color-mix(in srgb, var(--nexa-destructive) 45%, var(--nexa-border));
+  }
+
+  &--success {
+    --nexa-alert-bg: color-mix(in srgb, var(--nexa-success) 10%, var(--nexa-card));
+    --nexa-alert-border: color-mix(in srgb, var(--nexa-success) 45%, var(--nexa-border));
+  }
+
+  &--warning {
+    --nexa-alert-bg: color-mix(in srgb, var(--nexa-warning) 12%, var(--nexa-card));
+    --nexa-alert-border: color-mix(in srgb, var(--nexa-warning) 50%, var(--nexa-border));
+  }
+
+  &--info {
+    --nexa-alert-bg: color-mix(in srgb, var(--nexa-info) 10%, var(--nexa-card));
+    --nexa-alert-border: color-mix(in srgb, var(--nexa-info) 45%, var(--nexa-border));
+  }
+}
+
+.nexa-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  font-family: var(--nexa-font-sans);
+  font-size: 0.87rem;
+  line-height: 1.55;
+  color: var(--nexa-alert-fg);
+  background: var(--nexa-alert-bg);
+  border: 1px solid var(--nexa-alert-border);
+  border-inline-start-width: 4px;
+  border-radius: var(--nexa-radius-md);
+
+  &__icon {
+    flex-shrink: 0;
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    display: block;
+    margin-bottom: 0.15rem;
+    font-size: 0.92rem;
+  }
+
+  &__content {
+    overflow-wrap: break-word;
+  }
+
+  &__close {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    color: var(--nexa-muted-foreground);
+    background: transparent;
+    border: none;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--nexa-accent);
+      color: var(--nexa-accent-foreground);
+    }
+  }
+}

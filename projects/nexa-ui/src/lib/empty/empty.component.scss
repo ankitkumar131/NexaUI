@@ -1,0 +1,46 @@
+:host.nexa-empty-host {
+  display: block;
+}
+
+.nexa-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  font-family: var(--nexa-font-sans);
+  background: var(--nexa-card);
+  border: 1px dashed var(--nexa-border);
+  border-radius: var(--nexa-radius-xl);
+
+  &__icon {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  &__title {
+    font-size: 1rem;
+    color: var(--nexa-foreground);
+  }
+
+  &__desc {
+    margin: 0;
+    max-width: 32rem;
+    font-size: 0.87rem;
+    color: var(--nexa-muted-foreground);
+    line-height: 1.6;
+  }
+
+  &__action {
+    margin-top: 0.5rem;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__extra:empty {
+    display: none;
+  }
+}

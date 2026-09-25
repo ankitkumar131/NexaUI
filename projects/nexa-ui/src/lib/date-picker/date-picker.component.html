@@ -1,0 +1,28 @@
+<div class="nexa-date-picker">
+  <nexa-input
+    [id]="id()"
+    [value]="display()"
+    [placeholder]="placeholder()"
+    [disabled]="isDisabled()"
+    [invalid]="invalid()"
+    [ariaLabel]="ariaLabel()"
+    autocomplete="off"
+    (valueChange)="onText($event)"
+    (blur)="onBlur()"
+    (keydown.enter)="commit()"
+  />
+  @if (value()) {
+    <nexa-button variant="ghost" size="icon" ariaLabel="Clear date" [disabled]="isDisabled()" (pressed)="clear()">✕</nexa-button>
+  }
+  <nexa-popover [(open)]="calOpen" width="auto" ariaLabel="Calendar" [disabled]="isDisabled()">
+    <nexa-button slot="trigger" variant="outline" size="icon" ariaLabel="Open calendar" [disabled]="isDisabled()">📅</nexa-button>
+    <nexa-calendar
+      [value]="value()"
+      [locale]="locale()"
+      [weekStartsOn]="weekStartsOn()"
+      [min]="min()"
+      [max]="max()"
+      (valueChange)="onCalSelect($event)"
+    />
+  </nexa-popover>
+</div>

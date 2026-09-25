@@ -1,0 +1,74 @@
+:host.nexa-message-host {
+  display: block;
+
+  &--user .nexa-message {
+    flex-direction: row-reverse;
+  }
+}
+
+.nexa-message {
+  display: flex;
+  gap: 0.7rem;
+  max-width: 42rem;
+  font-family: var(--nexa-font-sans);
+  font-size: 0.9rem;
+  line-height: 1.6;
+
+  :host(.nexa-message-host--user) & {
+    margin-inline-start: auto;
+  }
+
+  &__avatar:empty {
+    display: none;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  :host(.nexa-message-host--user) &__main {
+    align-items: flex-end;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--nexa-muted-foreground);
+
+    strong {
+      color: var(--nexa-foreground);
+      font-size: 0.8rem;
+    }
+  }
+
+  &__bubble {
+    padding: 0.65rem 0.95rem;
+    background: var(--nexa-muted);
+    color: var(--nexa-foreground);
+    border-radius: var(--nexa-radius-lg);
+    overflow-wrap: break-word;
+
+    :host(.nexa-message-host--assistant) & {
+      border-start-start-radius: var(--nexa-radius-xs);
+    }
+
+    :host(.nexa-message-host--user) & {
+      background: var(--nexa-primary);
+      color: var(--nexa-primary-foreground);
+      border-start-end-radius: var(--nexa-radius-xs);
+    }
+  }
+
+  &--system {
+    justify-content: center;
+    max-width: none;
+    font-size: 0.78rem;
+    color: var(--nexa-muted-foreground);
+  }
+}

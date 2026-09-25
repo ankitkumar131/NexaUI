@@ -1,0 +1,21 @@
+:host.nexa-date-picker-host {
+  display: block;
+  width: 100%;
+}
+
+.nexa-date-picker {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-family: var(--nexa-font-sans);
+
+  nexa-input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  // Calendar panel shouldn't stretch to the trigger width.
+  nexa-popover {
+    flex-shrink: 0;
+  }
+}

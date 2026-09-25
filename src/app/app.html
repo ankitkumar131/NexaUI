@@ -13,7 +13,7 @@
 
 <div class="showcase-layout">
   <nav class="showcase-toc" aria-label="Components table of contents">
-    <h2>Table of Contents <span class="showcase-toc__count">(40)</span></h2>
+    <h2>Table of Contents <span class="showcase-toc__count">(52)</span></h2>
     <ol>
       <li><a href="#button">Button</a></li>
       <li><a href="#typography">Typography</a></li>
@@ -55,6 +55,18 @@
       <li><a href="#resizable">Resizable</a></li>
       <li><a href="#scroll-area">Scroll Area</a></li>
       <li><a href="#sidebar">Sidebar</a></li>
+      <li><a href="#alert">Alert</a></li>
+      <li><a href="#toast">Toast</a></li>
+      <li><a href="#progress">Progress</a></li>
+      <li><a href="#spinner">Spinner</a></li>
+      <li><a href="#skeleton">Skeleton</a></li>
+      <li><a href="#empty">Empty</a></li>
+      <li><a href="#message">Message</a></li>
+      <li><a href="#table">Table</a></li>
+      <li><a href="#data-table">Data Table</a></li>
+      <li><a href="#calendar">Calendar</a></li>
+      <li><a href="#date-picker">Date Picker</a></li>
+      <li><a href="#chart">Chart</a></li>
       <!-- TOC:APPEND -->
     </ol>
   </nav>
@@ -803,6 +815,227 @@
           <div style="padding:1rem; border:1px dashed var(--nexa-border); border-radius:var(--nexa-radius-lg); color:var(--nexa-muted-foreground)">
             Page content — shrink below 1024px and the sidebar becomes a slide-in drawer.
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALERT -->
+    <section class="showcase-section" id="alert" aria-labelledby="alert-h">
+      <div class="showcase-section__header">
+        <h2 id="alert-h">Alert</h2>
+        <p><code>&lt;nexa-alert&gt;</code> — inline status tones.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-alert title="Default note">This is a neutral message.</nexa-alert>
+        <nexa-alert variant="info" title="Heads up">Deploy starts in 10 minutes.</nexa-alert>
+        <nexa-alert variant="success" title="Saved">Your changes are live.</nexa-alert>
+        <nexa-alert variant="warning" title="Storage 90% full">Consider upgrading your plan.</nexa-alert>
+        <nexa-alert variant="destructive" title="Failed">Could not reach the server.</nexa-alert>
+        @if (showBanner()) {
+          <nexa-alert variant="warning" [dismissible]="true" (dismissed)="showBanner.set(false)">Dismiss me with the ✕ button.</nexa-alert>
+        } @else {
+          <nexa-button size="sm" variant="outline" (pressed)="showBanner.set(true)">Restore banner</nexa-button>
+        }
+      </div>
+    </section>
+
+    <!-- TOAST -->
+    <section class="showcase-section" id="toast" aria-labelledby="toast-h">
+      <div class="showcase-section__header">
+        <h2 id="toast-h">Toast</h2>
+        <p><code>&lt;nexa-toaster&gt;</code> + <code>NexaToastService</code> — click to fire.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid">
+        <nexa-button size="sm" (pressed)="toast.success('Saved', 'Your changes are live.')">Success</nexa-button>
+        <nexa-button size="sm" variant="destructive" (pressed)="toast.error('Failed', 'Could not reach the server.')">Error</nexa-button>
+        <nexa-button size="sm" variant="outline" (pressed)="toast.warning('Heads up', 'Storage is 90% full.')">Warning</nexa-button>
+        <nexa-button size="sm" variant="secondary" (pressed)="toast.info('Tip', 'Press ⌘K for commands.')">Info</nexa-button>
+      </div>
+      <nexa-toaster />
+    </section>
+
+    <!-- PROGRESS -->
+    <section class="showcase-section" id="progress" aria-labelledby="progress-h">
+      <div class="showcase-section__header">
+        <h2 id="progress-h">Progress</h2>
+        <p><code>&lt;nexa-progress&gt;</code> — upload: <code>{{ uploadPct() }}%</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-progress [value]="uploadPct()" ariaLabel="Upload progress" [showLabel]="true" />
+        <nexa-slider [(value)]="uploadPct" ariaLabel="Simulate upload" />
+        <nexa-progress [value]="3" [max]="5" variant="success" ariaLabel="Steps complete" />
+        <nexa-progress [value]="80" variant="warning" size="sm" ariaLabel="Storage" />
+        <nexa-progress [indeterminate]="true" ariaLabel="Loading results" />
+      </div>
+    </section>
+
+    <!-- SPINNER -->
+    <section class="showcase-section" id="spinner" aria-labelledby="spinner-h">
+      <div class="showcase-section__header">
+        <h2 id="spinner-h">Spinner</h2>
+        <p><code>&lt;nexa-spinner&gt;</code> — loading rings.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid">
+        <nexa-spinner size="xs" />
+        <nexa-spinner size="sm" />
+        <nexa-spinner />
+        <nexa-spinner size="lg" />
+        <nexa-spinner size="xl" label="Loading dashboard" [showLabel]="true" />
+      </div>
+    </section>
+
+    <!-- SKELETON -->
+    <section class="showcase-section" id="skeleton" aria-labelledby="skeleton-h">
+      <div class="showcase-section__header">
+        <h2 id="skeleton-h">Skeleton</h2>
+        <p><code>&lt;nexa-skeleton&gt;</code> — content placeholders.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <div style="display:flex; gap:.75rem; align-items:center" aria-busy="true" aria-label="Loading profile">
+          <nexa-skeleton shape="circle" width="2.75rem" height="2.75rem" />
+          <div style="flex:1; display:grid; gap:.4rem">
+            <nexa-skeleton width="40%" height=".9rem" />
+            <nexa-skeleton width="85%" height=".9rem" />
+          </div>
+        </div>
+        <nexa-skeleton height="5rem" />
+      </div>
+    </section>
+
+    <!-- EMPTY -->
+    <section class="showcase-section" id="empty" aria-labelledby="empty-h">
+      <div class="showcase-section__header">
+        <h2 id="empty-h">Empty</h2>
+        <p><code>&lt;nexa-empty&gt;</code> — zero states.</p>
+      </div>
+      <div class="showcase-section__demo">
+        <nexa-empty icon="🔍" title="No results" description="Try a different search term or clear the filters.">
+          <nexa-button slot="action" size="sm" variant="outline">Clear search</nexa-button>
+        </nexa-empty>
+      </div>
+    </section>
+
+    <!-- MESSAGE -->
+    <section class="showcase-section" id="message" aria-labelledby="message-h">
+      <div class="showcase-section__header">
+        <h2 id="message-h">Message</h2>
+        <p><code>&lt;nexa-message&gt;</code> — chat thread rows.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-message from="assistant" name="Nexa AI" time="10:24">
+          <nexa-avatar slot="avatar" name="Nexa AI" size="sm" />
+          Hello! How can I help you today?
+        </nexa-message>
+        <nexa-message from="user" time="10:25">Show me last week's report.</nexa-message>
+        <nexa-message from="assistant" name="Nexa AI" time="10:25">
+          <nexa-avatar slot="avatar" name="Nexa AI" size="sm" />
+          Here it is — revenue is up 12% week over week. 📈
+        </nexa-message>
+        <nexa-message from="system">Ada joined the chat.</nexa-message>
+      </div>
+    </section>
+
+    <!-- TABLE -->
+    <section class="showcase-section" id="table" aria-labelledby="table-h">
+      <div class="showcase-section__header">
+        <h2 id="table-h">Table</h2>
+        <p><code>table[nexa-table]</code> — semantic tables (attribute components keep valid HTML).</p>
+      </div>
+      <div class="showcase-section__demo">
+        <div class="nexa-table-scroll">
+          <table nexa-table [striped]="true">
+            <caption>Team members — Q3</caption>
+            <thead nexa-table-header>
+              <tr nexa-table-row>
+                <th nexa-table-head>Name</th>
+                <th nexa-table-head>Role</th>
+                <th nexa-table-head>Location</th>
+              </tr>
+            </thead>
+            <tbody nexa-table-body>
+              <tr nexa-table-row>
+                <td nexa-table-cell>Ada Lovelace</td>
+                <td nexa-table-cell>Engineer</td>
+                <td nexa-table-cell>London</td>
+              </tr>
+              <tr nexa-table-row>
+                <td nexa-table-cell>Grace Hopper</td>
+                <td nexa-table-cell>Admiral</td>
+                <td nexa-table-cell>New York</td>
+              </tr>
+              <tr nexa-table-row>
+                <td nexa-table-cell>Alan Turing</td>
+                <td nexa-table-cell>Scientist</td>
+                <td nexa-table-cell>Manchester</td>
+              </tr>
+            </tbody>
+            <tfoot nexa-table-footer>
+              <tr nexa-table-row>
+                <td nexa-table-cell>Total</td>
+                <td nexa-table-cell>3</td>
+                <td nexa-table-cell>—</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATA TABLE -->
+    <section class="showcase-section" id="data-table" aria-labelledby="data-table-h">
+      <div class="showcase-section__header">
+        <h2 id="data-table-h">Data Table</h2>
+        <p><code>&lt;nexa-data-table&gt;</code> — sort, search, paginate, select. Selected: <code>{{ teamSel().join(', ') || '—' }}</code></p>
+      </div>
+      <div class="showcase-section__demo">
+        <nexa-data-table
+          [columns]="teamCols"
+          [data]="teamRows"
+          [selectable]="true"
+          [(selectedKeys)]="teamSel"
+          [pageSize]="4"
+          caption="Team members"
+        />
+      </div>
+    </section>
+
+    <!-- CALENDAR -->
+    <section class="showcase-section" id="calendar" aria-labelledby="calendar-h">
+      <div class="showcase-section__header">
+        <h2 id="calendar-h">Calendar</h2>
+        <p><code>&lt;nexa-calendar&gt;</code> — selected: <code>{{ calDate()?.toDateString() ?? '—' }}</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid">
+        <nexa-calendar [(value)]="calDate" />
+        <nexa-calendar locale="en-GB" [weekStartsOn]="1" ariaLabel="UK calendar, week starts Monday" />
+      </div>
+    </section>
+
+    <!-- DATE PICKER -->
+    <section class="showcase-section" id="date-picker" aria-labelledby="date-picker-h">
+      <div class="showcase-section__header">
+        <h2 id="date-picker-h">Date Picker</h2>
+        <p><code>&lt;nexa-date-picker&gt;</code> — picked: <code>{{ picked()?.toDateString() ?? '—' }}</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-field label="Start date" controlId="demo-pick">
+          <nexa-date-picker id="demo-pick" [(value)]="picked" />
+        </nexa-field>
+        <nexa-date-picker locale="de-DE" ariaLabel="Datum" />
+      </div>
+    </section>
+
+    <!-- CHART -->
+    <section class="showcase-section" id="chart" aria-labelledby="chart-h">
+      <div class="showcase-section__header">
+        <h2 id="chart-h">Chart</h2>
+        <p><code>&lt;nexa-chart&gt;</code> — dependency-free SVG charts.</p>
+      </div>
+      <div class="showcase-section__demo">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.5rem">
+          <nexa-chart type="bar" [data]="sales" [showValues]="true" />
+          <nexa-chart type="line" [data]="sales" />
+          <nexa-chart type="donut" [data]="sales" />
         </div>
       </div>
     </section>

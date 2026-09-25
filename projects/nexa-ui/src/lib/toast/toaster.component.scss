@@ -1,0 +1,127 @@
+:host.nexa-toaster-host {
+  position: fixed;
+  z-index: var(--nexa-z-toast);
+  display: block;
+  width: min(24rem, calc(100vw - 2rem));
+  pointer-events: none;
+
+  &--bottom-right {
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  &--bottom-left {
+    left: 1rem;
+    bottom: 1rem;
+  }
+
+  &--bottom-center {
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+  }
+
+  &--top-right {
+    right: 1rem;
+    top: 1rem;
+  }
+
+  &--top-left {
+    left: 1rem;
+    top: 1rem;
+  }
+
+  &--top-center {
+    left: 50%;
+    top: 1rem;
+    transform: translateX(-50%);
+  }
+}
+
+.nexa-toaster {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-family: var(--nexa-font-sans);
+}
+
+.nexa-toast {
+  --nexa-toast-accent: var(--nexa-primary);
+
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.85rem 0.9rem;
+  font-size: 0.85rem;
+  background: var(--nexa-popover);
+  color: var(--nexa-popover-foreground);
+  border: 1px solid var(--nexa-border);
+  border-inline-start: 4px solid var(--nexa-toast-accent);
+  border-radius: var(--nexa-radius-md);
+  box-shadow: var(--nexa-shadow-lg);
+  pointer-events: auto;
+  animation: nexa-toast-in 0.22s ease;
+
+  &--success {
+    --nexa-toast-accent: var(--nexa-success);
+  }
+
+  &--warning {
+    --nexa-toast-accent: var(--nexa-warning);
+  }
+
+  &--destructive {
+    --nexa-toast-accent: var(--nexa-destructive);
+  }
+
+  &--info {
+    --nexa-toast-accent: var(--nexa-info);
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    display: block;
+    font-size: 0.88rem;
+  }
+
+  &__desc {
+    margin: 0.15rem 0 0;
+    color: var(--nexa-muted-foreground);
+    line-height: 1.5;
+  }
+
+  &__close {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.7rem;
+    height: 1.7rem;
+    color: var(--nexa-muted-foreground);
+    background: transparent;
+    border: none;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--nexa-accent);
+      color: var(--nexa-accent-foreground);
+    }
+  }
+}
+
+@keyframes nexa-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}

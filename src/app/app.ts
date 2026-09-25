@@ -2,6 +2,25 @@ import { Component, inject, signal } from '@angular/core';
 import {
   NexaAlertDialogComponent,
   NexaAccordionComponent,
+  NexaAlertComponent,
+  NexaCalendarComponent,
+  NexaChartComponent,
+  NexaDataTableComponent,
+  NexaDatePickerComponent,
+  NexaEmptyComponent,
+  NexaMessageComponent,
+  NexaProgressComponent,
+  NexaSkeletonComponent,
+  NexaSpinnerComponent,
+  NexaTableBodyComponent,
+  NexaTableCellComponent,
+  NexaTableComponent,
+  NexaTableFooterComponent,
+  NexaTableHeadComponent,
+  NexaTableHeaderComponent,
+  NexaTableRowComponent,
+  NexaToasterComponent,
+  NexaToastService,
   NexaAccordionItemComponent,
   NexaBreadcrumbComponent,
   NexaCardActionComponent,
@@ -104,6 +123,24 @@ import {
     NexaResizableComponent,
     NexaScrollAreaComponent,
     NexaSidebarComponent,
+    NexaAlertComponent,
+    NexaToasterComponent,
+    NexaProgressComponent,
+    NexaSpinnerComponent,
+    NexaSkeletonComponent,
+    NexaEmptyComponent,
+    NexaMessageComponent,
+    NexaTableComponent,
+    NexaTableHeaderComponent,
+    NexaTableBodyComponent,
+    NexaTableFooterComponent,
+    NexaTableRowComponent,
+    NexaTableHeadComponent,
+    NexaTableCellComponent,
+    NexaDataTableComponent,
+    NexaCalendarComponent,
+    NexaDatePickerComponent,
+    NexaChartComponent,
   ],
   selector: 'app-root',
   styleUrl: './app.scss',
@@ -225,6 +262,35 @@ export class App {
   protected onCommand(item: NexaCommandItem): void {
     this.cmdChoice.set(item.label);
   }
+
+  // ---- feedback + data demos ----
+  protected readonly toast = inject(NexaToastService);
+  protected readonly uploadPct = signal(64);
+  protected readonly showBanner = signal(true);
+  protected readonly calDate = signal<Date | null>(null);
+  protected readonly picked = signal<Date | null>(null);
+  protected readonly teamCols = [
+    { key: 'name', header: 'Name', sortable: true },
+    { key: 'role', header: 'Role', sortable: true },
+    { key: 'location', header: 'Location' },
+    { key: 'age', header: 'Age', sortable: true, width: '4rem' },
+  ];
+  protected readonly teamRows = [
+    { id: 1, name: 'Ada Lovelace', role: 'Engineer', location: 'London', age: 36 },
+    { id: 2, name: 'Grace Hopper', role: 'Admiral', location: 'New York', age: 85 },
+    { id: 3, name: 'Alan Turing', role: 'Scientist', location: 'Manchester', age: 41 },
+    { id: 4, name: 'Katherine Johnson', role: 'Mathematician', location: 'Virginia', age: 101 },
+    { id: 5, name: 'Linus Torvalds', role: 'Engineer', location: 'Helsinki', age: 55 },
+    { id: 6, name: 'Margaret Hamilton', role: 'Engineer', location: 'Boston', age: 87 },
+  ];
+  protected readonly teamSel = signal<Array<string | number>>([]);
+  protected readonly sales = [
+    { label: 'Mon', value: 12 },
+    { label: 'Tue', value: 19 },
+    { label: 'Wed', value: 8 },
+    { label: 'Thu', value: 24 },
+    { label: 'Fri', value: 17 },
+  ];
 
   protected toggleTheme(): void {
     this.theme.toggle();
