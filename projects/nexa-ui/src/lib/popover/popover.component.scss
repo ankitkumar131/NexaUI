@@ -1,0 +1,74 @@
+:host.nexa-popover-host {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.nexa-popover {
+  position: relative;
+  font-family: var(--nexa-font-sans);
+
+  &__trigger {
+    display: inline-block;
+    max-width: 100%;
+    cursor: pointer;
+    border-radius: var(--nexa-radius-sm);
+
+    &:focus-visible {
+      outline: var(--nexa-focus-ring-width) solid var(--nexa-focus-ring-color);
+      outline-offset: var(--nexa-focus-ring-offset);
+    }
+  }
+
+  &__panel {
+    position: absolute;
+    z-index: var(--nexa-z-popover);
+    max-width: min(90vw, 22rem);
+    padding: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    background: var(--nexa-popover);
+    color: var(--nexa-popover-foreground);
+    border: 1px solid var(--nexa-border);
+    border-radius: var(--nexa-radius-lg);
+    box-shadow: var(--nexa-shadow-lg);
+    animation: nexa-popover-in 0.15s ease;
+
+    &--bottom {
+      top: calc(100% + 0.5rem);
+    }
+
+    &--top {
+      bottom: calc(100% + 0.5rem);
+    }
+
+    &--left {
+      right: calc(100% + 0.5rem);
+      top: 0;
+    }
+
+    &--right {
+      left: calc(100% + 0.5rem);
+      top: 0;
+    }
+
+    &--align-start {
+      inset-inline-start: 0;
+    }
+
+    &--align-end {
+      inset-inline-end: 0;
+    }
+
+    &--align-center {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@keyframes nexa-popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}

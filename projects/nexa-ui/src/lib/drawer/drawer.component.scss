@@ -1,0 +1,155 @@
+:host.nexa-drawer-host {
+  display: contents;
+}
+
+.nexa-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--nexa-z-modal);
+  font-family: var(--nexa-font-sans);
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 0.5);
+    animation: nexa-drawer-fade 0.18s ease;
+  }
+
+  &__panel {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    max-width: calc(100vw - 2rem);
+    max-height: 100vh;
+    background: var(--nexa-card);
+    color: var(--nexa-card-foreground);
+    border: 1px solid var(--nexa-border);
+    box-shadow: var(--nexa-shadow-xl);
+    padding: 1.4rem;
+
+    &--right {
+      inset-inline-end: 0;
+      top: 0;
+      bottom: 0;
+      border-radius: var(--nexa-radius-xl) 0 0 var(--nexa-radius-xl);
+      animation: nexa-drawer-right 0.22s ease;
+    }
+
+    &--left {
+      inset-inline-start: 0;
+      top: 0;
+      bottom: 0;
+      border-radius: 0 var(--nexa-radius-xl) var(--nexa-radius-xl) 0;
+      animation: nexa-drawer-left 0.22s ease;
+    }
+
+    &--top {
+      top: 0;
+      left: 0;
+      right: 0;
+      max-width: 100%;
+      border-radius: 0 0 var(--nexa-radius-xl) var(--nexa-radius-xl);
+      animation: nexa-drawer-top 0.22s ease;
+    }
+
+    &--bottom {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-width: 100%;
+      border-radius: var(--nexa-radius-xl) var(--nexa-radius-xl) 0 0;
+      animation: nexa-drawer-bottom 0.22s ease;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    margin: 0 0 0.25rem;
+    font-size: 1.1rem;
+    font-weight: 650;
+  }
+
+  &__desc {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--nexa-muted-foreground);
+  }
+
+  &__close {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    color: var(--nexa-muted-foreground);
+    background: transparent;
+    border: none;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--nexa-accent);
+      color: var(--nexa-accent-foreground);
+    }
+  }
+
+  &__body {
+    flex: 1;
+    overflow: auto;
+    font-size: 0.92rem;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+
+    &:empty {
+      display: none;
+    }
+  }
+}
+
+@keyframes nexa-drawer-right {
+  from {
+    transform: translateX(2rem);
+    opacity: 0;
+  }
+}
+
+@keyframes nexa-drawer-left {
+  from {
+    transform: translateX(-2rem);
+    opacity: 0;
+  }
+}
+
+@keyframes nexa-drawer-top {
+  from {
+    transform: translateY(-2rem);
+    opacity: 0;
+  }
+}
+
+@keyframes nexa-drawer-bottom {
+  from {
+    transform: translateY(2rem);
+    opacity: 0;
+  }
+}
+
+@keyframes nexa-drawer-fade {
+  from {
+    opacity: 0;
+  }
+}

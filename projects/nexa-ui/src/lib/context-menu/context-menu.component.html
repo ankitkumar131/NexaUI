@@ -1,0 +1,40 @@
+<div class="nexa-ctx" (contextmenu)="onContextMenu($event)">
+  <ng-content />
+</div>
+@if (open()) {
+  <ul
+    class="nexa-ctx__menu"
+    role="menu"
+    tabindex="-1"
+    autofocus
+    [attr.aria-label]="ariaLabel()"
+    [style.left]="menuStyle().left"
+    [style.top]="menuStyle().top"
+    (click)="$event.stopPropagation()"
+    (keydown)="onMenuKeydown($event)"
+    (contextmenu)="$event.preventDefault()"
+  >
+    @for (item of items(); track item.label; let i = $index) {
+      @if (item.separatorBefore) {
+        <li class="nexa-ctx__separator" role="separator" aria-hidden="true"></li>
+      }
+      <li
+        role="menuitem"
+        class="nexa-ctx__item"
+        [class.nexa-ctx__item--active]="i === activeIndex()"
+        [class.nexa-ctx__item--disabled]="item.disabled"
+        [class.nexa-ctx__item--destructive]="item.destructive"
+        [attr.aria-disabled]="item.disabled ? 'true' : null"
+        (click)="choose(item)"
+        (mouseenter)="setActive(i)"
+      >
+        <span>{{ item.label }}</span>
+        @if (item.hint) {
+          <span class="nexa-ctx__hint">{{ item.hint }}</span>
+        }
+      </li>
+    } @empty {
+      <li class="nexa-ctx__empty">No actions</li>
+    }
+  </ul>
+}

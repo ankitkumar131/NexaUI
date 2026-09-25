@@ -1,0 +1,83 @@
+:host.nexa-alert-dialog-host {
+  display: contents;
+}
+
+.nexa-alert-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: var(--nexa-z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  font-family: var(--nexa-font-sans);
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 0.6);
+    animation: nexa-alert-fade 0.18s ease;
+  }
+
+  &__panel {
+    position: relative;
+    width: 100%;
+    max-width: 28rem;
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
+    background: var(--nexa-card);
+    color: var(--nexa-card-foreground);
+    border: 1px solid var(--nexa-border);
+    border-radius: var(--nexa-radius-xl);
+    box-shadow: var(--nexa-shadow-xl);
+    padding: 1.5rem;
+    animation: nexa-alert-in 0.2s ease;
+  }
+
+  &__title {
+    margin: 0 0 0.4rem;
+    font-size: 1.15rem;
+    font-weight: 650;
+  }
+
+  &__desc {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--nexa-muted-foreground);
+    line-height: 1.6;
+  }
+
+  &__body:empty {
+    display: none;
+  }
+
+  &__body {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.4rem;
+
+    &:empty {
+      display: none;
+    }
+  }
+}
+
+@keyframes nexa-alert-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+}
+
+@keyframes nexa-alert-fade {
+  from {
+    opacity: 0;
+  }
+}

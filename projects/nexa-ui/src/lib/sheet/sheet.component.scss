@@ -1,0 +1,167 @@
+:host.nexa-sheet-host {
+  display: contents;
+}
+
+.nexa-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: var(--nexa-z-modal);
+  font-family: var(--nexa-font-sans);
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 0.5);
+    animation: nexa-sheet-fade 0.18s ease;
+  }
+
+  &__panel {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background: var(--nexa-card);
+    color: var(--nexa-card-foreground);
+    border: 1px solid var(--nexa-border);
+    box-shadow: var(--nexa-shadow-xl);
+    padding: 0.8rem 1.4rem 1.4rem;
+    max-height: 88vh;
+
+    &--bottom {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-width: 44rem;
+      margin-inline: auto;
+      border-radius: var(--nexa-radius-xl) var(--nexa-radius-xl) 0 0;
+      animation: nexa-sheet-up 0.25s ease;
+    }
+
+    &--top {
+      left: 0;
+      right: 0;
+      top: 0;
+      max-width: 44rem;
+      margin-inline: auto;
+      border-radius: 0 0 var(--nexa-radius-xl) var(--nexa-radius-xl);
+      animation: nexa-sheet-down 0.25s ease;
+    }
+
+    &--left,
+    &--right {
+      top: 0;
+      bottom: 0;
+      width: min(24rem, calc(100vw - 2rem));
+    }
+
+    &--left {
+      left: 0;
+      border-radius: 0 var(--nexa-radius-xl) var(--nexa-radius-xl) 0;
+      animation: nexa-sheet-left 0.22s ease;
+    }
+
+    &--right {
+      right: 0;
+      border-radius: var(--nexa-radius-xl) 0 0 var(--nexa-radius-xl);
+      animation: nexa-sheet-right 0.22s ease;
+    }
+  }
+
+  &__grabber {
+    width: 2.75rem;
+    height: 0.3rem;
+    margin: 0 auto 0.9rem;
+    background: var(--nexa-border);
+    border-radius: var(--nexa-radius-full);
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    margin: 0 0 0.25rem;
+    font-size: 1.1rem;
+    font-weight: 650;
+  }
+
+  &__desc {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--nexa-muted-foreground);
+  }
+
+  &__close {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    color: var(--nexa-muted-foreground);
+    background: transparent;
+    border: none;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--nexa-accent);
+      color: var(--nexa-accent-foreground);
+    }
+  }
+
+  &__body {
+    flex: 1;
+    overflow: auto;
+    font-size: 0.92rem;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+
+    &:empty {
+      display: none;
+    }
+  }
+}
+
+@keyframes nexa-sheet-up {
+  from {
+    transform: translateY(3rem);
+    opacity: 0;
+  }
+}
+
+@keyframes nexa-sheet-down {
+  from {
+    transform: translateY(-3rem);
+    opacity: 0;
+  }
+}
+
+@keyframes nexa-sheet-left {
+  from {
+    transform: translateX(-2rem);
+    opacity: 0;
+  }
+}
+
+@keyframes nexa-sheet-right {
+  from {
+    transform: translateX(2rem);
+    opacity: 0;
+  }
+}
+
+@keyframes nexa-sheet-fade {
+  from {
+    opacity: 0;
+  }
+}

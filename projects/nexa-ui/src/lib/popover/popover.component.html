@@ -1,0 +1,27 @@
+<div class="nexa-popover" (keydown)="onKeydown($event)">
+  <div
+    class="nexa-popover__trigger"
+    role="button"
+    tabindex="0"
+    [attr.aria-expanded]="open()"
+    [attr.aria-controls]="panelId()"
+    [attr.aria-disabled]="disabled() ? 'true' : null"
+    (click)="toggle()"
+    (keydown.enter)="toggle()"
+    (keydown.space)="toggle(); $event.preventDefault()"
+  >
+    <ng-content select="[slot=trigger]" />
+  </div>
+  @if (open()) {
+    <div
+      [class]="panelClasses()"
+      role="dialog"
+      [id]="panelId()"
+      [attr.aria-label]="ariaLabel()"
+      [style.width]="width()"
+      (click)="$event.stopPropagation()"
+    >
+      <ng-content />
+    </div>
+  }
+</div>

@@ -13,7 +13,7 @@
 
 <div class="showcase-layout">
   <nav class="showcase-toc" aria-label="Components table of contents">
-    <h2>Table of Contents <span class="showcase-toc__count">(8)</span></h2>
+    <h2>Table of Contents <span class="showcase-toc__count">(28)</span></h2>
     <ol>
       <li><a href="#button">Button</a></li>
       <li><a href="#typography">Typography</a></li>
@@ -34,6 +34,15 @@
       <li><a href="#input-otp">Input OTP</a></li>
       <li><a href="#input-group">Input Group</a></li>
       <li><a href="#field">Field</a></li>
+      <li><a href="#dialog">Dialog</a></li>
+      <li><a href="#alert-dialog">Alert Dialog</a></li>
+      <li><a href="#popover">Popover</a></li>
+      <li><a href="#tooltip">Tooltip</a></li>
+      <li><a href="#hover-card">Hover Card</a></li>
+      <li><a href="#dropdown-menu">Dropdown Menu</a></li>
+      <li><a href="#context-menu">Context Menu</a></li>
+      <li><a href="#drawer">Drawer</a></li>
+      <li><a href="#sheet">Sheet</a></li>
       <!-- TOC:APPEND -->
     </ol>
   </nav>
@@ -49,7 +58,7 @@
       <div class="showcase-hero__actions">
         <nexa-button>Primary action</nexa-button>
         <nexa-button variant="outline">Secondary</nexa-button>
-        <nexa-badge variant="success">v0.1 · 8 components</nexa-badge>
+        <nexa-badge variant="success">v0.3 · 28 components</nexa-badge>
       </div>
     </div>
 
@@ -396,6 +405,181 @@
       </div>
     </section>
 
+    <!-- DIALOG -->
+    <section class="showcase-section" id="dialog" aria-labelledby="dialog-h">
+      <div class="showcase-section__header">
+        <h2 id="dialog-h">Dialog</h2>
+        <p><code>&lt;nexa-dialog&gt;</code> — modal with focus, Escape and scroll-lock.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid">
+        <nexa-button (pressed)="dialogOpen.set(true)">Open dialog</nexa-button>
+      </div>
+      <nexa-dialog [(open)]="dialogOpen" title="Edit profile" description="Changes save instantly to your account.">
+        <nexa-field label="Display name" controlId="dlg-name">
+          <nexa-input id="dlg-name" placeholder="Ada Lovelace" />
+        </nexa-field>
+        <div slot="footer">
+          <nexa-button variant="outline" (pressed)="dialogOpen.set(false)">Cancel</nexa-button>
+          <nexa-button (pressed)="dialogOpen.set(false)">Save changes</nexa-button>
+        </div>
+      </nexa-dialog>
+    </section>
+
+    <!-- ALERT DIALOG -->
+    <section class="showcase-section" id="alert-dialog" aria-labelledby="alert-dialog-h">
+      <div class="showcase-section__header">
+        <h2 id="alert-dialog-h">Alert Dialog</h2>
+        <p><code>&lt;nexa-alert-dialog&gt;</code> — strict confirm. Result: <code>{{ alertResult() }}</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid">
+        <nexa-button variant="destructive" (pressed)="alertOpen.set(true)">Delete project</nexa-button>
+      </div>
+      <nexa-alert-dialog
+        [(open)]="alertOpen"
+        title="Delete project?"
+        description="This permanently deletes the project and all its data. This cannot be undone."
+        confirmText="Delete project"
+        [loading]="deleting()"
+        (confirmed)="confirmDelete()"
+        (cancelled)="alertResult.set('cancelled')"
+      />
+    </section>
+
+    <!-- POPOVER -->
+    <section class="showcase-section" id="popover" aria-labelledby="popover-h">
+      <div class="showcase-section__header">
+        <h2 id="popover-h">Popover</h2>
+        <p><code>&lt;nexa-popover&gt;</code> — click-triggered rich panel.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid">
+        <nexa-popover ariaLabel="Notifications">
+          <nexa-button slot="trigger" variant="outline">🔔 Notifications</nexa-button>
+          <strong>You have 3 updates</strong>
+          <p style="margin:.4rem 0 0; color:var(--nexa-muted-foreground)">Deploy succeeded, 2 new comments, weekly report ready.</p>
+        </nexa-popover>
+        <nexa-popover side="top" ariaLabel="Help">
+          <nexa-button slot="trigger" variant="ghost">Need help?</nexa-button>
+          <p style="margin:0">Popovers can hold <strong>any content</strong> — even form controls.</p>
+        </nexa-popover>
+      </div>
+    </section>
+
+    <!-- TOOLTIP -->
+    <section class="showcase-section" id="tooltip" aria-labelledby="tooltip-h">
+      <div class="showcase-section__header">
+        <h2 id="tooltip-h">Tooltip</h2>
+        <p><code>&lt;nexa-tooltip&gt;</code> — zero-JS hover/focus hints on every side.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid">
+        <nexa-tooltip text="Save changes (Ctrl+S)">
+          <nexa-button size="icon" ariaLabel="Save">💾</nexa-button>
+        </nexa-tooltip>
+        <nexa-tooltip text="Tooltip below" side="bottom">
+          <nexa-button variant="outline">Bottom</nexa-button>
+        </nexa-tooltip>
+        <nexa-tooltip text="Tooltip on the left" side="left">
+          <nexa-button variant="outline">Left</nexa-button>
+        </nexa-tooltip>
+        <nexa-tooltip text="Tooltip on the right" side="right">
+          <nexa-button variant="outline">Right</nexa-button>
+        </nexa-tooltip>
+      </div>
+    </section>
+
+    <!-- HOVER CARD -->
+    <section class="showcase-section" id="hover-card" aria-labelledby="hover-card-h">
+      <div class="showcase-section__header">
+        <h2 id="hover-card-h">Hover Card</h2>
+        <p><code>&lt;nexa-hover-card&gt;</code> — rich profile preview on hover/focus.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid">
+        <span>Built by
+          <nexa-hover-card ariaLabel="Profile preview for Ada">
+            <a slot="trigger" href="#hover-card">&#64;ada</a>
+            <div style="display:flex; gap:.75rem; align-items:center">
+              <nexa-avatar name="Ada Lovelace" size="lg" />
+              <div>
+                <strong>Ada Lovelace</strong>
+                <p style="margin:.2rem 0 0; color:var(--nexa-muted-foreground); font-size:.8rem">First programmer · Analytical engines</p>
+              </div>
+            </div>
+          </nexa-hover-card>
+          with Nexa UI.
+        </span>
+      </div>
+    </section>
+
+    <!-- DROPDOWN MENU -->
+    <section class="showcase-section" id="dropdown-menu" aria-labelledby="dropdown-menu-h">
+      <div class="showcase-section__header">
+        <h2 id="dropdown-menu-h">Dropdown Menu</h2>
+        <p><code>&lt;nexa-dropdown-menu&gt;</code> — last choice: <code>{{ menuChoice() }}</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid">
+        <nexa-dropdown-menu [items]="menuItems" (selected)="onMenu($event)" ariaLabel="Row actions">
+          <nexa-button slot="trigger" variant="outline">Actions ▾</nexa-button>
+        </nexa-dropdown-menu>
+        <nexa-dropdown-menu [items]="menuItems" (selected)="onMenu($event)" align="end" ariaLabel="More options">
+          <nexa-button slot="trigger" variant="ghost" size="icon" ariaLabel="More options">⋯</nexa-button>
+        </nexa-dropdown-menu>
+      </div>
+    </section>
+
+    <!-- CONTEXT MENU -->
+    <section class="showcase-section" id="context-menu" aria-labelledby="context-menu-h">
+      <div class="showcase-section__header">
+        <h2 id="context-menu-h">Context Menu</h2>
+        <p><code>&lt;nexa-context-menu&gt;</code> — right-click the box. Last choice: <code>{{ ctxChoice() }}</code></p>
+      </div>
+      <div class="showcase-section__demo">
+        <nexa-context-menu [items]="menuItems" (selected)="onCtx($event)" ariaLabel="File actions">
+          <div style="padding:2rem; text-align:center; border:1px dashed var(--nexa-border); border-radius:var(--nexa-radius-lg); color:var(--nexa-muted-foreground)">
+            📄 Right-click me (or long-press on touch)
+          </div>
+        </nexa-context-menu>
+      </div>
+    </section>
+
+    <!-- DRAWER -->
+    <section class="showcase-section" id="drawer" aria-labelledby="drawer-h">
+      <div class="showcase-section__header">
+        <h2 id="drawer-h">Drawer</h2>
+        <p><code>&lt;nexa-drawer&gt;</code> — sliding edge panel.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid">
+        <nexa-button variant="outline" (pressed)="drawerOpen.set(true)">Open filters drawer</nexa-button>
+      </div>
+      <nexa-drawer [(open)]="drawerOpen" title="Filters" description="Refine the product list.">
+        <div style="display:grid; gap:.75rem">
+          <nexa-checkbox>On sale only</nexa-checkbox>
+          <nexa-checkbox>In stock</nexa-checkbox>
+          <nexa-slider ariaLabel="Max price" [showValue]="true" />
+        </div>
+        <div slot="footer">
+          <nexa-button variant="outline" (pressed)="drawerOpen.set(false)">Reset</nexa-button>
+          <nexa-button (pressed)="drawerOpen.set(false)">Apply</nexa-button>
+        </div>
+      </nexa-drawer>
+    </section>
+
+    <!-- SHEET -->
+    <section class="showcase-section" id="sheet" aria-labelledby="sheet-h">
+      <div class="showcase-section__header">
+        <h2 id="sheet-h">Sheet</h2>
+        <p><code>&lt;nexa-sheet&gt;</code> — mobile-first bottom sheet.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid">
+        <nexa-button variant="outline" (pressed)="sheetOpen.set(true)">Open share sheet</nexa-button>
+      </div>
+      <nexa-sheet [(open)]="sheetOpen" title="Share this page" description="Send it anywhere.">
+        <div style="display:flex; gap:.5rem; flex-wrap:wrap">
+          <nexa-button size="sm">Copy link</nexa-button>
+          <nexa-button size="sm" variant="secondary">Email</nexa-button>
+          <nexa-button size="sm" variant="outline">Embed</nexa-button>
+        </div>
+      </nexa-sheet>
+    </section>
+
     <!-- SECTIONS:APPEND -->
   </main>
 </div>
@@ -403,3 +587,4 @@
 <footer class="showcase-footer">
   Nexa UI · Built with Angular 22 · MIT License
 </footer>
+

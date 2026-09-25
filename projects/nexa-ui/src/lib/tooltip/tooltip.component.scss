@@ -1,0 +1,61 @@
+:host.nexa-tooltip-host {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.nexa-tooltip {
+  position: relative;
+  display: inline-flex;
+  max-width: 100%;
+  font-family: var(--nexa-font-sans);
+
+  &__bubble {
+    position: absolute;
+    z-index: var(--nexa-z-tooltip);
+    max-width: 16rem;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+    text-align: center;
+    white-space: normal;
+    color: var(--nexa-primary-foreground);
+    background: var(--nexa-foreground);
+    border-radius: var(--nexa-radius-sm);
+    box-shadow: var(--nexa-shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--nexa-transition-fast), visibility var(--nexa-transition-fast);
+
+    &--top {
+      bottom: calc(100% + 0.45rem);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &--bottom {
+      top: calc(100% + 0.45rem);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &--left {
+      right: calc(100% + 0.45rem);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &--right {
+      left: calc(100% + 0.45rem);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &:hover &__bubble,
+  &:focus-within &__bubble {
+    opacity: 1;
+    visibility: visible;
+  }
+}

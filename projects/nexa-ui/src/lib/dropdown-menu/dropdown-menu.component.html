@@ -1,0 +1,47 @@
+<div class="nexa-menu">
+  <div
+    class="nexa-menu__trigger"
+    role="button"
+    tabindex="0"
+    [attr.aria-haspopup]="'menu'"
+    [attr.aria-expanded]="open()"
+    [attr.aria-disabled]="disabled() ? 'true' : null"
+    (click)="toggle()"
+    (keydown)="onTriggerKeydown($event)"
+  >
+    <ng-content select="[slot=trigger]" />
+  </div>
+  @if (open()) {
+    <ul
+      [class]="menuClasses()"
+      role="menu"
+      [attr.aria-label]="ariaLabel()"
+      [style.width]="width()"
+      (keydown)="onMenuKeydown($event)"
+    >
+      @for (item of items(); track item.label; let i = $index) {
+        @if (item.separatorBefore) {
+          <li class="nexa-menu__separator" role="separator" aria-hidden="true"></li>
+        }
+        <li
+          role="menuitem"
+          class="nexa-menu__item"
+          [class.nexa-menu__item--active]="i === activeIndex()"
+          [class.nexa-menu__item--disabled]="item.disabled"
+          [class.nexa-menu__item--destructive]="item.destructive"
+          [attr.aria-disabled]="item.disabled ? 'true' : null"
+          tabindex="-1"
+          (click)="choose(item)"
+          (mouseenter)="setActive(i)"
+        >
+          <span>{{ item.label }}</span>
+          @if (item.hint) {
+            <span class="nexa-menu__hint">{{ item.hint }}</span>
+          }
+        </li>
+      } @empty {
+        <li class="nexa-menu__empty">No actions</li>
+      }
+    </ul>
+  }
+</div>

@@ -1,0 +1,33 @@
+@if (open()) {
+  <div class="nexa-dialog" (keydown.escape)="requestClose()">
+    <div class="nexa-dialog__backdrop" (click)="onBackdropClick()"></div>
+    <div
+      [class]="panelClasses()"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-labelledby]="title() ? titleId() : null"
+      [attr.aria-describedby]="description() ? descId() : null"
+      tabindex="-1"
+      autofocus
+      (click)="$event.stopPropagation()"
+    >
+      @if (title() || showClose()) {
+        <div class="nexa-dialog__header">
+          <div>
+            @if (title()) {
+              <h2 class="nexa-dialog__title" [id]="titleId()">{{ title() }}</h2>
+            }
+            @if (description()) {
+              <p class="nexa-dialog__desc" [id]="descId()">{{ description() }}</p>
+            }
+          </div>
+          @if (showClose()) {
+            <button type="button" class="nexa-dialog__close nexa-focus-ring" aria-label="Close dialog" (click)="requestClose()">✕</button>
+          }
+        </div>
+      }
+      <div class="nexa-dialog__body"><ng-content /></div>
+      <div class="nexa-dialog__footer"><ng-content select="[slot=footer]" /></div>
+    </div>
+  </div>
+}

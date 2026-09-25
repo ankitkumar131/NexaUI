@@ -1,0 +1,6 @@
+<span class="nexa-tooltip">
+  <ng-content />
+  @if (text() && !disabled()) {
+    <span [class]="bubbleClasses()" role="tooltip">{{ text() }}</span>
+  }
+</span>

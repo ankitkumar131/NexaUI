@@ -1,24 +1,34 @@
 import { Component, inject, signal } from '@angular/core';
 import {
+  NexaAlertDialogComponent,
   NexaAspectRatioComponent,
   NexaAvatarComponent,
   NexaBadgeComponent,
   NexaButtonComponent,
   NexaCheckboxComponent,
+  NexaContextMenuComponent,
+  NexaDialogComponent,
+  NexaDrawerComponent,
+  NexaDropdownMenuComponent,
   NexaFieldComponent,
+  NexaHoverCardComponent,
   NexaInputGroupComponent,
   NexaInputOtpComponent,
   NexaInputComponent,
   NexaKbdComponent,
   NexaLabelComponent,
+  NexaMenuItem,
   NexaNativeSelectComponent,
+  NexaPopoverComponent,
   NexaRadioGroupComponent,
   NexaSelectComponent,
   NexaSeparatorComponent,
+  NexaSheetComponent,
   NexaSliderComponent,
   NexaSwitchComponent,
   NexaTextareaComponent,
   NexaThemeService,
+  NexaTooltipComponent,
   NexaTypographyComponent,
 } from 'nexa-ui';
 
@@ -43,6 +53,15 @@ import {
     NexaInputOtpComponent,
     NexaInputGroupComponent,
     NexaFieldComponent,
+    NexaDialogComponent,
+    NexaAlertDialogComponent,
+    NexaPopoverComponent,
+    NexaTooltipComponent,
+    NexaHoverCardComponent,
+    NexaDropdownMenuComponent,
+    NexaContextMenuComponent,
+    NexaDrawerComponent,
+    NexaSheetComponent,
   ],
   selector: 'app-root',
   styleUrl: './app.scss',
@@ -85,7 +104,41 @@ export class App {
     { value: 'jp', label: 'Japan' },
   ];
 
+  // ---- overlay demos ----
+  protected readonly dialogOpen = signal(false);
+  protected readonly alertOpen = signal(false);
+  protected readonly deleting = signal(false);
+  protected readonly alertResult = signal('—');
+  protected readonly menuChoice = signal('—');
+  protected readonly ctxChoice = signal('—');
+  protected readonly drawerOpen = signal(false);
+  protected readonly sheetOpen = signal(false);
+
+  protected readonly menuItems = [
+    { label: 'Edit', value: 'edit', hint: '⌘E' },
+    { label: 'Duplicate', value: 'duplicate', hint: '⌘D' },
+    { label: 'Archive', value: 'archive' },
+    { label: 'Delete', value: 'delete', destructive: true, separatorBefore: true },
+  ];
+
   protected toggleTheme(): void {
     this.theme.toggle();
+  }
+
+  protected confirmDelete(): void {
+    this.deleting.set(true);
+    setTimeout(() => {
+      this.deleting.set(false);
+      this.alertOpen.set(false);
+      this.alertResult.set('deleted at ' + new Date().toLocaleTimeString());
+    }, 900);
+  }
+
+  protected onMenu(item: NexaMenuItem): void {
+    this.menuChoice.set(item.label);
+  }
+
+  protected onCtx(item: NexaMenuItem): void {
+    this.ctxChoice.set(item.label);
   }
 }

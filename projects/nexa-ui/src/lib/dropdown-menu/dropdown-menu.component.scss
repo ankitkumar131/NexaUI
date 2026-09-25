@@ -1,0 +1,105 @@
+:host.nexa-menu-host {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.nexa-menu {
+  position: relative;
+  font-family: var(--nexa-font-sans);
+
+  &__trigger {
+    display: inline-block;
+    max-width: 100%;
+    cursor: pointer;
+    border-radius: var(--nexa-radius-sm);
+
+    &:focus-visible {
+      outline: var(--nexa-focus-ring-width) solid var(--nexa-focus-ring-color);
+      outline-offset: var(--nexa-focus-ring-offset);
+    }
+  }
+
+  &__list {
+    position: absolute;
+    top: calc(100% + 0.4rem);
+    z-index: var(--nexa-z-dropdown);
+    min-width: 10rem;
+    max-width: min(90vw, 18rem);
+    max-height: 18rem;
+    overflow: auto;
+    margin: 0;
+    padding: 0.3rem;
+    list-style: none;
+    background: var(--nexa-popover);
+    color: var(--nexa-popover-foreground);
+    border: 1px solid var(--nexa-border);
+    border-radius: var(--nexa-radius-md);
+    box-shadow: var(--nexa-shadow-lg);
+    animation: nexa-menu-in 0.14s ease;
+
+    &--align-start {
+      inset-inline-start: 0;
+    }
+
+    &--align-end {
+      inset-inline-end: 0;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.87rem;
+    border-radius: var(--nexa-radius-sm);
+    cursor: pointer;
+
+    &--active {
+      background: var(--nexa-accent);
+      color: var(--nexa-accent-foreground);
+    }
+
+    &--disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    &--destructive {
+      color: var(--nexa-destructive);
+    }
+
+    &--destructive.nexa-menu__item--active {
+      background: color-mix(in srgb, var(--nexa-destructive) 12%, transparent);
+      color: var(--nexa-destructive);
+    }
+  }
+
+  &__hint {
+    font-size: 0.72rem;
+    color: var(--nexa-muted-foreground);
+    font-family: var(--nexa-font-mono);
+  }
+
+  &__separator {
+    height: 1px;
+    margin: 0.3rem 0.4rem;
+    background: var(--nexa-border);
+    list-style: none;
+  }
+
+  &__empty {
+    padding: 0.7rem;
+    font-size: 0.85rem;
+    color: var(--nexa-muted-foreground);
+    text-align: center;
+  }
+}
+
+@keyframes nexa-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+}

@@ -1,0 +1,68 @@
+:host.nexa-hover-card-host {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.nexa-hover-card {
+  --nexa-hover-open-delay: 200ms;
+  --nexa-hover-close-delay: 120ms;
+
+  position: relative;
+  display: inline-flex;
+  max-width: 100%;
+  font-family: var(--nexa-font-sans);
+
+  &__trigger {
+    display: inline-flex;
+    max-width: 100%;
+  }
+
+  &__card-wrap {
+    position: absolute;
+    inset-inline-start: 0;
+    top: 100%;
+    z-index: var(--nexa-z-popover);
+    padding-top: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--nexa-transition-fast), visibility var(--nexa-transition-fast);
+    transition-delay: var(--nexa-hover-close-delay);
+  }
+
+  &:hover &__card-wrap,
+  &:focus-within &__card-wrap {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: var(--nexa-hover-open-delay);
+  }
+
+  &__card {
+    display: block;
+    max-width: min(90vw, 22rem);
+    padding: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    background: var(--nexa-popover);
+    color: var(--nexa-popover-foreground);
+    border: 1px solid var(--nexa-border);
+    border-radius: var(--nexa-radius-lg);
+    box-shadow: var(--nexa-shadow-lg);
+
+    &--top {
+      transform: translateY(calc(-100% - 1rem - 100%));
+    }
+  }
+
+  &:has(&__card--left) &__card-wrap {
+    inset-inline-start: auto;
+    inset-inline-end: calc(100% + 0.5rem);
+    top: 0;
+    padding-top: 0;
+  }
+
+  &:has(&__card--right) &__card-wrap {
+    inset-inline-start: calc(100% + 0.5rem);
+    top: 0;
+    padding-top: 0;
+  }
+}

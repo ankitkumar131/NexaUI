@@ -1,0 +1,12 @@
+<span
+  class="nexa-hover-card"
+  [style.--nexa-hover-open-delay]="openDelay() + 'ms'"
+  [style.--nexa-hover-close-delay]="closeDelay() + 'ms'"
+>
+  <span class="nexa-hover-card__trigger"><ng-content select="[slot=trigger]" /></span>
+  <span class="nexa-hover-card__card-wrap">
+    <span [class]="cardClasses()" role="dialog" [attr.aria-label]="ariaLabel()" [style.width]="width()">
+      <ng-content />
+    </span>
+  </span>
+</span>

@@ -1,0 +1,36 @@
+@if (open()) {
+  <div class="nexa-sheet" (keydown.escape)="requestClose()">
+    <div class="nexa-sheet__backdrop" (click)="requestClose()"></div>
+    <aside
+      [class]="panelClasses()"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-labelledby]="title() ? titleId() : null"
+      [attr.aria-describedby]="description() ? descId() : null"
+      tabindex="-1"
+      autofocus
+      (click)="$event.stopPropagation()"
+    >
+      @if (showGrabber() && (side() === 'bottom' || side() === 'top')) {
+        <div class="nexa-sheet__grabber" aria-hidden="true"></div>
+      }
+      @if (title() || showClose()) {
+        <div class="nexa-sheet__header">
+          <div>
+            @if (title()) {
+              <h2 class="nexa-sheet__title" [id]="titleId()">{{ title() }}</h2>
+            }
+            @if (description()) {
+              <p class="nexa-sheet__desc" [id]="descId()">{{ description() }}</p>
+            }
+          </div>
+          @if (showClose()) {
+            <button type="button" class="nexa-sheet__close nexa-focus-ring" aria-label="Close sheet" (click)="requestClose()">✕</button>
+          }
+        </div>
+      }
+      <div class="nexa-sheet__body"><ng-content /></div>
+      <div class="nexa-sheet__footer"><ng-content select="[slot=footer]" /></div>
+    </aside>
+  </div>
+}

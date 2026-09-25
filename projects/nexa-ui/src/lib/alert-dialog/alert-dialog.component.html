@@ -1,0 +1,30 @@
+@if (open()) {
+  <div class="nexa-alert-dialog" (keydown.escape)="onEscape()">
+    <div class="nexa-alert-dialog__backdrop"></div>
+    <div
+      [class]="panelClasses()"
+      role="alertdialog"
+      aria-modal="true"
+      [attr.aria-labelledby]="titleId()"
+      [attr.aria-describedby]="description() ? descId() : null"
+      tabindex="-1"
+      autofocus
+    >
+      <h2 class="nexa-alert-dialog__title" [id]="titleId()">{{ title() }}</h2>
+      @if (description()) {
+        <p class="nexa-alert-dialog__desc" [id]="descId()">{{ description() }}</p>
+      }
+      <div class="nexa-alert-dialog__body"><ng-content /></div>
+      @if (!hideDefaultFooter()) {
+        <div class="nexa-alert-dialog__footer">
+          <nexa-button variant="outline" [disabled]="loading()" (pressed)="onCancel()">{{ cancelText() }}</nexa-button>
+          <nexa-button [variant]="tone() === 'destructive' ? 'destructive' : 'default'" [loading]="loading()" (pressed)="onConfirm()">
+            {{ confirmText() }}
+          </nexa-button>
+        </div>
+      } @else {
+        <div class="nexa-alert-dialog__footer"><ng-content select="[slot=footer]" /></div>
+      }
+    </div>
+  </div>
+}
