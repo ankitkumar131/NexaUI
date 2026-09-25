@@ -48,6 +48,9 @@ The interactive demo app renders all 64 components with variants, behind a table
 npx ng serve nexa-showcase   # http://localhost:4200
 ```
 
+Works straight from a fresh clone — no need to build the library first
+(`tsconfig.json` maps `nexa-ui` to the library source).
+
 ## Customizing
 
 Every component follows the same three seams:

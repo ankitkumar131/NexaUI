@@ -8,7 +8,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "nexa-ui": ["./dist/nexa-ui"]
+      "nexa-ui": ["./projects/nexa-ui/src/public-api.ts"]
     },
     "skipLibCheck": true,
     "isolatedModules": true,
