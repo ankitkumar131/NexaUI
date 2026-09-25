@@ -1,0 +1,7 @@
+<label [class]="labelClasses()" [attr.for]="for()">
+  <ng-content />
+  @if (required()) {
+    <span class="nexa-label__required" aria-hidden="true">*</span>
+    <span class="nexa-label__sr">(required)</span>
+  }
+</label>

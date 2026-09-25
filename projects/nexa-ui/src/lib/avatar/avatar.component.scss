@@ -1,0 +1,48 @@
+:host.nexa-avatar-host {
+  --nexa-avatar-bg: var(--nexa-muted);
+  --nexa-avatar-fg: var(--nexa-muted-foreground);
+
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  vertical-align: middle;
+  background: var(--nexa-avatar-bg);
+  color: var(--nexa-avatar-fg);
+  font-family: var(--nexa-font-sans);
+  font-weight: 600;
+  border: 1px solid var(--nexa-border);
+  user-select: none;
+
+  &--xs { width: 1.5rem; height: 1.5rem; font-size: 0.55rem; }
+  &--sm { width: 2rem; height: 2rem; font-size: 0.7rem; }
+  &--md { width: 2.75rem; height: 2.75rem; font-size: 0.95rem; }
+  &--lg { width: 3.75rem; height: 3.75rem; font-size: 1.25rem; }
+  &--xl { width: 5.5rem; height: 5.5rem; font-size: 1.8rem; }
+
+  &--circle { border-radius: var(--nexa-radius-full); }
+  &--rounded { border-radius: var(--nexa-radius-md); }
+  &--square { border-radius: var(--nexa-radius-xs); }
+}
+
+.nexa-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nexa-avatar__fallback {
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.nexa-avatar__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

@@ -1,0 +1,6 @@
+@if (showImage()) {
+  <img class="nexa-avatar__img" [src]="src()" [alt]="alt() || name()" loading="lazy" (error)="onImgError()" />
+} @else {
+  <span class="nexa-avatar__fallback" aria-hidden="true"><ng-content>{{ initials() }}</ng-content></span>
+  <span class="nexa-avatar__sr">{{ name() }}</span>
+}

@@ -1,0 +1,205 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.showcase-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--nexa-z-sticky);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.5rem;
+  background: color-mix(in srgb, var(--nexa-background) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--nexa-border);
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--nexa-primary-foreground);
+    background: linear-gradient(135deg, var(--nexa-primary), #9333ea);
+    border-radius: var(--nexa-radius-md);
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--nexa-muted-foreground);
+  }
+}
+
+.showcase-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  align-items: start;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.showcase-toc {
+  position: sticky;
+  top: 5.2rem;
+  max-height: calc(100vh - 6.5rem);
+  overflow: auto;
+  padding: 1rem;
+  background: var(--nexa-card);
+  border: 1px solid var(--nexa-border);
+  border-radius: var(--nexa-radius-lg);
+
+  @media (max-width: 900px) {
+    position: static;
+    max-height: 240px;
+  }
+
+  h2 {
+    margin: 0 0 0.6rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--nexa-muted-foreground);
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  a {
+    display: block;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+    color: var(--nexa-foreground);
+    text-decoration: none;
+    border-radius: var(--nexa-radius-sm);
+
+    &:hover {
+      background: var(--nexa-accent);
+      color: var(--nexa-accent-foreground);
+    }
+  }
+
+  &__count {
+    color: var(--nexa-muted-foreground);
+    font-size: 0.72rem;
+  }
+}
+
+.showcase-main {
+  display: grid;
+  gap: 2.5rem;
+  min-width: 0;
+}
+
+.showcase-hero {
+  padding: 2rem;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--nexa-primary) 12%, transparent), transparent 60%),
+    var(--nexa-card);
+  border: 1px solid var(--nexa-border);
+  border-radius: var(--nexa-radius-xl);
+
+  h1 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.6rem, 1.2rem + 2vw, 2.4rem);
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    margin: 0 0 1.2rem;
+    color: var(--nexa-muted-foreground);
+    max-width: 60ch;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+}
+
+.showcase-section {
+  scroll-margin-top: 5.5rem;
+  padding: 1.5rem;
+  background: var(--nexa-card);
+  border: 1px solid var(--nexa-border);
+  border-radius: var(--nexa-radius-xl);
+
+  &__header {
+    margin-bottom: 1.2rem;
+
+    h2 {
+      margin: 0 0 0.25rem;
+      font-size: 1.3rem;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--nexa-muted-foreground);
+    }
+
+    code {
+      font-family: var(--nexa-font-mono);
+      font-size: 0.78rem;
+      padding: 0.1em 0.4em;
+      background: var(--nexa-muted);
+      border-radius: var(--nexa-radius-xs);
+    }
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  &__grid--col {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &__demo {
+    padding: 1.2rem;
+    border: 1px dashed var(--nexa-border);
+    border-radius: var(--nexa-radius-lg);
+    background: color-mix(in srgb, var(--nexa-muted) 35%, transparent);
+  }
+}
+
+.showcase-footer {
+  padding: 2rem 1.5rem 3rem;
+  text-align: center;
+  color: var(--nexa-muted-foreground);
+  font-size: 0.82rem;
+}

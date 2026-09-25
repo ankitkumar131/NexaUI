@@ -1,0 +1,27 @@
+:host.nexa-kbd-host {
+  display: inline-block;
+}
+
+.nexa-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  padding: 0.15rem 0.45rem;
+  font-family: var(--nexa-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--nexa-muted-foreground);
+  background: var(--nexa-muted);
+  border: 1px solid var(--nexa-border);
+  border-bottom-width: 2px;
+  border-radius: var(--nexa-radius-xs);
+  white-space: nowrap;
+
+  &--sm {
+    min-width: 1.2rem;
+    padding: 0.05rem 0.3rem;
+    font-size: 0.62rem;
+  }
+}

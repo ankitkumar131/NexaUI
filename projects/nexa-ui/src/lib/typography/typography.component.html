@@ -1,0 +1,10 @@
+@switch (variant()) {
+  @case ('h1') { <h1 [class]="textClasses()"><ng-content /></h1> }
+  @case ('h2') { <h2 [class]="textClasses()"><ng-content /></h2> }
+  @case ('h3') { <h3 [class]="textClasses()"><ng-content /></h3> }
+  @case ('h4') { <h4 [class]="textClasses()"><ng-content /></h4> }
+  @case ('blockquote') { <blockquote [class]="textClasses()"><ng-content /></blockquote> }
+  @case ('inline-code') { <code [class]="textClasses()"><ng-content /></code> }
+  @case ('list') { <ul [class]="textClasses()"><ng-content /></ul> }
+  @default { <p [class]="textClasses()"><ng-content /></p> }
+}

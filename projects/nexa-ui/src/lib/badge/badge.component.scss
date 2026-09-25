@@ -1,0 +1,40 @@
+:host.nexa-badge-host {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.nexa-badge {
+  --nexa-badge-bg: var(--nexa-primary);
+  --nexa-badge-fg: var(--nexa-primary-foreground);
+  --nexa-badge-border: transparent;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  font-family: var(--nexa-font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  color: var(--nexa-badge-fg);
+  background: var(--nexa-badge-bg);
+  border: 1px solid var(--nexa-badge-border);
+  border-radius: var(--nexa-radius-sm);
+
+  &--pill { border-radius: var(--nexa-radius-full); }
+  &--sm { padding: 0.1rem 0.45rem; font-size: 0.65rem; }
+  &--lg { padding: 0.3rem 0.85rem; font-size: 0.8rem; }
+
+  &--secondary { --nexa-badge-bg: var(--nexa-secondary); --nexa-badge-fg: var(--nexa-secondary-foreground); }
+  &--destructive { --nexa-badge-bg: var(--nexa-destructive); --nexa-badge-fg: var(--nexa-destructive-foreground); }
+  &--success { --nexa-badge-bg: var(--nexa-success); --nexa-badge-fg: var(--nexa-success-foreground); }
+  &--warning { --nexa-badge-bg: var(--nexa-warning); --nexa-badge-fg: var(--nexa-warning-foreground); }
+  &--info { --nexa-badge-bg: var(--nexa-info); --nexa-badge-fg: var(--nexa-info-foreground); }
+  &--outline {
+    --nexa-badge-bg: transparent;
+    --nexa-badge-fg: var(--nexa-foreground);
+    --nexa-badge-border: var(--nexa-border);
+  }
+}

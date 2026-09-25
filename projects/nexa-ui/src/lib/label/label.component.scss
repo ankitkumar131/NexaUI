@@ -1,0 +1,32 @@
+:host.nexa-label-host {
+  display: inline-block;
+}
+
+.nexa-label {
+  font-family: var(--nexa-font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--nexa-foreground);
+  cursor: pointer;
+
+  &--disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  &__required {
+    margin-inline-start: 0.2rem;
+    color: var(--nexa-destructive);
+    font-weight: 700;
+  }
+
+  &__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
