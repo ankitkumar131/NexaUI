@@ -87,7 +87,15 @@ import {
   NexaTypographyComponent,
 } from 'nexa-ui';
 
+interface DemoUpload {
+  id: number;
+  name: string;
+  size: number;
+  progress: number | null;
+}
+
 @Component({
+  host: { '(document:keydown)': 'onGlobalKeydown($event)' },
   imports: [
     NexaButtonComponent,
     NexaTypographyComponent,
@@ -374,6 +382,72 @@ export class App {
         { id: id + 1, from: 'assistant' as const, name: 'Nexa AI', text: 'Got it: ' + text },
       ]);
     }, 600);
+  }
+
+  // ---- shortcuts + range + upload demos ----
+  protected readonly lastKeys = signal('\u2014');
+  protected readonly rangeFrom = signal<Date | null>(null);
+  protected readonly rangeTo = signal<Date | null>(null);
+  protected readonly alertMs = signal(5);
+  protected readonly autoAlert = signal(false);
+  protected readonly uploads = signal<DemoUpload[]>([]);
+  private uploadSeq = 0;
+
+  protected onGlobalKeydown(event: KeyboardEvent): void {
+    const key = event.key.length === 1 ? event.key.toUpperCase() : event.key;
+    const parts: string[] = [];
+    if (event.ctrlKey) parts.push('Ctrl');
+    if (event.metaKey) parts.push('\u2318');
+    if (event.altKey) parts.push('Alt');
+    if (event.shiftKey) parts.push('Shift');
+    if (!['Control', 'Meta', 'Alt', 'Shift'].includes(event.key)) parts.push(key);
+    if (parts.length > 0) this.lastKeys.set(parts.join(' + '));
+
+    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      this.cmdOpen.update((v) => !v);
+    }
+  }
+
+  protected rangeLabel(): string {
+    const from = this.rangeFrom();
+    const to = this.rangeTo();
+    if (!from) return 'pick a start date';
+    if (!to) return `${from.toDateString()} \u2192 \u2026`;
+    return `${from.toDateString()} \u2192 ${to.toDateString()}`;
+  }
+
+  protected onFilesPicked(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const files = input.files ? Array.from(input.files) : [];
+    input.value = '';
+    for (const file of files) {
+      const id = ++this.uploadSeq;
+      this.uploads.update((list) => [...list, { id, name: file.name, size: file.size, progress: 0 }]);
+      this.simulateUpload(id);
+    }
+  }
+
+  protected removeUpload(id: number): void {
+    this.uploads.update((list) => list.filter((u) => u.id !== id));
+  }
+
+  private simulateUpload(id: number): void {
+    const timer = setInterval(() => {
+      let done = false;
+      this.uploads.update((list) =>
+        list.map((u) => {
+          if (u.id !== id || u.progress === null) return u;
+          const next = u.progress + 5 + Math.random() * 11;
+          if (next >= 100) {
+            done = true;
+            return { ...u, progress: null };
+          }
+          return { ...u, progress: next };
+        })
+      );
+      if (done || !this.uploads().some((u) => u.id === id)) clearInterval(timer);
+    }, 160);
   }
 
   protected toggleTheme(): void {

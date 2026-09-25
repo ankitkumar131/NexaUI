@@ -1,7 +1,30 @@
 <div class="nexa-calendar" role="group" [attr.aria-label]="ariaLabel()">
   <div class="nexa-calendar__header">
     <button type="button" class="nexa-calendar__nav nexa-focus-ring" aria-label="Previous month" [disabled]="disabled()" (click)="prev()">‹</button>
-    <strong class="nexa-calendar__month" aria-live="polite">{{ monthLabel() }}</strong>
+    <div class="nexa-calendar__selects">
+      <select
+        class="nexa-calendar__select nexa-focus-ring"
+        aria-label="Month"
+        [value]="view().m"
+        [disabled]="disabled()"
+        (change)="setMonth(+$any($event.target).value)"
+      >
+        @for (m of months(); track m.value) {
+          <option [value]="m.value">{{ m.label }}</option>
+        }
+      </select>
+      <select
+        class="nexa-calendar__select nexa-focus-ring"
+        aria-label="Year"
+        [value]="view().y"
+        [disabled]="disabled()"
+        (change)="setYear(+$any($event.target).value)"
+      >
+        @for (y of years(); track y) {
+          <option [value]="y">{{ y }}</option>
+        }
+      </select>
+    </div>
     <button type="button" class="nexa-calendar__nav nexa-focus-ring" aria-label="Next month" [disabled]="disabled()" (click)="next()">›</button>
   </div>
   <div class="nexa-calendar__weekdays" aria-hidden="true">
@@ -9,7 +32,11 @@
       <span>{{ w.short }}</span>
     }
   </div>
-  <div class="nexa-calendar__grid">
+  <div
+    class="nexa-calendar__grid"
+    [class.nexa-calendar__grid--slide-prev]="slide() === 'prev'"
+    [class.nexa-calendar__grid--slide-next]="slide() === 'next'"
+  >
     @for (week of weeks(); track $index) {
       @for (day of week; track day.iso) {
         <button
@@ -19,6 +46,9 @@
           [class.nexa-calendar__day--outside]="day.outside"
           [class.nexa-calendar__day--today]="day.today"
           [class.nexa-calendar__day--selected]="day.selected"
+          [class.nexa-calendar__day--range-start]="day.rangeStart"
+          [class.nexa-calendar__day--range-end]="day.rangeEnd"
+          [class.nexa-calendar__day--in-range]="day.inRange"
           [attr.data-iso]="day.iso"
           [attr.aria-label]="fullLabel(day)"
           [attr.aria-pressed]="day.selected"

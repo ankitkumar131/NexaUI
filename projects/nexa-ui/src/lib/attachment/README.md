@@ -33,3 +33,31 @@ import { NexaAttachmentComponent } from 'nexa-ui';
 ## Accessibility
 
 Progress uses `progressbar` semantics; actions are labelled buttons. File names truncate with ellipsis but remain fully available to screen readers.
+
+## Live upload pattern
+
+Pair a native file input with per-file progress signals. While `0 < progress < 100` the bar shows a gentle sheen; set `progress` to `null` when done to hide the bar:
+
+```html
+<input #pick type="file" multiple hidden (change)="onFiles($event)" />
+<nexa-button variant="outline" (pressed)="pick.click()">Choose files…</nexa-button>
+@for (u of uploads(); track u.id) {
+  <nexa-attachment [fileName]="u.name" [fileSize]="u.size" [progress]="u.progress" (removed)="drop(u.id)" />
+}
+```
+
+```ts
+protected readonly uploads = signal<{ id: number; name: string; size: number; progress: number | null }[]>([]);
+
+protected onFiles(e: Event): void {
+  const files = Array.from((e.target as HTMLInputElement).files ?? []);
+  for (const f of files) {
+    const id = nextId++;
+    this.uploads.update((l) => [...l, { id, name: f.name, size: f.size, progress: 0 }]);
+    this.tick(id); // poll XHR/fetch progress, then set progress: null
+  }
+  (e.target as HTMLInputElement).value = '';
+}
+```
+
+New attachments slide/fade in (`--nexa-attachment-enter-duration`, default `300ms`).

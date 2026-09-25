@@ -215,10 +215,13 @@
         <h2 id="kbd-h">Kbd</h2>
         <p><code>&lt;nexa-kbd&gt;</code> — keyboard shortcut hints.</p>
       </div>
-      <div class="showcase-section__demo showcase-section__grid">
-        <span>Press <nexa-kbd>Ctrl</nexa-kbd> + <nexa-kbd>K</nexa-kbd> to search</span>
-        <nexa-kbd size="sm">Esc</nexa-kbd>
-        <nexa-kbd>⇧ Shift</nexa-kbd>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <span>Press <nexa-kbd>Ctrl</nexa-kbd> + <nexa-kbd>K</nexa-kbd> (or <nexa-kbd>⌘</nexa-kbd> + <nexa-kbd>K</nexa-kbd>) anywhere — it opens the command palette. Try it now.</span>
+        <div class="showcase-section__grid">
+          <nexa-kbd size="sm">Esc</nexa-kbd>
+          <nexa-kbd>⇧ Shift</nexa-kbd>
+          <span>Last keys pressed: <code>{{ lastKeys() }}</code></span>
+        </div>
       </div>
     </section>
 
@@ -420,8 +423,9 @@
         <nexa-input-group size="lg" [invalid]="true">
           <span slot="prefix">🔍</span>
           <nexa-input [borderless]="true" placeholder="Search…" ariaLabel="Search" />
-          <span slot="suffix"><nexa-kbd>⌘K</nexa-kbd></span>
+          <span slot="suffix"><nexa-kbd size="sm">⌘K</nexa-kbd></span>
         </nexa-input-group>
+        <p style="margin:0; font-size:.8rem; color: var(--nexa-muted-foreground)">The <nexa-kbd size="sm">⌘K</nexa-kbd> hint above is live — pressing it opens the command palette.</p>
       </div>
     </section>
 
@@ -686,7 +690,7 @@
     <section class="showcase-section" id="command" aria-labelledby="command-h">
       <div class="showcase-section__header">
         <h2 id="command-h">Command</h2>
-        <p><code>&lt;nexa-command&gt;</code> — last run: <code>{{ cmdChoice() }}</code></p>
+        <p><code>&lt;nexa-command&gt;</code> — last run: <code>{{ cmdChoice() }}</code> · tip: <nexa-kbd size="sm">⌘K</nexa-kbd> / <nexa-kbd size="sm">Ctrl K</nexa-kbd> toggles it anywhere</p>
       </div>
       <div class="showcase-section__demo showcase-section__grid">
         <nexa-button variant="outline" (pressed)="cmdOpen.set(true)">Open commands <nexa-kbd>⌘K</nexa-kbd></nexa-button>
@@ -847,6 +851,18 @@
           <nexa-alert variant="warning" [dismissible]="true" (dismissed)="showBanner.set(false)">Dismiss me with the ✕ button.</nexa-alert>
         } @else {
           <nexa-button size="sm" variant="outline" (pressed)="showBanner.set(true)">Restore banner</nexa-button>
+        }
+        <nexa-alert size="sm" variant="info" title="Small">Compact inline notice.</nexa-alert>
+        <nexa-alert size="lg" variant="success" title="Large">Roomy banner for page-level wins.</nexa-alert>
+        <div class="showcase-section__grid">
+          <nexa-slider [(value)]="alertMs" [min]="1" [max]="10" [showValue]="true" ariaLabel="Auto-dismiss delay in seconds" />
+          <span>{{ alertMs() }}s auto-dismiss</span>
+          <nexa-button size="sm" variant="outline" (pressed)="autoAlert.set(true)">Show timed alert</nexa-button>
+        </div>
+        @if (autoAlert()) {
+          <nexa-alert variant="warning" title="Heads up" [duration]="alertMs() * 1000" [dismissible]="true" (dismissed)="autoAlert.set(false)">
+            I dismiss after {{ alertMs() }}s — hover or focus me to pause the countdown.
+          </nexa-alert>
         }
       </div>
     </section>
@@ -1015,11 +1031,12 @@
     <section class="showcase-section" id="calendar" aria-labelledby="calendar-h">
       <div class="showcase-section__header">
         <h2 id="calendar-h">Calendar</h2>
-        <p><code>&lt;nexa-calendar&gt;</code> — selected: <code>{{ calDate()?.toDateString() ?? '—' }}</code></p>
+        <p><code>&lt;nexa-calendar&gt;</code> — selected: <code>{{ calDate()?.toDateString() ?? '—' }}</code> · range: <code>{{ rangeLabel() }}</code></p>
       </div>
       <div class="showcase-section__demo showcase-section__grid">
         <nexa-calendar [(value)]="calDate" />
         <nexa-calendar locale="en-GB" [weekStartsOn]="1" ariaLabel="UK calendar, week starts Monday" />
+        <nexa-calendar mode="range" [(value)]="rangeFrom" [(rangeEnd)]="rangeTo" ariaLabel="Trip dates" />
       </div>
     </section>
 
@@ -1139,6 +1156,19 @@
         <nexa-attachment fileName="quarterly-report.pdf" [fileSize]="2480000" [progress]="100" />
         <nexa-attachment fileName="hero-banner.png" [fileSize]="812000" [progress]="64" />
         <nexa-attachment fileName="notes.txt" [fileSize]="4200" [removable]="false" />
+      </div>
+      <p class="showcase-hint">Live demo — pick real files from your device to watch the upload animate:</p>
+      <div class="showcase-row">
+        <input #filePick type="file" multiple hidden (change)="onFilesPicked($event)" />
+        <nexa-button variant="outline" (pressed)="filePick.click()">Choose files…</nexa-button>
+        <span class="showcase-hint" style="margin:0">{{ uploads().length }} file(s) uploading or done</span>
+      </div>
+      <div class="showcase-col">
+        @for (u of uploads(); track u.id) {
+          <nexa-attachment [fileName]="u.name" [fileSize]="u.size" [progress]="u.progress" (removed)="removeUpload(u.id)" />
+        } @empty {
+          <p class="showcase-hint">No uploads yet.</p>
+        }
       </div>
     </section>
 

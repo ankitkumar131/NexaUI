@@ -33,3 +33,7 @@ import { NexaSkeletonComponent } from 'nexa-ui';
 ## Accessibility
 
 Skeletons are `aria-hidden` — put `aria-busy="true"` + a label on the loading region instead. Shimmer pauses under `prefers-reduced-motion` (global token rule).
+
+## Customizing
+
+Shimmer sweep is `--nexa-skeleton-duration` (default `2.6s`) with a gentle 350ms fade-in.

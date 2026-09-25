@@ -12,6 +12,15 @@
   background: var(--nexa-card);
   border: 1px solid var(--nexa-border);
   border-radius: var(--nexa-radius-md);
+  animation: nexa-attachment-enter var(--nexa-attachment-enter-duration, 300ms) cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--nexa-border) 60%, var(--nexa-primary));
+    box-shadow: var(--nexa-shadow-xs);
+  }
 
   &__icon {
     flex-shrink: 0;
@@ -49,10 +58,26 @@
   }
 
   &__fill {
+    position: relative;
     height: 100%;
+    overflow: hidden;
     background: var(--nexa-primary);
     border-radius: var(--nexa-radius-full);
-    transition: width var(--nexa-transition-normal);
+    transition: width 280ms cubic-bezier(0.22, 1, 0.36, 1);
+
+    &--uploading::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        110deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.35) 50%,
+        transparent 70%
+      );
+      background-size: 200% 100%;
+      animation: nexa-attachment-sheen 1.8s linear infinite;
+    }
   }
 
   &__actions {
@@ -74,10 +99,38 @@
     border-radius: var(--nexa-radius-sm);
     cursor: pointer;
     text-decoration: none;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease,
+      transform 120ms ease;
 
     &:hover {
       background: var(--nexa-accent);
       color: var(--nexa-accent-foreground);
     }
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+}
+
+@keyframes nexa-attachment-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes nexa-attachment-sheen {
+  from {
+    background-position: 180% 0;
+  }
+  to {
+    background-position: -20% 0;
   }
 }

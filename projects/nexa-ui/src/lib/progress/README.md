@@ -31,3 +31,7 @@ import { NexaProgressComponent } from 'nexa-ui';
 ## Accessibility
 
 Native `progressbar` semantics with `aria-valuenow`/`valuetext`. Indeterminate omits values (correct) — announce completion separately (toast/alert).
+
+## Customizing
+
+Determinate fills glide with a smooth 260ms ease-out. Indeterminate sweep speed is `--nexa-progress-indeterminate-duration` (default `2.4s`) — calm by design, override per instance or globally.

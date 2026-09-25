@@ -4,6 +4,8 @@
   --nexa-alert-bg: var(--nexa-card);
   --nexa-alert-fg: var(--nexa-card-foreground);
   --nexa-alert-border: var(--nexa-border);
+  --nexa-alert-enter-duration: 280ms;
+  --nexa-alert-leave-duration: 240ms;
 
   &--destructive {
     --nexa-alert-bg: color-mix(in srgb, var(--nexa-destructive) 10%, var(--nexa-card));
@@ -24,13 +26,43 @@
     --nexa-alert-bg: color-mix(in srgb, var(--nexa-info) 10%, var(--nexa-card));
     --nexa-alert-border: color-mix(in srgb, var(--nexa-info) 45%, var(--nexa-border));
   }
+
+  &--sm .nexa-alert {
+    gap: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  &--sm .nexa-alert__icon {
+    font-size: 0.9rem;
+  }
+
+  &--sm .nexa-alert__title {
+    font-size: 0.82rem;
+  }
+
+  &--lg .nexa-alert {
+    gap: 0.9rem;
+    padding: 1.15rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  &--lg .nexa-alert__icon {
+    font-size: 1.3rem;
+  }
+
+  &--lg .nexa-alert__title {
+    font-size: 1.02rem;
+  }
 }
 
 .nexa-alert {
+  position: relative;
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
   padding: 0.9rem 1rem;
+  overflow: hidden;
   font-family: var(--nexa-font-sans);
   font-size: 0.87rem;
   line-height: 1.55;
@@ -39,6 +71,12 @@
   border: 1px solid var(--nexa-alert-border);
   border-inline-start-width: 4px;
   border-radius: var(--nexa-radius-md);
+  animation: nexa-alert-enter var(--nexa-alert-enter-duration) cubic-bezier(0.22, 1, 0.36, 1);
+
+  &--leaving {
+    animation: nexa-alert-leave var(--nexa-alert-leave-duration) ease-in forwards;
+    pointer-events: none;
+  }
 
   &__icon {
     flex-shrink: 0;
@@ -73,10 +111,61 @@
     border: none;
     border-radius: var(--nexa-radius-sm);
     cursor: pointer;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease,
+      transform 120ms ease;
 
     &:hover {
       background: var(--nexa-accent);
       color: var(--nexa-accent-foreground);
     }
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  &__countdown {
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background: color-mix(in srgb, currentColor 55%, transparent);
+    animation-name: nexa-alert-countdown;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    &--paused {
+      animation-play-state: paused;
+    }
+  }
+}
+
+@keyframes nexa-alert-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes nexa-alert-leave {
+  to {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.99);
+  }
+}
+
+@keyframes nexa-alert-countdown {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
   }
 }

@@ -1,6 +1,7 @@
 :host.nexa-skeleton-host {
   display: block;
   min-width: 1rem;
+  animation: nexa-skeleton-enter 350ms ease;
 
   &--circle {
     border-radius: var(--nexa-radius-full);
@@ -25,7 +26,7 @@
     var(--nexa-muted) 65%
   );
   background-size: 200% 100%;
-  animation: nexa-skeleton-shimmer 1.4s ease-in-out infinite;
+  animation: nexa-skeleton-shimmer var(--nexa-skeleton-duration, 2.6s) ease-in-out infinite;
 }
 
 // Host carries the explicit size; inner fills it.
@@ -39,5 +40,14 @@
   }
   to {
     background-position: -20% 0;
+  }
+}
+
+@keyframes nexa-skeleton-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

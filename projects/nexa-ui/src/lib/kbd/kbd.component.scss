@@ -18,6 +18,22 @@
   border-bottom-width: 2px;
   border-radius: var(--nexa-radius-xs);
   white-space: nowrap;
+  cursor: default;
+  user-select: none;
+  transition:
+    transform 120ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+
+  &:hover {
+    background: color-mix(in srgb, var(--nexa-muted) 60%, var(--nexa-accent));
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    border-bottom-width: 1px;
+  }
 
   &--sm {
     min-width: 1.2rem;

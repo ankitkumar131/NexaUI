@@ -15,6 +15,20 @@ import { NexaKbdComponent } from 'nexa-ui';
 <nexa-kbd size="sm">Esc</nexa-kbd>
 ```
 
+`nexa-kbd` is the visual hint — wire the real shortcut in your app:
+
+```ts
+@Component({ host: { '(document:keydown)': 'onKey($event)' } })
+export class App {
+  protected onKey(e: KeyboardEvent): void {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      this.paletteOpen.set(true); // e.g. toggle nexa-command
+    }
+  }
+}
+```
+
 ## API
 
 | Input | Type | Default | Description |

@@ -21,6 +21,13 @@ import { NexaInputGroupComponent } from 'nexa-ui';
   <span slot="prefix">https://</span>
   <nexa-input [borderless]="true" placeholder="example.com" />
 </nexa-input-group>
+
+<!-- search box with a live shortcut hint in the suffix -->
+<nexa-input-group size="lg">
+  <span slot="prefix">🔍</span>
+  <nexa-input [borderless]="true" placeholder="Search…" ariaLabel="Search" />
+  <span slot="suffix"><nexa-kbd size="sm">⌘K</nexa-kbd></span>
+</nexa-input-group>
 ```
 
 Slots: `[slot=prefix]` and `[slot=suffix]`; the default slot holds the control.

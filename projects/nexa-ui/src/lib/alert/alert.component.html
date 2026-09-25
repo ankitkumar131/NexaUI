@@ -1,4 +1,12 @@
-<div class="nexa-alert" [attr.role]="role()">
+<div
+  class="nexa-alert"
+  [class.nexa-alert--leaving]="leaving()"
+  [attr.role]="role()"
+  (mouseenter)="pause()"
+  (mouseleave)="resume()"
+  (focusin)="pause()"
+  (focusout)="resume()"
+>
   @if (glyph()) {
     <span class="nexa-alert__icon" aria-hidden="true">{{ glyph() }}</span>
   }
@@ -10,5 +18,13 @@
   </div>
   @if (dismissible()) {
     <button type="button" class="nexa-alert__close nexa-focus-ring" aria-label="Dismiss" (click)="dismiss()">✕</button>
+  }
+  @if (duration() > 0) {
+    <span
+      class="nexa-alert__countdown"
+      [class.nexa-alert__countdown--paused]="paused()"
+      [style.animation-duration.ms]="duration()"
+      aria-hidden="true"
+    ></span>
   }
 </div>

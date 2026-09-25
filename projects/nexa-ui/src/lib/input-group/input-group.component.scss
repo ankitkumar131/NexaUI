@@ -19,7 +19,10 @@
   border: 1px solid var(--nexa-input);
   border-radius: var(--nexa-radius-md);
   overflow: hidden;
-  transition: border-color var(--nexa-transition-fast), box-shadow var(--nexa-transition-fast);
+  transition:
+    border-color var(--nexa-transition-fast),
+    box-shadow var(--nexa-transition-fast),
+    transform 160ms ease;
 
   :host(.nexa-input-group-host--sm) & {
     min-height: 2rem;
@@ -34,8 +37,13 @@
   }
 
   &:focus-within {
+    border-color: var(--nexa-primary);
     outline: var(--nexa-focus-ring-width) solid var(--nexa-focus-ring-color);
     outline-offset: var(--nexa-focus-ring-offset);
+  }
+
+  &:hover:not(:focus-within) {
+    border-color: color-mix(in srgb, var(--nexa-input) 55%, var(--nexa-foreground));
   }
 
   :host(.nexa-input-group-host--invalid) & {

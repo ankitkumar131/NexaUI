@@ -33,3 +33,7 @@ import { NexaSpinnerComponent } from 'nexa-ui';
 ## Accessibility
 
 `role="status"` announces politely. Set `aria-busy` on the loading region and keep one spinner per region (multiple spinners = noisy SR output).
+
+## Customizing
+
+Rotation period is `--nexa-spinner-duration` (default `1s`) with a soft 300ms fade/scale-in on appearance.

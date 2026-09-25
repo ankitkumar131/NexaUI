@@ -17,7 +17,11 @@
         aria-valuemax="100"
         [attr.aria-valuenow]="pct()"
       >
-        <div class="nexa-attachment__fill" [style.width]="pct() + '%'"></div>
+        <div
+          class="nexa-attachment__fill"
+          [class.nexa-attachment__fill--uploading]="pct() !== null && pct()! < 100"
+          [style.width]="pct() + '%'"
+        ></div>
       </div>
     }
   </div>

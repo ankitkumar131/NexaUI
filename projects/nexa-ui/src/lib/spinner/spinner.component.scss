@@ -26,6 +26,7 @@
   align-items: center;
   gap: 0.6rem;
   font-family: var(--nexa-font-sans);
+  animation: nexa-spinner-enter 300ms ease;
 
   &__ring {
     width: var(--nexa-spinner-size);
@@ -33,7 +34,7 @@
     border: calc(var(--nexa-spinner-size) / 7) solid var(--nexa-secondary);
     border-top-color: var(--nexa-primary);
     border-radius: var(--nexa-radius-full);
-    animation: nexa-spinner-rotate 0.8s linear infinite;
+    animation: nexa-spinner-rotate var(--nexa-spinner-duration, 1s) linear infinite;
   }
 
   &__label {
@@ -54,5 +55,16 @@
 @keyframes nexa-spinner-rotate {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes nexa-spinner-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }

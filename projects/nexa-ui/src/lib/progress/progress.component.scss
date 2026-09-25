@@ -48,12 +48,12 @@
     height: 100%;
     background: var(--nexa-progress-fill);
     border-radius: var(--nexa-radius-full);
-    transition: width var(--nexa-transition-normal);
+    transition: width 260ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   &__bar--indeterminate &__fill {
     width: 35% !important;
-    animation: nexa-progress-slide 1.2s ease-in-out infinite;
+    animation: nexa-progress-slide var(--nexa-progress-indeterminate-duration, 2.4s) ease-in-out infinite;
   }
 
   &__label {

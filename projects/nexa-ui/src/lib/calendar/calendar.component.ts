@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, ElementRef, computed, input, model, signal, viewChildren } from '@angular/core';
 import { nexaCn } from '../utils/utils';
 
+export type NexaCalendarMode = 'single' | 'range';
+
 export interface NexaCalendarDay {
   date: Date;
   iso: string;
@@ -8,13 +10,23 @@ export interface NexaCalendarDay {
   today: boolean;
   selected: boolean;
   disabled: boolean;
+  rangeStart: boolean;
+  rangeEnd: boolean;
+  inRange: boolean;
+}
+
+export interface NexaCalendarMonthOption {
+  value: number;
+  label: string;
 }
 
 /**
- * NexaCalendar — locale-aware month picker with keyboard navigation.
+ * NexaCalendar — locale-aware month picker with keyboard navigation,
+ * single or range selection, and month/year jump selects.
  *
  * ```html
  * <nexa-calendar [(value)]="date" locale="en-GB" [weekStartsOn]="1" />
+ * <nexa-calendar mode="range" [(value)]="from" [(rangeEnd)]="to" />
  * ```
  */
 @Component({
@@ -26,7 +38,11 @@ export interface NexaCalendarDay {
   host: { '[class]': 'hostClasses()' },
 })
 export class NexaCalendarComponent {
+  /** Selected day — or the range start when `mode="range"`. */
   readonly value = model<Date | null>(null);
+  /** Range end when `mode="range"` (`null` while the user is still picking). */
+  readonly rangeEnd = model<Date | null>(null);
+  readonly mode = input<NexaCalendarMode>('single');
   readonly locale = input('en-US');
   /** 0 = Sunday … 6 = Saturday. */
   readonly weekStartsOn = input(0);
@@ -37,11 +53,15 @@ export class NexaCalendarComponent {
   readonly extraClass = input('');
 
   private readonly dayRefs = viewChildren<ElementRef<HTMLButtonElement>>('day');
+  private slideTimer: ReturnType<typeof setTimeout> | undefined;
 
   protected readonly view = signal<{ y: number; m: number }>({
     y: new Date().getFullYear(),
     m: new Date().getMonth(),
   });
+
+  /** Month-slide animation direction ('' = idle). */
+  protected readonly slide = signal<'prev' | 'next' | ''>('');
 
   constructor() {
     const v = this.value();
@@ -55,6 +75,22 @@ export class NexaCalendarComponent {
     return new Intl.DateTimeFormat(this.locale(), { month: 'long', year: 'numeric' }).format(
       new Date(v.y, v.m, 1)
     );
+  });
+
+  protected readonly months = computed<NexaCalendarMonthOption[]>(() => {
+    const fmt = new Intl.DateTimeFormat(this.locale(), { month: 'long' });
+    return Array.from({ length: 12 }, (_, m) => ({ value: m, label: fmt.format(new Date(2024, m, 1)) }));
+  });
+
+  protected readonly years = computed<number[]>(() => {
+    const v = this.view();
+    const min = this.toStartOfDay(this.min());
+    const max = this.toStartOfDay(this.max());
+    const from = Math.min(min ? min.getFullYear() : v.y - 60, v.y);
+    const to = Math.max(max ? max.getFullYear() : v.y + 60, v.y);
+    const out: number[] = [];
+    for (let y = from; y <= to; y++) out.push(y);
+    return out;
   });
 
   protected readonly weekdays = computed(() => {
@@ -73,7 +109,9 @@ export class NexaCalendarComponent {
     const start = this.weekStartsOn();
     const first = new Date(y, m, 1);
     const offset = (first.getDay() - start + 7) % 7;
-    const selected = this.value();
+    const range = this.mode() === 'range';
+    const from = this.toDayStart(this.value());
+    const to = range ? this.toDayStart(this.rangeEnd()) : null;
     const today = new Date();
     const min = this.toStartOfDay(this.min());
     const max = this.toStartOfDay(this.max());
@@ -81,6 +119,9 @@ export class NexaCalendarComponent {
     for (let i = 0; i < 42; i++) {
       const date = new Date(y, m, 1 - offset + i);
       const dayStart = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      const t = dayStart.getTime();
+      const isStart = from !== null && t === from;
+      const isEnd = to !== null && t === to;
       const disabledDay =
         this.disabled() || (min !== null && dayStart < min) || (max !== null && dayStart > max);
       cells.push({
@@ -88,39 +129,90 @@ export class NexaCalendarComponent {
         iso: this.iso(date),
         outside: date.getMonth() !== m,
         today: this.sameDay(date, today),
-        selected: selected !== null && this.sameDay(date, selected),
+        selected: isStart || isEnd,
         disabled: disabledDay,
+        rangeStart: range && isStart,
+        rangeEnd: range && isEnd,
+        inRange:
+          range &&
+          from !== null &&
+          to !== null &&
+          from !== to &&
+          t > Math.min(from, to) &&
+          t < Math.max(from, to),
       });
     }
     return Array.from({ length: 6 }, (_, w) => cells.slice(w * 7, w * 7 + 7));
   });
 
   protected fullLabel(day: NexaCalendarDay): string {
-    return new Intl.DateTimeFormat(this.locale(), { dateStyle: 'full' }).format(day.date);
+    const base = new Intl.DateTimeFormat(this.locale(), { dateStyle: 'full' }).format(day.date);
+    if (this.mode() !== 'range') return base;
+    if (day.rangeStart && day.rangeEnd) return `${base} (selected range, single day)`;
+    if (day.rangeStart) return `${base} (range start)`;
+    if (day.rangeEnd) return `${base} (range end)`;
+    if (day.inRange) return `${base} (in selected range)`;
+    return base;
   }
 
   protected select(day: NexaCalendarDay): void {
     if (day.disabled) return;
-    this.value.set(new Date(day.date));
+    const clicked = new Date(day.date);
+    if (this.mode() === 'range') {
+      const start = this.value();
+      const end = this.rangeEnd();
+      if (!start || (start && end)) {
+        // Fresh pick (or restart after a complete range).
+        this.value.set(clicked);
+        this.rangeEnd.set(null);
+      } else if (clicked.getTime() === new Date(start.getFullYear(), start.getMonth(), start.getDate()).getTime()) {
+        this.rangeEnd.set(new Date(clicked));
+      } else if (clicked < start) {
+        this.rangeEnd.set(new Date(start));
+        this.value.set(clicked);
+      } else {
+        this.rangeEnd.set(clicked);
+      }
+    } else {
+      this.value.set(clicked);
+    }
     const v = this.view();
-    if (day.date.getFullYear() !== v.y || day.date.getMonth() !== v.m) {
-      this.view.set({ y: day.date.getFullYear(), m: day.date.getMonth() });
+    if (clicked.getFullYear() !== v.y || clicked.getMonth() !== v.m) {
+      this.view.set({ y: clicked.getFullYear(), m: clicked.getMonth() });
     }
   }
 
   protected prev(): void {
     const v = this.view();
     this.view.set(v.m === 0 ? { y: v.y - 1, m: 11 } : { y: v.y, m: v.m - 1 });
+    this.kick('prev');
   }
 
   protected next(): void {
     const v = this.view();
     this.view.set(v.m === 11 ? { y: v.y + 1, m: 0 } : { y: v.y, m: v.m + 1 });
+    this.kick('next');
+  }
+
+  protected setMonth(m: number): void {
+    const v = this.view();
+    if (Number.isNaN(m) || m === v.m) return;
+    this.view.set({ y: v.y, m });
+    this.kick(m > v.m ? 'next' : 'prev');
+  }
+
+  protected setYear(y: number): void {
+    const v = this.view();
+    if (Number.isNaN(y) || y === v.y) return;
+    this.view.set({ y, m: v.m });
+    this.kick(y > v.y ? 'next' : 'prev');
   }
 
   protected goToday(): void {
     const now = new Date();
+    const v = this.view();
     this.view.set({ y: now.getFullYear(), m: now.getMonth() });
+    this.kick(now.getFullYear() * 12 + now.getMonth() >= v.y * 12 + v.m ? 'next' : 'prev');
     this.focusIso(this.iso(now));
   }
 
@@ -170,6 +262,12 @@ export class NexaCalendarComponent {
     }
   }
 
+  private kick(dir: 'prev' | 'next'): void {
+    this.slide.set(dir);
+    if (this.slideTimer !== undefined) clearTimeout(this.slideTimer);
+    this.slideTimer = setTimeout(() => this.slide.set(''), 260);
+  }
+
   private focusIso(iso: string): void {
     const el = this.dayRefs().find((r) => r.nativeElement.dataset['iso'] === iso);
     el?.nativeElement.focus();
@@ -182,6 +280,11 @@ export class NexaCalendarComponent {
 
   private sameDay(a: Date, b: Date): boolean {
     return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+  }
+
+  private toDayStart(v: Date | null): number | null {
+    if (!v || Number.isNaN(v.getTime())) return null;
+    return new Date(v.getFullYear(), v.getMonth(), v.getDate()).getTime();
   }
 
   private toStartOfDay(v: Date | string | undefined): Date | null {
