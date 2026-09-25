@@ -1,0 +1,24 @@
+<div class="nexa-native-select__wrap">
+  <select
+    [class]="selectClasses()"
+    [attr.id]="id()"
+    [attr.name]="name()"
+    [attr.aria-label]="ariaLabel()"
+    [disabled]="isDisabled()"
+    [required]="required()"
+    [attr.aria-invalid]="invalid() ? 'true' : null"
+    (change)="onInput($event)"
+    (blur)="onBlur()"
+  >
+    @if (placeholder()) {
+      <option value="" [selected]="value() === undefined" disabled>{{ placeholder() }}</option>
+    }
+    @for (option of options(); track option.value) {
+      <option [value]="option.value" [selected]="option.value === value()" [disabled]="option.disabled">
+        {{ option.label }}
+      </option>
+    }
+    <ng-content />
+  </select>
+  <span class="nexa-native-select__chevron" aria-hidden="true">▾</span>
+</div>

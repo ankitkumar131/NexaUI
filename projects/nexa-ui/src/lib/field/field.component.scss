@@ -1,0 +1,30 @@
+:host.nexa-field-host {
+  display: block;
+  width: 100%;
+}
+
+.nexa-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: var(--nexa-font-sans);
+
+  &__control {
+    display: block;
+  }
+
+  &__desc {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--nexa-muted-foreground);
+    line-height: 1.5;
+  }
+
+  &__error {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--nexa-destructive);
+    line-height: 1.5;
+  }
+}

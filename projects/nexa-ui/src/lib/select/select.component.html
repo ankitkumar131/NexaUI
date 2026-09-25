@@ -1,0 +1,48 @@
+<div class="nexa-select">
+  <button
+    #trigger
+    type="button"
+    [class]="triggerClasses()"
+    [disabled]="isDisabled()"
+    aria-haspopup="listbox"
+    [attr.aria-expanded]="open()"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-invalid]="invalid() ? 'true' : null"
+    (click)="toggle()"
+    (keydown)="onTriggerKeydown($event)"
+  >
+    <span class="nexa-select__label">{{ selectedLabel() ?? placeholder() }}</span>
+    <span class="nexa-select__chevron" aria-hidden="true">▾</span>
+  </button>
+  @if (open()) {
+    <ul
+      class="nexa-select__list"
+      role="listbox"
+      [attr.aria-label]="ariaLabel() || placeholder()"
+      tabindex="-1"
+      (keydown)="onListKeydown($event)"
+    >
+      @for (option of options(); track option.value; let i = $index) {
+        <li
+          role="option"
+          [id]="optionId(i)"
+          class="nexa-select__option"
+          [class.nexa-select__option--active]="i === activeIndex()"
+          [class.nexa-select__option--selected]="option.value === value()"
+          [class.nexa-select__option--disabled]="option.disabled"
+          [attr.aria-selected]="option.value === value()"
+          [attr.aria-disabled]="option.disabled ? 'true' : null"
+          (click)="choose(option)"
+          (mouseenter)="setActive(i)"
+        >
+          <span>{{ option.label }}</span>
+          @if (option.value === value()) {
+            <span class="nexa-select__check" aria-hidden="true">✓</span>
+          }
+        </li>
+      } @empty {
+        <li class="nexa-select__empty">No options available</li>
+      }
+    </ul>
+  }
+</div>

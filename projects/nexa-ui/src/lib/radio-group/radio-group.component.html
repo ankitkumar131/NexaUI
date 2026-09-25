@@ -1,0 +1,23 @@
+<div class="nexa-radio" role="radiogroup" [attr.aria-label]="ariaLabel()">
+  @for (option of options(); track option.value) {
+    <label class="nexa-radio__option" [class.nexa-radio__option--disabled]="option.disabled || isDisabled()">
+      <input
+        class="nexa-radio__input"
+        type="radio"
+        [attr.name]="name()"
+        [value]="option.value"
+        [checked]="isChecked(option)"
+        [disabled]="option.disabled || isDisabled()"
+        [attr.aria-invalid]="invalid() ? 'true' : null"
+        (change)="select(option.value)"
+      />
+      <span class="nexa-radio__dot" aria-hidden="true"></span>
+      <span class="nexa-radio__text">
+        <span class="nexa-radio__label">{{ option.label }}</span>
+        @if (option.description) {
+          <span class="nexa-radio__desc">{{ option.description }}</span>
+        }
+      </span>
+    </label>
+  }
+</div>

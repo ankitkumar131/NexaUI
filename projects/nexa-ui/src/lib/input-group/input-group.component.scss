@@ -1,0 +1,76 @@
+:host.nexa-input-group-host {
+  display: block;
+  width: 100%;
+
+  &--disabled {
+    opacity: 0.6;
+  }
+}
+
+.nexa-input-group {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-height: 2.5rem;
+  font-family: var(--nexa-font-sans);
+  font-size: 0.9rem;
+  color: var(--nexa-foreground);
+  background: var(--nexa-background);
+  border: 1px solid var(--nexa-input);
+  border-radius: var(--nexa-radius-md);
+  overflow: hidden;
+  transition: border-color var(--nexa-transition-fast), box-shadow var(--nexa-transition-fast);
+
+  :host(.nexa-input-group-host--sm) & {
+    min-height: 2rem;
+    font-size: 0.8rem;
+    border-radius: var(--nexa-radius-sm);
+  }
+
+  :host(.nexa-input-group-host--lg) & {
+    min-height: 2.9rem;
+    font-size: 1rem;
+    border-radius: var(--nexa-radius-lg);
+  }
+
+  &:focus-within {
+    outline: var(--nexa-focus-ring-width) solid var(--nexa-focus-ring-color);
+    outline-offset: var(--nexa-focus-ring-offset);
+  }
+
+  :host(.nexa-input-group-host--invalid) & {
+    border-color: var(--nexa-destructive);
+  }
+
+  &__addon {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    color: var(--nexa-muted-foreground);
+    background: var(--nexa-muted);
+    white-space: nowrap;
+
+    &:empty {
+      display: none;
+    }
+
+    &--prefix {
+      border-inline-end: 1px solid var(--nexa-border);
+    }
+
+    &--suffix {
+      border-inline-start: 1px solid var(--nexa-border);
+    }
+  }
+
+  &__control {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+
+    ::ng-deep > * {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+}

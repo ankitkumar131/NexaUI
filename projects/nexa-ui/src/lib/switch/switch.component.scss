@@ -1,0 +1,89 @@
+:host.nexa-switch-host {
+  display: inline-block;
+
+  &--disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+.nexa-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--nexa-font-sans);
+  font-size: 0.9rem;
+  color: var(--nexa-foreground);
+  cursor: pointer;
+
+  :host(.nexa-switch-host--disabled) & {
+    cursor: not-allowed;
+  }
+
+  &__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  &__track {
+    --nexa-switch-track-off: var(--nexa-input);
+    --nexa-switch-track-on: var(--nexa-primary);
+
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 1.4rem;
+    padding: 0.15rem;
+    background: var(--nexa-switch-track-off);
+    border-radius: var(--nexa-radius-full);
+    transition: background var(--nexa-transition-fast);
+
+    &--sm {
+      width: 2rem;
+      height: 1.15rem;
+    }
+
+    &--on {
+      background: var(--nexa-switch-track-on);
+    }
+
+    &--invalid {
+      outline: 1.5px solid var(--nexa-destructive);
+      outline-offset: 2px;
+    }
+  }
+
+  &__knob {
+    width: 1.1rem;
+    height: 1.1rem;
+    background: #fff;
+    border-radius: var(--nexa-radius-full);
+    box-shadow: var(--nexa-shadow-sm);
+    transition: transform var(--nexa-transition-fast);
+  }
+
+  &__track--sm &__knob {
+    width: 0.85rem;
+    height: 0.85rem;
+  }
+
+  &__track--on &__knob {
+    transform: translateX(1.1rem);
+  }
+
+  &__track--sm.nexa-switch__track--on &__knob {
+    transform: translateX(0.85rem);
+  }
+
+  &__input:focus-visible + &__track {
+    outline: var(--nexa-focus-ring-width) solid var(--nexa-focus-ring-color);
+    outline-offset: var(--nexa-focus-ring-offset);
+  }
+
+  &__label:empty {
+    display: none;
+  }
+}

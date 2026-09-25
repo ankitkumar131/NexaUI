@@ -1,0 +1,65 @@
+:host.nexa-checkbox-host {
+  display: inline-block;
+
+  &--disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+.nexa-checkbox {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-family: var(--nexa-font-sans);
+  font-size: 0.9rem;
+  color: var(--nexa-foreground);
+  cursor: pointer;
+  line-height: 1.5;
+
+  :host(.nexa-checkbox-host--disabled) & {
+    cursor: not-allowed;
+  }
+
+  &__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    margin: 0;
+  }
+
+  &__box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-top: 0.15rem;
+    color: var(--nexa-primary-foreground);
+    background: var(--nexa-background);
+    border: 1.5px solid var(--nexa-input);
+    border-radius: var(--nexa-radius-xs);
+    transition: background var(--nexa-transition-fast), border-color var(--nexa-transition-fast);
+
+    &--checked,
+    &--indeterminate {
+      background: var(--nexa-primary);
+      border-color: var(--nexa-primary);
+    }
+
+    &--invalid {
+      border-color: var(--nexa-destructive);
+    }
+  }
+
+  &__input:focus-visible + &__box {
+    outline: var(--nexa-focus-ring-width) solid var(--nexa-focus-ring-color);
+    outline-offset: var(--nexa-focus-ring-offset);
+  }
+
+  &__label:empty {
+    display: none;
+  }
+}

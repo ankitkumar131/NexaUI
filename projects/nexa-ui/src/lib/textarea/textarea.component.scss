@@ -1,0 +1,40 @@
+:host.nexa-textarea-host {
+  display: block;
+  width: 100%;
+}
+
+.nexa-textarea {
+  display: block;
+  width: 100%;
+  min-height: 4.5rem;
+  padding: 0.6rem 0.8rem;
+  font-family: var(--nexa-font-sans);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--nexa-foreground);
+  background: var(--nexa-background);
+  border: 1px solid var(--nexa-input);
+  border-radius: var(--nexa-radius-md);
+
+  &::placeholder {
+    color: var(--nexa-muted-foreground);
+    opacity: 1;
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    background: var(--nexa-muted);
+  }
+
+  &--resize-none { resize: none; }
+  &--resize-vertical { resize: vertical; }
+  &--resize-both { resize: both; }
+
+  &--invalid {
+    border-color: var(--nexa-destructive);
+    &:focus-visible {
+      outline-color: var(--nexa-destructive);
+    }
+  }
+}

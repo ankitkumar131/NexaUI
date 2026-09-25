@@ -23,6 +23,17 @@
       <li><a href="#kbd">Kbd</a></li>
       <li><a href="#separator">Separator</a></li>
       <li><a href="#aspect-ratio">Aspect Ratio</a></li>
+      <li><a href="#input">Input</a></li>
+      <li><a href="#textarea">Textarea</a></li>
+      <li><a href="#checkbox">Checkbox</a></li>
+      <li><a href="#radio-group">Radio Group</a></li>
+      <li><a href="#switch">Switch</a></li>
+      <li><a href="#slider">Slider</a></li>
+      <li><a href="#select">Select</a></li>
+      <li><a href="#native-select">Native Select</a></li>
+      <li><a href="#input-otp">Input OTP</a></li>
+      <li><a href="#input-group">Input Group</a></li>
+      <li><a href="#field">Field</a></li>
       <!-- TOC:APPEND -->
     </ol>
   </nav>
@@ -205,6 +216,183 @@
             <img src="https://picsum.photos/seed/nexa4x3/400/300" alt="4 by 3 demo" loading="lazy" />
           </nexa-aspect-ratio>
         </div>
+      </div>
+    </section>
+
+    <!-- INPUT -->
+    <section class="showcase-section" id="input" aria-labelledby="input-h">
+      <div class="showcase-section__header">
+        <h2 id="input-h">Input</h2>
+        <p><code>&lt;nexa-input&gt;</code> — text field with forms support. Typed value: <code>{{ name() || '—' }}</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-input [(value)]="name" placeholder="Type your name…" />
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:0.75rem">
+          <nexa-input size="sm" placeholder="Small" />
+          <nexa-input placeholder="Default" />
+          <nexa-input size="lg" placeholder="Large" />
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:0.75rem">
+          <nexa-input placeholder="Disabled" [disabled]="true" />
+          <nexa-input placeholder="Readonly" [readonly]="true" value="Read only" />
+          <nexa-input placeholder="Invalid" [invalid]="true" value="bad@value" />
+        </div>
+      </div>
+    </section>
+
+    <!-- TEXTAREA -->
+    <section class="showcase-section" id="textarea" aria-labelledby="textarea-h">
+      <div class="showcase-section__header">
+        <h2 id="textarea-h">Textarea</h2>
+        <p><code>&lt;nexa-textarea&gt;</code> — multi-line input with resize control.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-textarea [(value)]="bio" [rows]="3" placeholder="Tell us about yourself…" />
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:0.75rem">
+          <nexa-textarea resize="none" [rows]="2" placeholder="No resize" />
+          <nexa-textarea [invalid]="true" [rows]="2" value="Something is wrong" />
+        </div>
+      </div>
+    </section>
+
+    <!-- CHECKBOX -->
+    <section class="showcase-section" id="checkbox" aria-labelledby="checkbox-h">
+      <div class="showcase-section__header">
+        <h2 id="checkbox-h">Checkbox</h2>
+        <p><code>&lt;nexa-checkbox&gt;</code> — agree: <code>{{ agree() }}</code> · newsletter: <code>{{ newsletter() }}</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-checkbox [(checked)]="agree">I agree to the terms and conditions</nexa-checkbox>
+        <nexa-checkbox [(checked)]="newsletter">Subscribe to the newsletter</nexa-checkbox>
+        <nexa-checkbox [indeterminate]="true">Indeterminate (partial selection)</nexa-checkbox>
+        <nexa-checkbox [disabled]="true">Disabled option</nexa-checkbox>
+        <nexa-checkbox [invalid]="true">Invalid option</nexa-checkbox>
+      </div>
+    </section>
+
+    <!-- RADIO GROUP -->
+    <section class="showcase-section" id="radio-group" aria-labelledby="radio-group-h">
+      <div class="showcase-section__header">
+        <h2 id="radio-group-h">Radio Group</h2>
+        <p><code>&lt;nexa-radio-group&gt;</code> — single choice. Selected: <code>{{ plan() }}</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-radio-group [options]="planOptions" [(value)]="plan" ariaLabel="Choose a plan" />
+        <nexa-separator />
+        <nexa-typography variant="small"><strong>Horizontal:</strong></nexa-typography>
+        <nexa-radio-group [options]="fruitOptions" orientation="horizontal" ariaLabel="Favorite fruit" />
+      </div>
+    </section>
+
+    <!-- SWITCH -->
+    <section class="showcase-section" id="switch" aria-labelledby="switch-h">
+      <div class="showcase-section__header">
+        <h2 id="switch-h">Switch</h2>
+        <p><code>&lt;nexa-switch&gt;</code> — notifications: <code>{{ notifications() }}</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-switch [(checked)]="notifications">Enable notifications</nexa-switch>
+        <nexa-switch size="sm">Small switch</nexa-switch>
+        <nexa-switch [disabled]="true">Disabled</nexa-switch>
+        <nexa-switch [invalid]="true" [checked]="true">Invalid</nexa-switch>
+      </div>
+    </section>
+
+    <!-- SLIDER -->
+    <section class="showcase-section" id="slider" aria-labelledby="slider-h">
+      <div class="showcase-section__header">
+        <h2 id="slider-h">Slider</h2>
+        <p><code>&lt;nexa-slider&gt;</code> — volume: <code>{{ volume() }}</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-slider [(value)]="volume" [showValue]="true" ariaLabel="Volume" />
+        <nexa-slider [value]="75" [step]="5" ariaLabel="Brightness" />
+        <nexa-slider [value]="30" [disabled]="true" ariaLabel="Disabled slider" />
+      </div>
+    </section>
+
+    <!-- SELECT -->
+    <section class="showcase-section" id="select" aria-labelledby="select-h">
+      <div class="showcase-section__header">
+        <h2 id="select-h">Select</h2>
+        <p><code>&lt;nexa-select&gt;</code> — custom dropdown. Selected: <code>{{ fruit() }}</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:0.75rem">
+          <nexa-select [options]="fruitOptions" [(value)]="fruit" ariaLabel="Favorite fruit" />
+          <nexa-select [options]="fruitOptions" placeholder="Pick one…" ariaLabel="Pick one" />
+          <nexa-select [options]="fruitOptions" [invalid]="true" ariaLabel="Invalid select" />
+          <nexa-select [options]="fruitOptions" [disabled]="true" ariaLabel="Disabled select" />
+        </div>
+      </div>
+    </section>
+
+    <!-- NATIVE SELECT -->
+    <section class="showcase-section" id="native-select" aria-labelledby="native-select-h">
+      <div class="showcase-section__header">
+        <h2 id="native-select-h">Native Select</h2>
+        <p><code>&lt;nexa-native-select&gt;</code> — zero-JS platform picker. Selected: <code>{{ country() ?? '—' }}</code></p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:0.75rem">
+          <nexa-native-select [options]="countryOptions" [(value)]="country" placeholder="Choose country" ariaLabel="Country" />
+          <nexa-native-select [options]="countryOptions" ariaLabel="Country required" [required]="true" />
+        </div>
+      </div>
+    </section>
+
+    <!-- INPUT OTP -->
+    <section class="showcase-section" id="input-otp" aria-labelledby="input-otp-h">
+      <div class="showcase-section__header">
+        <h2 id="input-otp-h">Input OTP</h2>
+        <p><code>&lt;nexa-input-otp&gt;</code> — code: <code>{{ otp() || '—' }}</code> (try typing + pasting)</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-input-otp [(value)]="otp" [length]="6" />
+        <div style="display:flex; gap:1.5rem; flex-wrap:wrap; align-items:center">
+          <nexa-input-otp [length]="4" ariaLabel="PIN" />
+          <nexa-input-otp [length]="6" [invalid]="true" ariaLabel="Invalid code" />
+        </div>
+      </div>
+    </section>
+
+    <!-- INPUT GROUP -->
+    <section class="showcase-section" id="input-group" aria-labelledby="input-group-h">
+      <div class="showcase-section__header">
+        <h2 id="input-group-h">Input Group</h2>
+        <p><code>&lt;nexa-input-group&gt;</code> — adornments joined to an input.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-input-group>
+          <span slot="prefix">$</span>
+          <nexa-input [borderless]="true" [(value)]="amount" placeholder="0.00" ariaLabel="Amount" />
+          <span slot="suffix">USD</span>
+        </nexa-input-group>
+        <nexa-input-group size="sm">
+          <span slot="prefix">https://</span>
+          <nexa-input [borderless]="true" placeholder="example.com" ariaLabel="Website" />
+        </nexa-input-group>
+        <nexa-input-group size="lg" [invalid]="true">
+          <span slot="prefix">🔍</span>
+          <nexa-input [borderless]="true" placeholder="Search…" ariaLabel="Search" />
+          <span slot="suffix"><nexa-kbd>⌘K</nexa-kbd></span>
+        </nexa-input-group>
+      </div>
+    </section>
+
+    <!-- FIELD -->
+    <section class="showcase-section" id="field" aria-labelledby="field-h">
+      <div class="showcase-section__header">
+        <h2 id="field-h">Field</h2>
+        <p><code>&lt;nexa-field&gt;</code> — label + control + help/error composition.</p>
+      </div>
+      <div class="showcase-section__demo showcase-section__grid--col showcase-section__grid">
+        <nexa-field label="Email" controlId="demo-field-email" description="We never share your email." [required]="true">
+          <nexa-input id="demo-field-email" type="email" [(value)]="email" placeholder="you@example.com" />
+        </nexa-field>
+        <nexa-field label="Username" controlId="demo-field-user" error="Username is already taken.">
+          <nexa-input id="demo-field-user" value="admin" [invalid]="true" />
+        </nexa-field>
       </div>
     </section>
 

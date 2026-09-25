@@ -1,0 +1,11 @@
+<div class="nexa-field">
+  @if (label()) {
+    <nexa-label [for]="controlId()" [required]="required()">{{ label() }}</nexa-label>
+  }
+  <div class="nexa-field__control"><ng-content /></div>
+  @if (error()) {
+    <p class="nexa-field__error" role="alert" [id]="errorId()">{{ error() }}</p>
+  } @else if (description()) {
+    <p class="nexa-field__desc" [id]="descId()">{{ description() }}</p>
+  }
+</div>

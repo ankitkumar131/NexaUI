@@ -1,0 +1,41 @@
+:host.nexa-otp-host {
+  display: inline-block;
+}
+
+.nexa-otp {
+  display: flex;
+  gap: 0.5rem;
+  font-family: var(--nexa-font-sans);
+
+  &__box {
+    width: 2.75rem;
+    height: 3.25rem;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--nexa-foreground);
+    background: var(--nexa-background);
+    border: 1px solid var(--nexa-input);
+    border-radius: var(--nexa-radius-md);
+    caret-color: var(--nexa-primary);
+
+    &:disabled {
+      opacity: 0.55;
+      background: var(--nexa-muted);
+    }
+
+    &--invalid {
+      border-color: var(--nexa-destructive);
+    }
+  }
+
+  @media (max-width: 420px) {
+    gap: 0.35rem;
+
+    &__box {
+      width: 2.3rem;
+      height: 2.9rem;
+      font-size: 1.1rem;
+    }
+  }
+}

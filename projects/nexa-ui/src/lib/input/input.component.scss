@@ -1,0 +1,65 @@
+:host.nexa-input-host {
+  display: block;
+  width: 100%;
+}
+
+.nexa-input {
+  display: block;
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0 0.8rem;
+  font-family: var(--nexa-font-sans);
+  font-size: 0.9rem;
+  color: var(--nexa-foreground);
+  background: var(--nexa-background);
+  border: 1px solid var(--nexa-input);
+  border-radius: var(--nexa-radius-md);
+  transition: border-color var(--nexa-transition-fast), box-shadow var(--nexa-transition-fast);
+
+  &::placeholder {
+    color: var(--nexa-muted-foreground);
+    opacity: 1;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: color-mix(in srgb, var(--nexa-input) 60%, var(--nexa-foreground) 40%);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    background: var(--nexa-muted);
+  }
+
+  &[readonly] {
+    background: var(--nexa-muted);
+  }
+
+  &--sm {
+    min-height: 2rem;
+    font-size: 0.8rem;
+    border-radius: var(--nexa-radius-sm);
+  }
+
+  &--lg {
+    min-height: 2.9rem;
+    font-size: 1rem;
+    border-radius: var(--nexa-radius-lg);
+  }
+
+  &--invalid {
+    border-color: var(--nexa-destructive);
+    &:focus-visible {
+      outline-color: var(--nexa-destructive);
+    }
+  }
+
+  &--borderless {
+    border-color: transparent;
+    background: transparent;
+    border-radius: 0;
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}

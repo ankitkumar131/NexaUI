@@ -1,0 +1,24 @@
+<label class="nexa-checkbox">
+  <input
+    class="nexa-checkbox__input"
+    type="checkbox"
+    [attr.id]="id()"
+    [attr.name]="name()"
+    [checked]="checked()"
+    [indeterminate]="indeterminate()"
+    [disabled]="isDisabled()"
+    [required]="required()"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-invalid]="invalid() ? 'true' : null"
+    (change)="onInput($event)"
+    (blur)="onBlur()"
+  />
+  <span [class]="boxClasses()" aria-hidden="true">
+    @if (checked()) {
+      <svg viewBox="0 0 12 12" width="12" height="12"><path d="M2 6.5 4.8 9 10 3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    } @else if (indeterminate()) {
+      <svg viewBox="0 0 12 12" width="12" height="12"><path d="M2.5 6h7" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+    }
+  </span>
+  <span class="nexa-checkbox__label"><ng-content /></span>
+</label>

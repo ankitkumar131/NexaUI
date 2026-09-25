@@ -1,0 +1,85 @@
+:host.nexa-radio-host {
+  display: block;
+
+  &--horizontal .nexa-radio {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+  }
+}
+
+.nexa-radio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-family: var(--nexa-font-sans);
+
+  &__option {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--nexa-foreground);
+    cursor: pointer;
+    line-height: 1.45;
+
+    &--disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+  }
+
+  &__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  &__dot {
+    flex-shrink: 0;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-top: 0.12rem;
+    border: 1.5px solid var(--nexa-input);
+    border-radius: var(--nexa-radius-full);
+    background: var(--nexa-background);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color var(--nexa-transition-fast);
+  }
+
+  &__dot::after {
+    content: '';
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: var(--nexa-radius-full);
+    background: var(--nexa-primary);
+    transform: scale(0);
+    transition: transform var(--nexa-transition-fast);
+  }
+
+  &__option:has(&__input:checked) &__dot {
+    border-color: var(--nexa-primary);
+  }
+
+  &__option:has(&__input:checked) &__dot::after {
+    transform: scale(1);
+  }
+
+  &__input:focus-visible + &__dot {
+    outline: var(--nexa-focus-ring-width) solid var(--nexa-focus-ring-color);
+    outline-offset: var(--nexa-focus-ring-offset);
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__desc {
+    font-size: 0.78rem;
+    color: var(--nexa-muted-foreground);
+  }
+}

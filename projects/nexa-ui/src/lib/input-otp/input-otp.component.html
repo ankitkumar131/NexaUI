@@ -1,0 +1,20 @@
+<div class="nexa-otp" role="group" [attr.aria-label]="ariaLabel()" (paste)="onPaste($event)">
+  @for (i of indexes(); track i) {
+    <input
+      #box
+      [class]="boxClasses()"
+      type="text"
+      inputmode="numeric"
+      maxlength="1"
+      [attr.autocomplete]="i === 0 ? 'one-time-code' : null"
+      [attr.aria-label]="'Digit ' + (i + 1) + ' of ' + length()"
+      [value]="digits()[i]"
+      [disabled]="isDisabled()"
+      [attr.aria-invalid]="invalid() ? 'true' : null"
+      (input)="onInput(i, $event)"
+      (keydown)="onKeydown(i, $event)"
+      (focus)="onFocus($event)"
+      (blur)="onBlur()"
+    />
+  }
+</div>

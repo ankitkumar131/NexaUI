@@ -1,0 +1,21 @@
+<div class="nexa-slider">
+  <input
+    class="nexa-slider__range nexa-focus-ring"
+    type="range"
+    [attr.id]="id()"
+    [attr.name]="name()"
+    [attr.min]="min()"
+    [attr.max]="max()"
+    [attr.step]="step()"
+    [value]="value()"
+    [disabled]="isDisabled()"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-valuetext]="showValue() ? value() : null"
+    [style.--nexa-slider-fill]="fillPct() + '%'"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+  />
+  @if (showValue()) {
+    <output class="nexa-slider__value" [attr.for]="id()">{{ value() }}</output>
+  }
+</div>

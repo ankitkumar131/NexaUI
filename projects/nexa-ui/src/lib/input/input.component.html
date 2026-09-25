@@ -1,0 +1,15 @@
+<input
+  [class]="inputClasses()"
+  [attr.id]="id()"
+  [attr.type]="type()"
+  [attr.placeholder]="placeholder() || null"
+  [value]="value()"
+  [disabled]="isDisabled()"
+  [readOnly]="readonly()"
+  [required]="required()"
+  [attr.name]="name()"
+  [attr.autocomplete]="autocomplete()"
+  [attr.aria-invalid]="invalid() ? 'true' : null"
+  (input)="onInput($event)"
+  (blur)="onBlur()"
+/>

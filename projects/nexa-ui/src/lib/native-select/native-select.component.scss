@@ -1,0 +1,51 @@
+:host.nexa-native-select-host {
+  display: block;
+  width: 100%;
+}
+
+.nexa-native-select__wrap {
+  position: relative;
+}
+
+.nexa-native-select {
+  display: block;
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0 2.2rem 0 0.8rem;
+  font-family: var(--nexa-font-sans);
+  font-size: 0.9rem;
+  color: var(--nexa-foreground);
+  background: var(--nexa-background);
+  border: 1px solid var(--nexa-input);
+  border-radius: var(--nexa-radius-md);
+  appearance: none;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    background: var(--nexa-muted);
+  }
+
+  &--placeholder {
+    color: var(--nexa-muted-foreground);
+  }
+
+  &--invalid {
+    border-color: var(--nexa-destructive);
+  }
+
+  option {
+    color: var(--nexa-foreground);
+    background: var(--nexa-background);
+  }
+}
+
+.nexa-native-select__chevron {
+  position: absolute;
+  inset-inline-end: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--nexa-muted-foreground);
+  pointer-events: none;
+}
