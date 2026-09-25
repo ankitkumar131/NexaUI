@@ -1,0 +1,122 @@
+:host.nexa-button-host {
+  display: inline-block;
+  vertical-align: middle;
+}
+:host.nexa-button-host--full {
+  display: block;
+  width: 100%;
+}
+
+.nexa-button {
+  --nexa-button-bg: var(--nexa-primary);
+  --nexa-button-fg: var(--nexa-primary-foreground);
+  --nexa-button-border: transparent;
+  --nexa-button-hover-bg: color-mix(in srgb, var(--nexa-primary) 88%, black);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  font-family: var(--nexa-font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25;
+  white-space: nowrap;
+  color: var(--nexa-button-fg);
+  background: var(--nexa-button-bg);
+  border: 1px solid var(--nexa-button-border);
+  border-radius: var(--nexa-radius-md);
+  cursor: pointer;
+  transition: background var(--nexa-transition-fast), color var(--nexa-transition-fast),
+    border-color var(--nexa-transition-fast), box-shadow var(--nexa-transition-fast),
+    transform var(--nexa-transition-fast);
+  touch-action: manipulation;
+  user-select: none;
+
+  &:hover:not(:disabled) {
+    background: var(--nexa-button-hover-bg);
+  }
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  &--secondary {
+    --nexa-button-bg: var(--nexa-secondary);
+    --nexa-button-fg: var(--nexa-secondary-foreground);
+    --nexa-button-hover-bg: color-mix(in srgb, var(--nexa-secondary) 80%, var(--nexa-foreground) 8%);
+  }
+  &--destructive {
+    --nexa-button-bg: var(--nexa-destructive);
+    --nexa-button-fg: var(--nexa-destructive-foreground);
+    --nexa-button-hover-bg: color-mix(in srgb, var(--nexa-destructive) 88%, black);
+  }
+  &--outline {
+    --nexa-button-bg: transparent;
+    --nexa-button-fg: var(--nexa-foreground);
+    --nexa-button-border: var(--nexa-border);
+    --nexa-button-hover-bg: var(--nexa-accent);
+    &:hover:not(:disabled) {
+      --nexa-button-fg: var(--nexa-accent-foreground);
+    }
+  }
+  &--ghost {
+    --nexa-button-bg: transparent;
+    --nexa-button-fg: var(--nexa-foreground);
+    --nexa-button-hover-bg: var(--nexa-accent);
+    &:hover:not(:disabled) {
+      --nexa-button-fg: var(--nexa-accent-foreground);
+    }
+  }
+  &--link {
+    --nexa-button-bg: transparent;
+    --nexa-button-fg: var(--nexa-primary);
+    --nexa-button-hover-bg: transparent;
+    min-height: auto;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  &--sm {
+    min-height: 2rem;
+    padding: 0 0.75rem;
+    font-size: 0.75rem;
+    border-radius: var(--nexa-radius-sm);
+  }
+  &--lg {
+    min-height: 2.75rem;
+    padding: 0 1.5rem;
+    font-size: 1rem;
+    border-radius: var(--nexa-radius-lg);
+  }
+  &--icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0;
+  }
+  &--full {
+    width: 100%;
+  }
+
+  &__spinner {
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: nexa-button-spin 0.7s linear infinite;
+  }
+}
+
+@keyframes nexa-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

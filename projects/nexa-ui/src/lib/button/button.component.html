@@ -1,0 +1,14 @@
+<button
+  [attr.type]="type()"
+  [class]="buttonClasses()"
+  [disabled]="isDisabled()"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-busy]="loading() ? 'true' : null"
+  [attr.aria-disabled]="isDisabled() ? 'true' : null"
+  (click)="onClick($event)"
+>
+  @if (loading()) {
+    <span class="nexa-button__spinner" aria-hidden="true"></span>
+  }
+  <ng-content></ng-content>
+</button>

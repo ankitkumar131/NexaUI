@@ -1,0 +1,20 @@
+@use '../projects/nexa-ui/src/lib/tokens/tokens';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--nexa-font-sans);
+  background: var(--nexa-background);
+  color: var(--nexa-foreground);
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--nexa-transition-normal), color var(--nexa-transition-normal);
+}
