@@ -12,9 +12,10 @@
   >
     <ng-content select="[slot=trigger]" />
   </div>
-  @if (open()) {
+  @if (rendered()) {
     <div
       [class]="panelClasses()"
+      [class.nexa-popover__panel--closing]="closing()"
       role="dialog"
       [id]="panelId()"
       [attr.aria-label]="ariaLabel()"

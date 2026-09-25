@@ -28,3 +28,7 @@
     line-height: 1.5;
   }
 }
+
+.nexa-field__error {
+  animation: nexa-slide-in-up var(--nexa-anim-fast) var(--nexa-ease-out);
+}

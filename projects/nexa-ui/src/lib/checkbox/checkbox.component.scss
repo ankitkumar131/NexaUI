@@ -41,7 +41,7 @@
     background: var(--nexa-background);
     border: 1.5px solid var(--nexa-input);
     border-radius: var(--nexa-radius-xs);
-    transition: background var(--nexa-transition-fast), border-color var(--nexa-transition-fast);
+    transition: background var(--nexa-transition-fast), border-color var(--nexa-transition-fast), transform 120ms ease;
 
     &--checked,
     &--indeterminate {
@@ -62,4 +62,19 @@
   &__label:empty {
     display: none;
   }
+}
+
+.nexa-checkbox:active .nexa-checkbox__box {
+  transform: scale(0.88);
+}
+
+.nexa-checkbox__box--checked,
+.nexa-checkbox__box--indeterminate {
+  animation: nexa-checkbox-pop 200ms var(--nexa-ease-spring);
+}
+
+@keyframes nexa-checkbox-pop {
+  0% { transform: scale(0.7); }
+  60% { transform: scale(1.12); }
+  100% { transform: scale(1); }
 }

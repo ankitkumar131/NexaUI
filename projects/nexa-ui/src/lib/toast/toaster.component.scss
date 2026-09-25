@@ -125,3 +125,24 @@
     transform: translateY(8px) scale(0.98);
   }
 }
+
+.nexa-toast {
+  animation: nexa-toast-in-bottom var(--nexa-anim-normal) var(--nexa-ease-out);
+}
+
+.nexa-toast--leaving {
+  animation: nexa-toast-out-bottom var(--nexa-anim-overlay-close) ease-in forwards;
+  pointer-events: none;
+}
+
+:host(.nexa-toaster-host--top-right) .nexa-toast,
+:host(.nexa-toaster-host--top-left) .nexa-toast,
+:host(.nexa-toaster-host--top-center) .nexa-toast {
+  animation-name: nexa-toast-in-top;
+}
+
+:host(.nexa-toaster-host--top-right) .nexa-toast--leaving,
+:host(.nexa-toaster-host--top-left) .nexa-toast--leaving,
+:host(.nexa-toaster-host--top-center) .nexa-toast--leaving {
+  animation-name: nexa-toast-out-top;
+}

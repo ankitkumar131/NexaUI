@@ -44,3 +44,11 @@
     display: none;
   }
 }
+
+.nexa-empty {
+  animation: nexa-fade-in var(--nexa-anim-slow) ease-out;
+}
+
+.nexa-empty__icon {
+  animation: nexa-pop-in var(--nexa-anim-slow) var(--nexa-ease-spring);
+}

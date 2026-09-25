@@ -107,3 +107,21 @@
     text-align: center;
   }
 }
+
+.nexa-select__list {
+  transform-origin: top center;
+  animation: nexa-pop-in 160ms var(--nexa-ease-out);
+}
+.nexa-select__list--closing {
+  animation: nexa-pop-out var(--nexa-anim-overlay-close) ease-in forwards;
+}
+
+.nexa-select__chevron {
+  transition: transform var(--nexa-anim-normal) var(--nexa-ease-out);
+}
+.nexa-select--open .nexa-select__chevron {
+  transform: rotate(180deg);
+}
+.nexa-select__option {
+  transition: background-color var(--nexa-anim-fast) ease, color var(--nexa-anim-fast) ease;
+}

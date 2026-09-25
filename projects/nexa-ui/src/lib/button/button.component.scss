@@ -39,7 +39,7 @@
     background: var(--nexa-button-hover-bg);
   }
   &:active:not(:disabled) {
-    transform: translateY(1px);
+    transform: translateY(1px) scale(0.98);
   }
   &:disabled {
     opacity: 0.55;
@@ -111,7 +111,7 @@
     border: 2px solid currentColor;
     border-top-color: transparent;
     border-radius: 50%;
-    animation: nexa-button-spin 0.7s linear infinite;
+    animation: nexa-button-spin var(--nexa-spinner-duration, 1.5s) linear infinite;
   }
 }
 

@@ -26,30 +26,30 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity var(--nexa-transition-fast), visibility var(--nexa-transition-fast);
+    transition: opacity var(--nexa-transition-fast), visibility var(--nexa-transition-fast), transform var(--nexa-transition-fast);
 
     &--top {
       bottom: calc(100% + 0.45rem);
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, 4px);
     }
 
     &--bottom {
       top: calc(100% + 0.45rem);
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -4px);
     }
 
     &--left {
       right: calc(100% + 0.45rem);
       top: 50%;
-      transform: translateY(-50%);
+      transform: translate(4px, -50%);
     }
 
     &--right {
       left: calc(100% + 0.45rem);
       top: 50%;
-      transform: translateY(-50%);
+      transform: translate(-4px, -50%);
     }
   }
 
@@ -57,5 +57,25 @@
   &:focus-within &__bubble {
     opacity: 1;
     visibility: visible;
+  }
+
+  &:hover &__bubble--top,
+  &:focus-within &__bubble--top {
+    transform: translateX(-50%);
+  }
+
+  &:hover &__bubble--bottom,
+  &:focus-within &__bubble--bottom {
+    transform: translateX(-50%);
+  }
+
+  &:hover &__bubble--left,
+  &:focus-within &__bubble--left {
+    transform: translateY(-50%);
+  }
+
+  &:hover &__bubble--right,
+  &:focus-within &__bubble--right {
+    transform: translateY(-50%);
   }
 }

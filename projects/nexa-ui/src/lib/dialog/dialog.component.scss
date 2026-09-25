@@ -116,3 +116,16 @@
     opacity: 0;
   }
 }
+
+.nexa-dialog__backdrop {
+  animation: nexa-fade-in var(--nexa-anim-fast) ease-out;
+}
+.nexa-dialog__backdrop--closing {
+  animation: nexa-fade-out var(--nexa-anim-overlay-close) ease-in forwards;
+}
+.nexa-dialog__panel {
+  animation: nexa-pop-in var(--nexa-anim-normal) var(--nexa-ease-out);
+}
+.nexa-dialog__panel--closing {
+  animation: nexa-pop-out var(--nexa-anim-overlay-close) ease-in forwards;
+}

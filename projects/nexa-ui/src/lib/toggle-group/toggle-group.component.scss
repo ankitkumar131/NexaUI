@@ -53,3 +53,12 @@
     font-size: 0.95rem;
   }
 }
+
+.nexa-toggle-group__btn {
+  transition: background-color var(--nexa-anim-fast) ease, color var(--nexa-anim-fast) ease,
+    transform 120ms ease;
+}
+
+.nexa-toggle-group__btn:active:not(:disabled) {
+  transform: scale(0.95);
+}

@@ -36,4 +36,4 @@ import { NexaSpinnerComponent } from 'nexa-ui';
 
 ## Customizing
 
-Rotation period is `--nexa-spinner-duration` (default `1s`) with a soft 300ms fade/scale-in on appearance.
+Rotation period is `--nexa-spinner-duration` (default `1.5s`) with a soft 300ms fade/scale-in on appearance.

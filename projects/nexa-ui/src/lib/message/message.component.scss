@@ -72,3 +72,7 @@
     color: var(--nexa-muted-foreground);
   }
 }
+
+.nexa-message {
+  animation: nexa-slide-in-up var(--nexa-anim-normal) var(--nexa-ease-out);
+}

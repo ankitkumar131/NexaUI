@@ -79,3 +79,11 @@
     }
   }
 }
+
+.nexa-resizable__handle {
+  transition: background-color var(--nexa-anim-fast) ease, opacity var(--nexa-anim-fast) ease;
+}
+
+.nexa-resizable__handle:hover {
+  background: color-mix(in srgb, var(--nexa-primary) 35%, transparent);
+}

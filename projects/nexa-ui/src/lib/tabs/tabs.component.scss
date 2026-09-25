@@ -87,3 +87,12 @@
     }
   }
 }
+
+.nexa-tabs__trigger {
+  transition: background-color var(--nexa-anim-fast) ease, color var(--nexa-anim-fast) ease,
+    border-color var(--nexa-anim-fast) ease, transform 120ms ease;
+}
+
+.nexa-tabs__trigger:active:not(:disabled) {
+  transform: scale(0.97);
+}

@@ -15,6 +15,7 @@ export interface NexaToast extends Required<Pick<NexaToastOptions, 'variant' | '
   id: string;
   title?: string;
   description?: string;
+  leaving?: boolean;
 }
 
 /**
@@ -63,7 +64,16 @@ export class NexaToastService {
   }
 
   dismiss(id: string): void {
-    this.queue.update((q) => q.filter((t) => t.id !== id));
+    let found = false;
+    this.queue.update((q) =>
+      q.map((t) => {
+        if (t.id !== id || t.leaving) return t;
+        found = true;
+        return { ...t, leaving: true };
+      })
+    );
+    // Let the 170ms exit animation finish before unmounting.
+    if (found) setTimeout(() => this.queue.update((q) => q.filter((t) => t.id !== id)), 200);
   }
 
   clear(): void {

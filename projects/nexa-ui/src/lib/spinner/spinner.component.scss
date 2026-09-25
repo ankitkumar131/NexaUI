@@ -34,7 +34,7 @@
     border: calc(var(--nexa-spinner-size) / 7) solid var(--nexa-secondary);
     border-top-color: var(--nexa-primary);
     border-radius: var(--nexa-radius-full);
-    animation: nexa-spinner-rotate var(--nexa-spinner-duration, 1s) linear infinite;
+    animation: nexa-spinner-rotate var(--nexa-spinner-duration, 1.5s) linear infinite;
   }
 
   &__label {

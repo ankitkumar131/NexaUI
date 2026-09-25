@@ -72,3 +72,11 @@
     transform: translateY(4px);
   }
 }
+
+.nexa-popover__panel {
+  transform-origin: top center;
+  animation: nexa-pop-in 160ms var(--nexa-ease-out);
+}
+.nexa-popover__panel--closing {
+  animation: nexa-pop-out var(--nexa-anim-overlay-close) ease-in forwards;
+}

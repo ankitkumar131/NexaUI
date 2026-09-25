@@ -1,7 +1,7 @@
-@if (open()) {
+@if (rendered()) {
   <div class="nexa-command">
-    <div class="nexa-command__backdrop" (click)="close()"></div>
-    <div class="nexa-command__panel" role="dialog" aria-modal="true" [attr.aria-label]="ariaLabel()" (click)="$event.stopPropagation()">
+    <div class="nexa-command__backdrop" [class.nexa-command__backdrop--closing]="closing()" (click)="close()"></div>
+    <div class="nexa-command__panel" [class.nexa-command__panel--closing]="closing()" role="dialog" aria-modal="true" [attr.aria-label]="ariaLabel()" (click)="$event.stopPropagation()">
       <div class="nexa-command__search">
         <span class="nexa-command__icon" aria-hidden="true">⌕</span>
         <input

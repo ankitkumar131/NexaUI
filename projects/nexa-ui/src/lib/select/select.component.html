@@ -1,4 +1,4 @@
-<div class="nexa-select">
+<div class="nexa-select" [class.nexa-select--open]="open()">
   <button
     #trigger
     type="button"
@@ -14,9 +14,10 @@
     <span class="nexa-select__label">{{ selectedLabel() ?? placeholder() }}</span>
     <span class="nexa-select__chevron" aria-hidden="true">▾</span>
   </button>
-  @if (open()) {
+  @if (rendered()) {
     <ul
       class="nexa-select__list"
+      [class.nexa-select__list--closing]="closing()"
       role="listbox"
       [attr.aria-label]="ariaLabel() || placeholder()"
       tabindex="-1"

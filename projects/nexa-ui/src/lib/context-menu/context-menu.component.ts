@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input, model, output, signal } from '@angular/core';
 import { nexaCn } from '../utils/utils';
+import { nexaOverlayMotion } from '../utils/overlay';
 import { NexaMenuItem } from '../dropdown-menu/dropdown-menu.component';
 
 /**
@@ -27,6 +28,9 @@ import { NexaMenuItem } from '../dropdown-menu/dropdown-menu.component';
 export class NexaContextMenuComponent {
   readonly items = input<NexaMenuItem[]>([]);
   readonly open = model(false);
+  private readonly motion = nexaOverlayMotion(this.open, 150);
+  protected readonly rendered = this.motion.rendered;
+  protected readonly closing = this.motion.closing;
   readonly ariaLabel = input<string | undefined>(undefined);
   readonly disabled = input(false);
   readonly extraClass = input('');

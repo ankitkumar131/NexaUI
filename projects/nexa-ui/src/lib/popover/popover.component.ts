@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, computed, inject, input, model } from '@angular/core';
 import { signal } from '@angular/core';
 import { nexaCn } from '../utils/utils';
+import { nexaOverlayMotion } from '../utils/overlay';
 
 export type NexaPopoverSide = 'top' | 'bottom' | 'left' | 'right';
 export type NexaPopoverAlign = 'start' | 'center' | 'end';
@@ -29,6 +30,9 @@ export type NexaPopoverAlign = 'start' | 'center' | 'end';
 export class NexaPopoverComponent {
   /** Two-way open state (also toggled by clicking the trigger). */
   readonly open = model(false);
+  private readonly motion = nexaOverlayMotion(this.open, 150);
+  protected readonly rendered = this.motion.rendered;
+  protected readonly closing = this.motion.closing;
   readonly side = input<NexaPopoverSide>('bottom');
   readonly align = input<NexaPopoverAlign>('start');
   readonly width = input('17rem');

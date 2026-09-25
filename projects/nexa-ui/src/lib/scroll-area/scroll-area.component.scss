@@ -47,3 +47,11 @@
     background: transparent;
   }
 }
+
+.nexa-scroll::-webkit-scrollbar-thumb {
+  transition: background-color var(--nexa-anim-fast) ease;
+}
+
+.nexa-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--nexa-muted-foreground);
+}

@@ -53,7 +53,7 @@
 
   &__bar--indeterminate &__fill {
     width: 35% !important;
-    animation: nexa-progress-slide var(--nexa-progress-indeterminate-duration, 2.4s) ease-in-out infinite;
+    animation: nexa-progress-slide var(--nexa-progress-indeterminate-duration, 3s) ease-in-out infinite;
   }
 
   &__label {

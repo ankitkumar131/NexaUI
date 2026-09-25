@@ -103,3 +103,15 @@
     transform: translateY(-3px);
   }
 }
+
+.nexa-menu__list {
+  transform-origin: top center;
+  animation: nexa-pop-in 160ms var(--nexa-ease-out);
+}
+.nexa-menu__list--closing {
+  animation: nexa-pop-out var(--nexa-anim-overlay-close) ease-in forwards;
+}
+
+.nexa-menu__item {
+  transition: background-color var(--nexa-anim-fast) ease, color var(--nexa-anim-fast) ease;
+}

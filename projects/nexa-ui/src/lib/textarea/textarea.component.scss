@@ -38,3 +38,11 @@
     }
   }
 }
+
+.nexa-textarea {
+  transition: border-color var(--nexa-anim-fast) ease, box-shadow var(--nexa-anim-fast) ease;
+}
+
+.nexa-textarea:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--nexa-input) 55%, var(--nexa-foreground));
+}

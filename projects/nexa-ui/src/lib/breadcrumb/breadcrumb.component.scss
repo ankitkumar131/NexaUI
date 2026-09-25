@@ -59,3 +59,11 @@
     padding: 0 0.2rem;
   }
 }
+
+.nexa-breadcrumb__link {
+  transition: color var(--nexa-anim-fast) ease;
+}
+
+.nexa-breadcrumb__link:hover {
+  color: var(--nexa-primary);
+}

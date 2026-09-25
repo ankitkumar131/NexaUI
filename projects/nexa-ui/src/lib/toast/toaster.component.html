@@ -2,6 +2,7 @@
   @for (toast of service.toasts(); track toast.id) {
     <div
       class="nexa-toast nexa-toast--{{ toast.variant }}"
+      [class.nexa-toast--leaving]="toast.leaving"
       [attr.role]="toast.variant === 'destructive' ? 'alert' : 'status'"
     >
       <span class="nexa-toast__icon" aria-hidden="true">{{ glyph(toast.variant) }}</span>

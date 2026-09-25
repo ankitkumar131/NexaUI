@@ -62,7 +62,7 @@
     background: #fff;
     border-radius: var(--nexa-radius-full);
     box-shadow: var(--nexa-shadow-sm);
-    transition: transform var(--nexa-transition-fast);
+    transition: transform 220ms var(--nexa-ease-spring);
   }
 
   &__track--sm &__knob {

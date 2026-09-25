@@ -72,3 +72,19 @@
     font-size: 1.1rem;
   }
 }
+
+.nexa-item {
+  transition: background-color 160ms ease, transform 120ms ease;
+}
+
+.nexa-item:active {
+  transform: scale(0.995);
+}
+
+.nexa-item__chevron {
+  transition: transform 160ms var(--nexa-ease-out);
+}
+
+.nexa-item:hover .nexa-item__chevron {
+  transform: translateX(3px);
+}

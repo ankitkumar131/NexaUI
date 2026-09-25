@@ -1,8 +1,9 @@
-@if (open()) {
+@if (rendered()) {
   <div class="nexa-alert-dialog" (keydown.escape)="onEscape()">
-    <div class="nexa-alert-dialog__backdrop"></div>
+    <div class="nexa-alert-dialog__backdrop" [class.nexa-alert-dialog__backdrop--closing]="closing()"></div>
     <div
       [class]="panelClasses()"
+      [class.nexa-alert-dialog__panel--closing]="closing()"
       role="alertdialog"
       aria-modal="true"
       [attr.aria-labelledby]="titleId()"

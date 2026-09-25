@@ -134,3 +134,19 @@
     opacity: 0;
   }
 }
+
+.nexa-command__backdrop {
+  animation: nexa-fade-in var(--nexa-anim-fast) ease-out;
+}
+.nexa-command__backdrop--closing {
+  animation: nexa-fade-out var(--nexa-anim-overlay-close) ease-in forwards;
+}
+.nexa-command__panel {
+  animation: nexa-slide-in-down var(--nexa-anim-normal) var(--nexa-ease-out);
+}
+.nexa-command__panel--closing {
+  animation: nexa-slide-out-up var(--nexa-anim-overlay-close) ease-in forwards;
+}
+.nexa-command__item {
+  transition: background-color var(--nexa-anim-fast) ease, color var(--nexa-anim-fast) ease;
+}

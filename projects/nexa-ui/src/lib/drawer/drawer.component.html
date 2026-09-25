@@ -1,8 +1,9 @@
-@if (open()) {
+@if (rendered()) {
   <div class="nexa-drawer" (keydown.escape)="requestClose()">
-    <div class="nexa-drawer__backdrop" (click)="requestClose()"></div>
+    <div class="nexa-drawer__backdrop" [class.nexa-drawer__backdrop--closing]="closing()" (click)="requestClose()"></div>
     <aside
       [class]="panelClasses()"
+      [class.nexa-drawer__panel--closing]="closing()"
       [style.width]="panelStyle().width ?? null"
       [style.height]="panelStyle().height ?? null"
       role="dialog"

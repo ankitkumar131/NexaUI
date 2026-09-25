@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input, model, output, signal } from '@angular/core';
 import { nexaCn } from '../utils/utils';
-import { nexaLockBodyScroll } from '../utils/overlay';
+import { nexaLockBodyScroll, nexaOverlayMotion } from '../utils/overlay';
 
 export interface NexaCommandItem {
   label: string;
@@ -32,6 +32,9 @@ interface NexaCommandGroup {
 })
 export class NexaCommandComponent {
   readonly open = model(false);
+  private readonly motion = nexaOverlayMotion(this.open, 170);
+  protected readonly rendered = this.motion.rendered;
+  protected readonly closing = this.motion.closing;
   readonly items = input<NexaCommandItem[]>([]);
   readonly placeholder = input('Type a command or search…');
   readonly emptyText = input('No results found.');

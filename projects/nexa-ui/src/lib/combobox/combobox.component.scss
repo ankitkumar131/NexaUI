@@ -118,3 +118,21 @@
     text-align: center;
   }
 }
+
+.nexa-combobox__list {
+  transform-origin: top center;
+  animation: nexa-pop-in 160ms var(--nexa-ease-out);
+}
+.nexa-combobox__list--closing {
+  animation: nexa-pop-out var(--nexa-anim-overlay-close) ease-in forwards;
+}
+
+.nexa-combobox__chevron {
+  transition: transform var(--nexa-anim-normal) var(--nexa-ease-out);
+}
+.nexa-combobox--open .nexa-combobox__chevron {
+  transform: rotate(180deg);
+}
+.nexa-combobox__option {
+  transition: background-color var(--nexa-anim-fast) ease, color var(--nexa-anim-fast) ease;
+}

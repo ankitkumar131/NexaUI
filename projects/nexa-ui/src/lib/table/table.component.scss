@@ -42,3 +42,7 @@
   border: 1px solid var(--nexa-border);
   border-radius: var(--nexa-radius-lg);
 }
+
+:host tbody tr {
+  transition: background-color var(--nexa-anim-fast) ease;
+}

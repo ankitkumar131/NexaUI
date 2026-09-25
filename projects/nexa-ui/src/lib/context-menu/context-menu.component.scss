@@ -75,3 +75,15 @@
     transform: scale(0.98);
   }
 }
+
+.nexa-ctx__menu {
+  transform-origin: top left;
+  animation: nexa-pop-in 160ms var(--nexa-ease-out);
+}
+.nexa-ctx__menu--closing {
+  animation: nexa-pop-out var(--nexa-anim-overlay-close) ease-in forwards;
+}
+
+.nexa-ctx__item {
+  transition: background-color var(--nexa-anim-fast) ease, color var(--nexa-anim-fast) ease;
+}

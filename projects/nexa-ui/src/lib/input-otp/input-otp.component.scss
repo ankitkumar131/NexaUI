@@ -39,3 +39,12 @@
     }
   }
 }
+
+.nexa-otp__box {
+  transition: border-color 160ms ease, transform 120ms ease;
+}
+
+.nexa-otp__box:focus {
+  border-color: var(--nexa-primary);
+  transform: scale(1.05);
+}

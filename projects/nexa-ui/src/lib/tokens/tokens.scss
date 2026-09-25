@@ -131,3 +131,92 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* --- Nexa UI Motion system ---
+ * Shared easings, durations, enter/exit keyframes and helpers.
+ * Every component consumes these -- override the vars to re-time the library.
+ * All motion collapses under prefers-reduced-motion (rule at the end).
+ */
+:root {
+  --nexa-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --nexa-ease-spring: cubic-bezier(0.34, 1.35, 0.5, 1);
+  --nexa-anim-fast: 140ms;
+  --nexa-anim-normal: 200ms;
+  --nexa-anim-slow: 300ms;
+  --nexa-anim-overlay-close: 170ms;
+}
+
+@keyframes nexa-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes nexa-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes nexa-pop-in {
+  from { opacity: 0; transform: scale(0.96) translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nexa-pop-out {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: scale(0.96) translateY(6px); }
+}
+@keyframes nexa-slide-in-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nexa-slide-out-down {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateY(14px); }
+}
+@keyframes nexa-slide-in-down {
+  from { opacity: 0; transform: translateY(-14px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nexa-slide-out-up {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateY(-14px); }
+}
+@keyframes nexa-slide-in-left {
+  from { opacity: 0; transform: translateX(14px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nexa-slide-out-right {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateX(14px); }
+}
+@keyframes nexa-slide-in-right {
+  from { opacity: 0; transform: translateX(-14px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nexa-slide-out-left {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateX(-14px); }
+}
+@keyframes nexa-toast-in-bottom {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nexa-toast-out-bottom {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateY(8px) scale(0.98); }
+}
+@keyframes nexa-toast-in-top {
+  from { opacity: 0; transform: translateY(-12px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nexa-toast-out-top {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateY(-8px) scale(0.98); }
+}
+
+/* Tab panels (rendered via user-side @if) animate on every switch. */
+.nexa-tab-panel {
+  animation: nexa-slide-in-up var(--nexa-anim-normal) var(--nexa-ease-out);
+}
+
+/* Opt-in helpers for your own content. */
+.nexa-animate-fade-in { animation: nexa-fade-in var(--nexa-anim-normal) ease-out; }
+.nexa-animate-pop-in { animation: nexa-pop-in var(--nexa-anim-normal) var(--nexa-ease-out); }
+.nexa-animate-rise { animation: nexa-slide-in-up var(--nexa-anim-normal) var(--nexa-ease-out); }

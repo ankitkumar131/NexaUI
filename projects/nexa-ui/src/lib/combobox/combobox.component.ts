@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { nexaCn, nexaUniqueId } from '../utils/utils';
+import { nexaOverlayMotion } from '../utils/overlay';
 
 export interface NexaComboboxOption {
   value: string;
@@ -52,6 +53,9 @@ export class NexaComboboxComponent implements ControlValueAccessor {
   readonly extraClass = input('');
 
   readonly open = model(false);
+  private readonly motion = nexaOverlayMotion(this.open, 140);
+  protected readonly rendered = this.motion.rendered;
+  protected readonly closing = this.motion.closing;
 
   private readonly hostRef = inject(ElementRef);
   private readonly cvaDisabled = signal(false);

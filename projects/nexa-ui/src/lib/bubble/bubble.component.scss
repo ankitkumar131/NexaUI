@@ -70,3 +70,7 @@
     border-right: none;
   }
 }
+
+.nexa-bubble {
+  animation: nexa-pop-in var(--nexa-anim-normal) var(--nexa-ease-out);
+}

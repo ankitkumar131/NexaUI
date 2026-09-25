@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { nexaCn, nexaUniqueId } from '../utils/utils';
+import { nexaOverlayMotion } from '../utils/overlay';
 
 export interface NexaSelectOption {
   value: string;
@@ -57,6 +58,9 @@ export class NexaSelectComponent implements ControlValueAccessor {
   private onTouched: () => void = () => undefined;
 
   protected readonly open = signal(false);
+  private readonly motion = nexaOverlayMotion(this.open, 140);
+  protected readonly rendered = this.motion.rendered;
+  protected readonly closing = this.motion.closing;
   protected readonly activeIndex = signal(-1);
 
   protected readonly isDisabled = computed(() => this.disabled() || this.cvaDisabled());

@@ -25,7 +25,8 @@
     padding-top: 0.5rem;
     opacity: 0;
     visibility: hidden;
-    transition: opacity var(--nexa-transition-fast), visibility var(--nexa-transition-fast);
+    transform: translateY(8px);
+    transition: opacity var(--nexa-transition-fast), visibility var(--nexa-transition-fast), transform var(--nexa-transition-fast);
     transition-delay: var(--nexa-hover-close-delay);
   }
 
@@ -33,6 +34,7 @@
   &:focus-within &__card-wrap {
     opacity: 1;
     visibility: visible;
+    transform: none;
     transition-delay: var(--nexa-hover-open-delay);
   }
 

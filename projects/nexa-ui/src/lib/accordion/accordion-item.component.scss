@@ -56,7 +56,7 @@
     display: grid;
     grid-template-rows: 0fr;
     visibility: hidden;
-    transition: grid-template-rows var(--nexa-transition-normal), visibility var(--nexa-transition-normal);
+    transition: grid-template-rows 240ms var(--nexa-ease-out), visibility 240ms ease;
   }
 
   :host(.nexa-accordion-item-host--open) &__panel {
@@ -64,9 +64,15 @@
     visibility: visible;
   }
 
+  :host(.nexa-accordion-item-host--open) &__content {
+    opacity: 1;
+  }
+
   &__content {
     overflow: hidden;
     min-height: 0;
+    opacity: 0;
+    transition: opacity var(--nexa-anim-normal) ease;
     font-size: 0.9rem;
     line-height: 1.65;
     color: var(--nexa-muted-foreground);

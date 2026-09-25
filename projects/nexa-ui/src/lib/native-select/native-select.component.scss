@@ -49,3 +49,11 @@
   color: var(--nexa-muted-foreground);
   pointer-events: none;
 }
+
+.nexa-native-select {
+  transition: border-color var(--nexa-anim-fast) ease, box-shadow var(--nexa-anim-fast) ease;
+}
+
+.nexa-native-select:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--nexa-input) 55%, var(--nexa-foreground));
+}

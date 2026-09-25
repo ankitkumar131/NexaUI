@@ -1,9 +1,10 @@
 <div class="nexa-ctx" (contextmenu)="onContextMenu($event)">
   <ng-content />
 </div>
-@if (open()) {
+@if (rendered()) {
   <ul
     class="nexa-ctx__menu"
+    [class.nexa-ctx__menu--closing]="closing()"
     role="menu"
     tabindex="-1"
     autofocus

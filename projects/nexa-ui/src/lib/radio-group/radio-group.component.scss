@@ -57,7 +57,7 @@
     border-radius: var(--nexa-radius-full);
     background: var(--nexa-primary);
     transform: scale(0);
-    transition: transform var(--nexa-transition-fast);
+    transition: transform 220ms var(--nexa-ease-spring);
   }
 
   &__option:has(&__input:checked) &__dot {

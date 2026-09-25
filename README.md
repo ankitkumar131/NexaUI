@@ -168,6 +168,28 @@ registry.json               # machine-readable catalog (generated)
 | `npx ng serve nexa-showcase` | Serve the interactive demo |
 | `node tools/nexa.mjs list` | List all 64 components |
 
+## Motion
+
+Every component animates: overlays pop/slide in and out (open AND close),
+accordions glide, toasts slide, tabs rise, toggles spring. All motion flows
+through shared tokens — re-time the whole library in one place:
+
+```css
+:root {
+  --nexa-anim-fast: 140ms;      /* hovers, fades */
+  --nexa-anim-normal: 200ms;    /* enters, pops */
+  --nexa-anim-slow: 300ms;      /* large travel */
+  --nexa-anim-overlay-close: 170ms;
+  --nexa-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --nexa-ease-spring: cubic-bezier(0.34, 1.35, 0.5, 1);
+}
+```
+
+Loaders are deliberately calm (`--nexa-spinner-duration: 1.5s`,
+`--nexa-progress-indeterminate-duration: 3s`, `--nexa-skeleton-duration: 4s`).
+Everything collapses under `prefers-reduced-motion`. Helper classes
+`.nexa-animate-fade-in` / `-pop-in` / `-rise` animate your own content.
+
 ## Requirements
 
 Angular ≥ 22, Node ≥ 20. No runtime dependencies beyond Angular itself.

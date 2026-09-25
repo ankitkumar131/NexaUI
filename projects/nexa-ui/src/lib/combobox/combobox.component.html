@@ -1,4 +1,4 @@
-<div class="nexa-combobox">
+<div class="nexa-combobox" [class.nexa-combobox--open]="open()">
   <div class="nexa-combobox__field">
     <input
       class="nexa-combobox__input nexa-focus-ring"
@@ -24,8 +24,8 @@
     }
     <span class="nexa-combobox__chevron" aria-hidden="true">▾</span>
   </div>
-  @if (open()) {
-    <ul id="nexa-combobox-list" class="nexa-combobox__list" role="listbox" [attr.aria-label]="ariaLabel() || placeholder()">
+  @if (rendered()) {
+    <ul id="nexa-combobox-list" class="nexa-combobox__list" [class.nexa-combobox__list--closing]="closing()" role="listbox" [attr.aria-label]="ariaLabel() || placeholder()">
       @for (option of filtered(); track option.value; let i = $index) {
         <li
           role="option"

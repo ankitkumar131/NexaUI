@@ -34,4 +34,4 @@ Native `progressbar` semantics with `aria-valuenow`/`valuetext`. Indeterminate o
 
 ## Customizing
 
-Determinate fills glide with a smooth 260ms ease-out. Indeterminate sweep speed is `--nexa-progress-indeterminate-duration` (default `2.4s`) — calm by design, override per instance or globally.
+Determinate fills glide with a smooth 260ms ease-out. Indeterminate sweep speed is `--nexa-progress-indeterminate-duration` (default `3s`) — calm by design, override per instance or globally.

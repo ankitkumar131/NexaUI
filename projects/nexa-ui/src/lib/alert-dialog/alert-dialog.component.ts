@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
 import { nexaCn, nexaUniqueId } from '../utils/utils';
-import { nexaLockBodyScroll } from '../utils/overlay';
+import { nexaLockBodyScroll, nexaOverlayMotion } from '../utils/overlay';
 import { NexaButtonComponent } from '../button/button.component';
 
 /**
@@ -23,6 +23,9 @@ import { NexaButtonComponent } from '../button/button.component';
 })
 export class NexaAlertDialogComponent {
   readonly open = model(false);
+  private readonly motion = nexaOverlayMotion(this.open, 180);
+  protected readonly rendered = this.motion.rendered;
+  protected readonly closing = this.motion.closing;
   readonly title = input('Are you sure?');
   readonly description = input('');
   readonly confirmText = input('Confirm');

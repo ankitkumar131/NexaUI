@@ -1,5 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { PLATFORM_ID, Signal, effect, inject } from '@angular/core';
+import { PLATFORM_ID, Signal, effect, inject, signal } from '@angular/core';
 
 /**
  * Locks body scroll while `open()` is true. Call it in an overlay component's
@@ -23,4 +23,47 @@ export function nexaLockBodyScroll(open: Signal<boolean>): void {
       document.body.style.overflow = prev;
     });
   });
+}
+
+export interface NexaOverlayMotion {
+  /** True while the overlay (or its exit animation) should render. */
+  readonly rendered: Signal<boolean>;
+  /** True while the exit animation is playing. */
+  readonly closing: Signal<boolean>;
+}
+
+/**
+ * Exit-animation state machine for overlays. Handles internal AND external
+ * closes uniformly: when `open` flips to false, `rendered` stays true for
+ * `closeMs` while `closing` plays the exit animation, then unmounts.
+ *
+ * ```ts
+ * private readonly motion = nexaOverlayMotion(this.open, 180);
+ * protected readonly rendered = this.motion.rendered;
+ * protected readonly closing = this.motion.closing;
+ * ```
+ * ```html
+ * @if (rendered()) {
+ *   <div class="panel" [class.panel--closing]="closing()">...</div>
+ * }
+ * ```
+ */
+export function nexaOverlayMotion(open: Signal<boolean>, closeMs = 180): NexaOverlayMotion {
+  const rendered = signal(open());
+  const closing = signal(false);
+  effect((onCleanup) => {
+    if (open()) {
+      closing.set(false);
+      if (!rendered()) rendered.set(true);
+      return;
+    }
+    if (!rendered()) return;
+    closing.set(true);
+    const timer = setTimeout(() => {
+      rendered.set(false);
+      closing.set(false);
+    }, closeMs);
+    onCleanup(() => clearTimeout(timer));
+  });
+  return { rendered, closing };
 }

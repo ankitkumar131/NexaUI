@@ -1,8 +1,9 @@
-@if (open()) {
+@if (rendered()) {
   <div class="nexa-sheet" (keydown.escape)="requestClose()">
-    <div class="nexa-sheet__backdrop" (click)="requestClose()"></div>
+    <div class="nexa-sheet__backdrop" [class.nexa-sheet__backdrop--closing]="closing()" (click)="requestClose()"></div>
     <aside
       [class]="panelClasses()"
+      [class.nexa-sheet__panel--closing]="closing()"
       role="dialog"
       aria-modal="true"
       [attr.aria-labelledby]="title() ? titleId() : null"

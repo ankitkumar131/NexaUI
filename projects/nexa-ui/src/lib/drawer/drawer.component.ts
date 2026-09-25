@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
 import { nexaCn, nexaUniqueId } from '../utils/utils';
-import { nexaLockBodyScroll } from '../utils/overlay';
+import { nexaLockBodyScroll, nexaOverlayMotion } from '../utils/overlay';
 
 export type NexaDrawerSide = 'left' | 'right' | 'top' | 'bottom';
 
@@ -24,6 +24,9 @@ export type NexaDrawerSide = 'left' | 'right' | 'top' | 'bottom';
 })
 export class NexaDrawerComponent {
   readonly open = model(false);
+  private readonly motion = nexaOverlayMotion(this.open, 240);
+  protected readonly rendered = this.motion.rendered;
+  protected readonly closing = this.motion.closing;
   readonly title = input('');
   readonly description = input('');
   readonly side = input<NexaDrawerSide>('right');

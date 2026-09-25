@@ -36,4 +36,4 @@ Skeletons are `aria-hidden` — put `aria-busy="true"` + a label on the loading 
 
 ## Customizing
 
-Shimmer sweep is `--nexa-skeleton-duration` (default `2.6s`) with a gentle 350ms fade-in.
+Shimmer sweep is `--nexa-skeleton-duration` (default `4s`) with a gentle 350ms fade-in.

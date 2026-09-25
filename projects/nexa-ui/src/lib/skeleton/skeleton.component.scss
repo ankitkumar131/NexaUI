@@ -26,7 +26,7 @@
     var(--nexa-muted) 65%
   );
   background-size: 200% 100%;
-  animation: nexa-skeleton-shimmer var(--nexa-skeleton-duration, 2.6s) ease-in-out infinite;
+  animation: nexa-skeleton-shimmer var(--nexa-skeleton-duration, 4s) ease-in-out infinite;
 }
 
 // Host carries the explicit size; inner fills it.

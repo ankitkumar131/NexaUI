@@ -87,3 +87,16 @@
     list-style: none;
   }
 }
+
+.nexa-menubar__list {
+  transform-origin: top left;
+  animation: nexa-pop-in 160ms var(--nexa-ease-out);
+}
+
+.nexa-menubar__trigger {
+  transition: background-color var(--nexa-anim-fast) ease, color var(--nexa-anim-fast) ease;
+}
+
+.nexa-menubar__item {
+  transition: background-color var(--nexa-anim-fast) ease, color var(--nexa-anim-fast) ease;
+}

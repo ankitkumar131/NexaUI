@@ -153,3 +153,66 @@
     opacity: 0;
   }
 }
+
+.nexa-drawer__backdrop {
+  animation: nexa-fade-in var(--nexa-anim-fast) ease-out;
+}
+.nexa-drawer__backdrop--closing {
+  animation: nexa-fade-out var(--nexa-anim-overlay-close) ease-in forwards;
+}
+.nexa-drawer__panel--left {
+  animation: nexa-drawer-in-left 240ms var(--nexa-ease-out);
+}
+.nexa-drawer__panel--left.nexa-drawer__panel--closing {
+  animation: nexa-drawer-out-left 220ms ease-in forwards;
+}
+.nexa-drawer__panel--right {
+  animation: nexa-drawer-in-right 240ms var(--nexa-ease-out);
+}
+.nexa-drawer__panel--right.nexa-drawer__panel--closing {
+  animation: nexa-drawer-out-right 220ms ease-in forwards;
+}
+.nexa-drawer__panel--top {
+  animation: nexa-drawer-in-top 240ms var(--nexa-ease-out);
+}
+.nexa-drawer__panel--top.nexa-drawer__panel--closing {
+  animation: nexa-drawer-out-top 220ms ease-in forwards;
+}
+.nexa-drawer__panel--bottom {
+  animation: nexa-drawer-in-bottom 240ms var(--nexa-ease-out);
+}
+.nexa-drawer__panel--bottom.nexa-drawer__panel--closing {
+  animation: nexa-drawer-out-bottom 220ms ease-in forwards;
+}
+@keyframes nexa-drawer-in-left {
+  from { opacity: 0; transform: translateX(-100%); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nexa-drawer-out-left {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateX(-100%); }
+}
+@keyframes nexa-drawer-in-right {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nexa-drawer-out-right {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateX(100%); }
+}
+@keyframes nexa-drawer-in-top {
+  from { opacity: 0; transform: translateY(-100%); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nexa-drawer-out-top {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateY(-100%); }
+}
+@keyframes nexa-drawer-in-bottom {
+  from { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nexa-drawer-out-bottom {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateY(100%); }
+}
